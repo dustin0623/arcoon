@@ -100,26 +100,14 @@ function HomeHeader({ progress }: { progress: Progress }) {
           </div>
         </div>
 
-        {/* Right: energy-style stats + wallet, as in the reference header */}
+        {/* Right: wallet only; combat totals live on the Character tab. */}
         <div className="flex shrink-0 items-center gap-1">
-          <Chip icon={<Skull className="h-3.5 w-3.5 text-shell-muted" />} value={progress.kills} />
-          <Chip icon={<Star className="h-3.5 w-3.5 text-shell-accent" />} value={progress.bestScore} />
           <WalletPopover progress={progress} />
         </div>
       </div>
       {/* Gold hairline under the header, as in the reference shell. */}
       <div className="fantasy-rule w-full" aria-hidden />
     </header>
-  );
-}
-
-/** Compact resource pill used in the header, like the reference wallet chips. */
-function Chip({ icon, value }: { icon: React.ReactNode; value: number }) {
-  return (
-    <span className="flex items-center gap-1 rounded-md bg-ink-700 px-1.5 py-1 ring-1 ring-ink-line">
-      {icon}
-      <span className="text-[13px] tabular-nums text-shell-text text-shadow">{value}</span>
-    </span>
   );
 }
 
@@ -352,10 +340,25 @@ function HomeCharacterTab({ progress }: { progress: Progress }) {
             <p className="text-[12px] opacity-80">Bow specialist</p>
           </div>
         </InnerPanel>
-        <InnerPanel className="mt-1 flex items-center justify-between p-2">
-          <Stat icon={<Swords className="h-4 w-4 text-shell-muted" />} value={`${totalCleared} stages`} />
-          <Stat icon={<Skull className="h-4 w-4 text-shell-muted" />} value={`${progress.kills}`} />
-          <Stat icon={<Star className="h-4 w-4 text-shell-accent" />} value={`${progress.bestScore}`} />
+        <InnerPanel className="mt-1 grid grid-cols-3 gap-2 p-2">
+          <div className="min-w-0 text-center">
+            <p className="mb-1 text-[11px] text-shell-muted">Stages</p>
+            <div className="flex justify-center">
+              <Stat icon={<Swords className="h-4 w-4 text-shell-muted" />} value={`${totalCleared}`} />
+            </div>
+          </div>
+          <div className="min-w-0 text-center">
+            <p className="mb-1 text-[11px] text-shell-muted">Kills</p>
+            <div className="flex justify-center">
+              <Stat icon={<Skull className="h-4 w-4 text-shell-muted" />} value={`${progress.kills}`} />
+            </div>
+          </div>
+          <div className="min-w-0 text-center">
+            <p className="mb-1 text-[11px] text-shell-muted">Best score</p>
+            <div className="flex justify-center">
+              <Stat icon={<Star className="h-4 w-4 text-shell-accent" />} value={`${progress.bestScore}`} />
+            </div>
+          </div>
         </InnerPanel>
         <InnerPanel className="mt-1 p-2">
           <p className="text-[13px] opacity-80">Skills</p>
