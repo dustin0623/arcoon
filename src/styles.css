@@ -199,6 +199,16 @@
   image-rendering: pixelated;
 }
 
+/* Touch devices: no rubber-band scrolling, no double-tap zoom, no text
+   selection or long-press callout while playing. */
+[data-game-route] {
+  overscroll-behavior: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
 /* ---------------------------------------------------------------
  * Fantasy shell theme (ported from the Idle Raiders reference) —
  * dark slate surfaces + gold accents, layered under the pixel panels
