@@ -93,7 +93,7 @@ function HomeHeader({ progress }: { progress: Progress }) {
                   style={{ width: `${Math.round(level.ratio * 100)}%` }}
                 />
               </div>
-              <span className="text-[15px] whitespace-nowrap tabular-nums text-brown-100/60">
+              <span className="text-[11px] whitespace-nowrap tabular-nums text-brown-100/60">
                 {level.maxed ? "MAX" : `${level.into}/${level.needed}`}
               </span>
             </div>
@@ -170,7 +170,7 @@ function WalletPopover({ progress }: { progress: Progress }) {
           <WalletIcon className="h-4 w-4 text-fgold" />
           <div>
             <p className="text-[13px] text-gradient-gold">Wallet</p>
-            <p className="text-[15px] text-brown-100/60">Your balances</p>
+            <p className="text-[11px] text-brown-100/60">Your balances</p>
           </div>
         </div>
         <div className="fantasy-rule w-full" aria-hidden />
@@ -267,7 +267,7 @@ function MapCard({ map, progress }: { map: MapDef; progress: Progress }) {
 
                 >
                   {done ? <Check className="h-3.5 w-3.5" /> : open ? stage : <Lock className="h-3 w-3" />}
-                  <span className="text-[15px] opacity-80">{wavesForStage(stage)}w</span>
+                  <span className="text-[11px] opacity-80">{wavesForStage(stage)}w</span>
                 </button>
               );
             })}
