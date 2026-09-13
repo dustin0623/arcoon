@@ -186,14 +186,7 @@ export function CharacterPanel({
     <TabOverlay title="Character" onClose={onClose}>
       <InnerPanel className="p-2">
         <div className="flex items-center gap-2">
-          <div className="h-10 w-10 shrink-0 overflow-hidden rounded-full border-2 border-brown-100 bg-brown-300">
-            <div
-              role="img"
-              aria-label="Raccoon avatar"
-              className="h-full w-full bg-[url('/assets/phaser/sprites/raccoon/idle_strip6.png')] bg-left bg-no-repeat pixelated"
-              style={{ backgroundSize: "600% 100%" }}
-            />
-          </div>
+          <RaccoonAvatar className="h-10 w-10" />
           <div className="min-w-0 flex-1">
             <p className="text-[10px]">Raccoon · Lv {progress.level}</p>
             <div className="mt-0.5 h-1.5 w-full overflow-hidden rounded-full bg-black/50">

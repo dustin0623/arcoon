@@ -103,14 +103,7 @@ export function TopBar({
     <div className="pointer-events-auto flex items-start justify-between gap-2">
       {/* Left: avatar, bow, level, skills */}
       <OuterPanel className="flex items-center gap-3 px-2 py-1.5">
-        <div className="h-9 w-9 shrink-0 overflow-hidden rounded-full border-2 border-brown-100 bg-brown-300">
-          <div
-            role="img"
-            aria-label="Raccoon avatar"
-            className="h-full w-full bg-[url('/assets/phaser/sprites/raccoon/idle_strip6.png')] bg-left bg-no-repeat pixelated"
-            style={{ backgroundSize: "600% 100%" }}
-          />
-        </div>
+        <RaccoonAvatar className="h-9 w-9" />
 
         <div className="flex items-center gap-1.5 border-l border-brown-100/40 pl-3">
           <img src={ICONS.bow} alt="bow" className="h-4 w-4 object-contain" />
