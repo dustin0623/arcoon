@@ -168,6 +168,7 @@ export class ArenaScene extends Phaser.Scene {
     this.player.sprite.setAlpha(
       !this.gameOver && time < this.player.invulnUntil && Math.floor(time / 90) % 2 === 0 ? 0.4 : 1,
     );
+    this.updateHpBar();
     this.emitHud();
   }
 
