@@ -2,7 +2,7 @@ import Phaser from "phaser";
 
 const MAGNET_RADIUS = 56;
 const COLLECT_RADIUS = 10;
-const COIN_ART = "vfx_coin";
+const ORB_ART = "vfx_xp_orb";
 
 interface Coin {
   sprite: Phaser.GameObjects.Image;
@@ -12,8 +12,9 @@ interface Coin {
 }
 
 /**
- * CoinSystem — gold coins burst out of fallen enemies, scatter, then
+ * CoinSystem — XP orbs burst out of fallen enemies, scatter, then
  * magnetize toward the player and are auto-collected on contact.
+ * (Gold is credited instantly on kill; only experience is collected.)
  */
 export class CoinSystem {
   coins: Coin[] = [];
@@ -26,21 +27,21 @@ export class CoinSystem {
     this.ensureTexture();
   }
 
-  /** Draws a tiny 8px pixel-art coin once and caches it as a texture. */
+  /** Draws a tiny 8px pixel-art XP orb once and caches it as a texture. */
   private ensureTexture() {
-    if (this.scene.textures.exists(COIN_ART)) return;
+    if (this.scene.textures.exists(ORB_ART)) return;
     const g = this.scene.add.graphics();
-    g.fillStyle(0xa16207, 1);
+    g.fillStyle(0x1d6f43, 1);
     g.fillCircle(4, 4, 4);
-    g.fillStyle(0xffd166, 1);
+    g.fillStyle(0x4ade80, 1);
     g.fillCircle(4, 4, 3);
-    g.fillStyle(0xfff3c4, 1);
+    g.fillStyle(0xdcfce7, 1);
     g.fillRect(2, 2, 1, 1);
-    g.generateTexture(COIN_ART, 8, 8);
+    g.generateTexture(ORB_ART, 8, 8);
     g.destroy();
   }
 
-  /** Scatters coins around (x, y) whose values sum to totalValue. */
+  /** Scatters XP orbs around (x, y) whose values sum to totalValue. */
   spawnBurst(x: number, y: number, totalValue: number) {
     if (totalValue <= 0) return;
     const count = Phaser.Math.Clamp(Math.round(totalValue / 8), 1, 3);
