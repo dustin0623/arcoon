@@ -355,7 +355,7 @@ export class ArenaScene extends Phaser.Scene {
     const width = 28;
     const height = 4;
     const x = Math.round(this.player.bodyX - width / 2);
-    const y = Math.round(this.player.bodyY - 15);
+    const y = Math.round(this.player.bodyY - 20);
     const ratio = maxHp > 0 ? Phaser.Math.Clamp(hp / maxHp, 0, 1) : 0;
 
     const g = this.hpBar;
