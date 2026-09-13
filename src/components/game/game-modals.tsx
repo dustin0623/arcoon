@@ -5,7 +5,7 @@
 import React from "react";
 import clsx from "clsx";
 import { Coins, Skull, Star, Swords } from "lucide-react";
-import { OuterPanel, InnerPanel, Label, PixelButton } from "@/components/ui/pixel-panel";
+import { OuterPanel, InnerPanel, Label, PixelButton, BarPanel } from "@/components/ui/pixel-panel";
 import { BOWS, bowStats, MAX_STARS } from "@/features/game/bow";
 import { getLevelProgress } from "@/features/game/experience";
 import type { HudState } from "@/features/game/hud";
