@@ -362,6 +362,7 @@ function BowRow({
         <div className="mt-1.5 flex gap-1">
           {!owned ? (
             <PixelButton
+              variant="green"
               className="flex-1"
               disabled={progress.gold < def.unlockCost}
               onClick={() => onChange(buyBow(progress, rarity))}
@@ -381,6 +382,7 @@ function BowRow({
                 <span className="text-[12px]">{equipped ? "Equipped" : "Equip"}</span>
               </PixelButton>
               <PixelButton
+                variant="green"
                 className="flex-1"
                 disabled={upgradeCost === null || progress.gold < upgradeCost}
                 onClick={() => onChange(upgradeStar(progress, rarity))}

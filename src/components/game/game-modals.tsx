@@ -219,7 +219,7 @@ export function WaveBreakModal({ hud, onFight }: { hud: HudState; onFight: () =>
         </div>
       </InnerPanel>
 
-      <PixelButton className="mt-1 w-full" onClick={onFight}>
+      <PixelButton variant="green" className="mt-1 w-full" onClick={onFight}>
         <span className="text-[13px]">Fight</span>
       </PixelButton>
     </OuterPanel>
@@ -253,11 +253,11 @@ export function GameOverModal({
         <p className="pt-1 text-[14px] tabular-nums">{hud.score} points</p>
       </InnerPanel>
       <div className="mt-1 flex gap-1">
-        <PixelButton className="flex-1" onClick={onRestart}>
+        <PixelButton variant="green" className="flex-1" onClick={onRestart}>
           <span className="text-[13px]">Retry</span>
         </PixelButton>
         {onHome && (
-          <PixelButton className="flex-1" onClick={onHome}>
+          <PixelButton variant="red" className="flex-1" onClick={onHome}>
             <span className="text-[13px]">World map</span>
           </PixelButton>
         )}
@@ -293,11 +293,11 @@ export function VictoryModal({
       </InnerPanel>
       <div className="mt-1 flex gap-1">
         {onNextStage && (
-          <PixelButton className="flex-1" onClick={onNextStage}>
+          <PixelButton variant="green" className="flex-1" onClick={onNextStage}>
             <span className="text-[13px]">Next stage</span>
           </PixelButton>
         )}
-        <PixelButton className="flex-1" onClick={onHome}>
+        <PixelButton variant="red" className="flex-1" onClick={onHome}>
           <span className="text-[13px]">World map</span>
         </PixelButton>
       </div>

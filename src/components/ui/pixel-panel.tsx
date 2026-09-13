@@ -4,6 +4,8 @@ import clsx from "clsx";
 const darkBorder = "/assets/ui/panel/dark_border.png";
 const lightBorder = "/assets/ui/panel/light_border.png";
 const whiteBorder = "/assets/ui/panel/white_border.png";
+const redBorder = "/assets/ui/panel/red_border.png";
+const greenBorder = "/assets/ui/panel/green_border.png";
 
 const frame = (src: string, width: string, radius: string): React.CSSProperties => ({
   borderStyle: "solid",
@@ -73,7 +75,15 @@ interface ButtonProps {
   disabled?: boolean;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   type?: "button" | "submit";
+  /** Frame color: default (light), green for confirm/positive, red for danger/cancel. */
+  variant?: "default" | "green" | "red";
 }
+
+const BUTTON_FRAMES = {
+  default: { src: lightBorder, bg: "bg-brown-200 hover:bg-brown-300" },
+  green: { src: greenBorder, bg: "bg-green-700 hover:bg-green-600" },
+  red: { src: redBorder, bg: "bg-red-700 hover:bg-red-600" },
+} as const;
 
 /** Pixel-framed button matching the reference UI. */
 export const PixelButton: React.FC<ButtonProps> = ({
@@ -82,16 +92,18 @@ export const PixelButton: React.FC<ButtonProps> = ({
   disabled,
   onClick,
   type = "button",
+  variant = "default",
 }) => (
   <button
     type={type}
     disabled={disabled}
     onClick={onClick}
     className={clsx(
-      "bg-brown-200 hover:bg-brown-300 flex cursor-pointer items-center justify-center px-2 py-1 text-white text-shadow disabled:cursor-not-allowed disabled:opacity-50",
+      "flex cursor-pointer items-center justify-center px-2 py-1 text-white text-shadow disabled:cursor-not-allowed disabled:opacity-50",
+      BUTTON_FRAMES[variant].bg,
       className,
     )}
-    style={frame(lightBorder, "5px", "15px")}
+    style={frame(BUTTON_FRAMES[variant].src, "5px", "15px")}
   >
     {children}
   </button>
