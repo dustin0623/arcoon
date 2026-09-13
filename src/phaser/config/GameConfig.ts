@@ -32,7 +32,7 @@ export const PLAYER_CONFIG = {
   IFRAME_MS: 400,
 } as const;
 
-export type EnemyType = "grunt" | "brute" | "runner";
+export type EnemyType = "grunt" | "brute" | "runner" | "boss";
 
 export interface EnemyConfig {
   type: EnemyType;
@@ -44,6 +44,10 @@ export interface EnemyConfig {
   attackRange: number;
   tint: number;
   points: number;
+  /** Sprite scale — bosses render larger than regular enemies. */
+  scale?: number;
+  /** Health bar width in px. */
+  barWidth?: number;
 }
 
 export const ENEMY_CONFIG: Record<EnemyType, EnemyConfig> = {

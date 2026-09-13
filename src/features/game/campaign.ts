@@ -55,9 +55,17 @@ export function getMap(id: string | undefined): MapDef {
   return MAPS.find((m) => m.id === id) ?? MAPS[0];
 }
 
-/** Waves needed to clear a stage — stages get longer as they go. */
-export function wavesForStage(stage: number): number {
-  return 2 + stage;
+/** Every stage runs the same length: 10 waves, the last one a boss fight. */
+export const WAVES_PER_STAGE = 10;
+
+/** Waves needed to clear a stage. */
+export function wavesForStage(_stage: number): number {
+  return WAVES_PER_STAGE;
+}
+
+/** The final wave of every stage is a boss wave. */
+export function isBossWave(wave: number): boolean {
+  return wave > 0 && wave % WAVES_PER_STAGE === 0;
 }
 
 export interface Progress {
