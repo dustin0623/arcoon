@@ -117,10 +117,22 @@ export default function ArenaCanvas() {
             </div>
           )}
 
-          {hud.intermission && !hud.gameOver && !skillsOpen && (
+          {hud.intermission && !hud.gameOver && !skillsOpen && tab === "world" && (
             <div className="pointer-events-auto absolute inset-0 flex items-center justify-center px-4">
               <ShopModal hud={hud} onAction={sendShopAction} />
             </div>
+          )}
+
+          {!hud.gameOver && tab === "inventory" && (
+            <InventoryPanel hud={hud} onClose={() => setTab("world")} />
+          )}
+          {!hud.gameOver && tab === "packs" && <PacksPanel onClose={() => setTab("world")} />}
+          {!hud.gameOver && tab === "character" && (
+            <CharacterPanel
+              hud={hud}
+              onOpenSkills={() => setSkillsOpen(true)}
+              onClose={() => setTab("world")}
+            />
           )}
 
           {skillsOpen && !hud.gameOver && (
