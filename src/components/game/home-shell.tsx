@@ -4,7 +4,7 @@
  * tab is an Archero-style stage chain: clear every stage of a map to open the
  * next map. Picking a stage navigates to the Phaser run at /game.
  */
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "@tanstack/react-router";
 import clsx from "clsx";
 import { Check, Coins, Lock, Package, Skull, Star, Swords } from "lucide-react";
@@ -12,6 +12,7 @@ import { InnerPanel, Label, OuterPanel, PixelButton } from "@/components/ui/pixe
 import { ICONS, RaccoonAvatar, Stat } from "@/components/game/game-modals";
 import { BottomNav, type GameTab } from "@/components/game/shell-panels";
 import { BOW_TIER } from "@/features/game/bow";
+import { getLevelProgress } from "@/features/game/experience";
 import { SKILL_TREE } from "@/features/game/skill-tree";
 import {
   EMPTY_PROGRESS,
