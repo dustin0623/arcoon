@@ -1,22 +1,28 @@
 import { createFileRoute, ClientOnly } from "@tanstack/react-router";
 import { lazy, Suspense } from "react";
+import { getMap } from "@/features/game/campaign";
 
 const ArenaCanvas = lazy(() => import("@/phaser/ArenaCanvas"));
 
 export const Route = createFileRoute("/game")({
+  validateSearch: (search: Record<string, unknown>) => {
+    const mapId = getMap(typeof search.map === "string" ? search.map : undefined).id;
+    const stage = Math.max(1, Math.min(Number(search.stage) || 1, getMap(mapId).stages));
+    return { map: mapId, stage };
+  },
   head: () => ({
     meta: [
-      { title: "Play ARCOON — Wave Survival Roguelite" },
+      { title: "Play ARCOON — Clear the Stage" },
       {
         name: "description",
         content:
-          "Survive escalating enemy waves in ARCOON's top-down pixel arena. Move, aim and fire your bow to rack up kills and points.",
+          "Run the stage: dodge swarms, fire your bow and clear every wave to unlock the next ARCOON stage.",
       },
-      { property: "og:title", content: "Play ARCOON — Wave Survival Roguelite" },
+      { property: "og:title", content: "Play ARCOON — Clear the Stage" },
       {
         property: "og:description",
         content:
-          "Survive escalating enemy waves in ARCOON's top-down pixel arena. Move, aim and fire your bow to rack up kills and points.",
+          "Run the stage: dodge swarms, fire your bow and clear every wave to unlock the next ARCOON stage.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -34,12 +40,13 @@ function Fallback() {
 }
 
 function GamePage() {
+  const { map, stage } = Route.useSearch();
   return (
     <main className="h-screen w-screen overflow-hidden bg-background">
-      <h1 className="sr-only">ARCOON wave survival</h1>
+      <h1 className="sr-only">ARCOON stage run</h1>
       <ClientOnly fallback={<Fallback />}>
         <Suspense fallback={<Fallback />}>
-          <ArenaCanvas />
+          <ArenaCanvas mapId={map} stage={stage} />
         </Suspense>
       </ClientOnly>
     </main>
