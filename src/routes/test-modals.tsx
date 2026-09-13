@@ -6,8 +6,7 @@ import {
   LoadingOverlay,
   ShopModal,
   SkillTreeModal,
-  VitalsPanel,
-  WavePanel,
+  TopBar,
   XpBar,
   type HudModel,
 } from "@/components/game/game-modals";
@@ -99,12 +98,12 @@ function TestModalsPage() {
       </header>
 
       <div className="grid gap-6 lg:grid-cols-2">
-        <Slot title="HUD — vitals (top left)">
-          <VitalsPanel hud={{ ...SAMPLE, ranks }} onOpenSkills={() => setPoints(points + 1)} />
-        </Slot>
-
-        <Slot title="HUD — wave & score (top right)">
-          <WavePanel hud={{ ...SAMPLE, ranks }} />
+        <Slot title="HUD — top bar" className="lg:col-span-2">
+          <TopBar
+            hud={{ ...SAMPLE, ranks }}
+            onOpenSkills={() => setPoints(points + 1)}
+            onOpenSettings={() => undefined}
+          />
         </Slot>
 
         <Slot title="Experience bar (bottom, full width)" className="lg:col-span-2">

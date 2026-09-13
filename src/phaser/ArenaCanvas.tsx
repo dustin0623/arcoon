@@ -8,8 +8,7 @@ import {
   LoadingOverlay,
   ShopModal,
   SkillTreeModal,
-  VitalsPanel,
-  WavePanel,
+  TopBar,
   XpBar,
 } from "@/components/game/game-modals";
 
