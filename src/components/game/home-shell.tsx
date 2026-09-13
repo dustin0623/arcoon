@@ -62,23 +62,23 @@ export default function HomeShell() {
 function HomeHeader({ progress }: { progress: Progress }) {
   const level = getLevelProgress(progress.xp);
   return (
-    <header className="shrink-0 bg-brown-600/95">
+    <header className="relative z-10 shrink-0 bg-ink-800/95 shadow-card backdrop-blur">
       <div className="mx-auto flex w-full max-w-lg items-center justify-between gap-2 px-3 py-2">
         {/* Left: identity */}
         <div className="flex min-w-0 items-center gap-2">
-          <RaccoonAvatar className="h-9 w-9 shrink-0" />
+          <RaccoonAvatar className="h-9 w-9 shrink-0 rounded-full ring-1 ring-fgold/50 glow-gold" />
           <div className="min-w-0">
-            <p className="truncate text-[10px] leading-tight text-white text-shadow">
-              ARCOON <span className="text-[8px] opacity-70">Lv.{level.level}</span>
+            <p className="truncate text-[10px] leading-tight text-gradient-gold">
+              ARCOON <span className="text-[8px] text-brown-100/70">Lv.{level.level}</span>
             </p>
             <div className="mt-1 flex items-center gap-1">
-              <div className="h-1.5 w-20 overflow-hidden rounded-full bg-black/50 sm:w-28">
+              <div className="h-1.5 w-20 overflow-hidden rounded-full bg-ink-900 ring-1 ring-ink-line sm:w-28">
                 <div
-                  className="h-full rounded-full bg-neon"
+                  className="h-full rounded-full bg-gradient-gold"
                   style={{ width: `${Math.round(level.ratio * 100)}%` }}
                 />
               </div>
-              <span className="text-[7px] whitespace-nowrap tabular-nums opacity-70">
+              <span className="text-[7px] whitespace-nowrap tabular-nums text-brown-100/60">
                 {level.maxed ? "MAX" : `${level.into}/${level.needed}`}
               </span>
             </div>
@@ -87,13 +87,13 @@ function HomeHeader({ progress }: { progress: Progress }) {
 
         {/* Right: resources */}
         <div className="flex shrink-0 items-center gap-1">
-          <Chip icon={<Coins className="h-3.5 w-3.5 text-yellow-300" />} value={progress.gold} />
+          <Chip icon={<Coins className="h-3.5 w-3.5 text-fgold" />} value={progress.gold} />
           <Chip icon={<Skull className="h-3.5 w-3.5 text-brown-100" />} value={progress.kills} />
-          <Chip icon={<Star className="h-3.5 w-3.5 text-yellow-300" />} value={progress.bestScore} />
+          <Chip icon={<Star className="h-3.5 w-3.5 text-fgold" />} value={progress.bestScore} />
         </div>
       </div>
-      {/* Bottom edge strip — a border would be cleared by the game-route reset. */}
-      <div className="h-1 w-full bg-brown-700" aria-hidden />
+      {/* Gold hairline under the header, as in the reference shell. */}
+      <div className="fantasy-rule w-full" aria-hidden />
     </header>
   );
 }
@@ -101,12 +101,13 @@ function HomeHeader({ progress }: { progress: Progress }) {
 /** Compact resource pill used in the header, like the reference wallet chips. */
 function Chip({ icon, value }: { icon: React.ReactNode; value: number }) {
   return (
-    <span className="flex items-center gap-1 rounded-md bg-brown-700/70 px-1.5 py-1">
+    <span className="flex items-center gap-1 rounded-md bg-ink-700 px-1.5 py-1 ring-1 ring-ink-line">
       {icon}
-      <span className="text-[9px] tabular-nums text-white text-shadow">{value}</span>
+      <span className="text-[9px] tabular-nums text-brown-100 text-shadow">{value}</span>
     </span>
   );
 }
+
 
 /** World tab: every map with its stage chain. */
 function WorldTab({ progress }: { progress: Progress }) {
