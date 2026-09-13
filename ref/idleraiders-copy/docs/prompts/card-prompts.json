@@ -1,0 +1,814 @@
+[
+  {
+    "id": "legendary_hero_1",
+    "name": "Aurelion the Dragonlord",
+    "type": "hero",
+    "rarity": "legendary",
+    "prompt": "cute chibi fantasy character illustration, big head small body proportions, stylized collectible card game character, vibrant colors, expressive face, simplified but detailed armor and equipment, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi version of Aurelion the Dragonlord, a legendary champion who once battled the Ancient Dragon beneath the Iron Citadel, warrior class, golden dragon-themed armor, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "epic_hero_1",
+    "name": "Nyx Shadowblade",
+    "type": "hero",
+    "rarity": "epic",
+    "prompt": "cute chibi fantasy character illustration, big head small body proportions, stylized collectible card game character, vibrant colors, expressive face, simplified but detailed armor and equipment, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi version of Nyx Shadowblade, a master rogue of Ember City who strikes demon commanders from the shadows, rogue class, dark hooded outfit with daggers, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "epic_hero_2",
+    "name": "Arcanis Crystal Sage",
+    "type": "hero",
+    "rarity": "epic",
+    "prompt": "cute chibi fantasy character illustration, big head small body proportions, stylized collectible card game character, vibrant colors, expressive face, simplified but detailed armor and equipment, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi version of Arcanis Crystal Sage, a Sunspire mage who commands crystallized arcane energy against the undead, mage class, flowing robes with crystal staff, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "rare_hero_1",
+    "name": "Evershade Ranger",
+    "type": "hero",
+    "rarity": "rare",
+    "prompt": "cute chibi fantasy character illustration, big head small body proportions, stylized collectible card game character, vibrant colors, expressive face, simplified but detailed armor and equipment, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi version of Evershade Ranger, elite scout of the Whispering Forest trained to hunt goblin raiders, archer class, forest green cloak with bow, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "rare_hero_2",
+    "name": "Sunspire Battlemage",
+    "type": "hero",
+    "rarity": "rare",
+    "prompt": "cute chibi fantasy character illustration, big head small body proportions, stylized collectible card game character, vibrant colors, expressive face, simplified but detailed armor and equipment, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi version of Sunspire Battlemage, battle mage who wields radiant magic against undead armies, mage class, golden robes with glowing staff, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "rare_hero_3",
+    "name": "Frosthold Sentinel",
+    "type": "hero",
+    "rarity": "rare",
+    "prompt": "cute chibi fantasy character illustration, big head small body proportions, stylized collectible card game character, vibrant colors, expressive face, simplified but detailed armor and equipment, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi version of Frosthold Sentinel, guardian of the frozen bastion who holds the line against giants, paladin class, icy blue armor with shield, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "uncommon_hero_1",
+    "name": "Forest Archer",
+    "type": "hero",
+    "rarity": "uncommon",
+    "prompt": "cute chibi fantasy character illustration, big head small body proportions, stylized collectible card game character, vibrant colors, expressive face, simplified but detailed armor and equipment, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi version of Forest Archer, elven archer who strikes from the high branches of Evershade, archer class, green leather armor with longbow, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "uncommon_hero_2",
+    "name": "Citadel Guard",
+    "type": "hero",
+    "rarity": "uncommon",
+    "prompt": "cute chibi fantasy character illustration, big head small body proportions, stylized collectible card game character, vibrant colors, expressive face, simplified but detailed armor and equipment, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi version of Citadel Guard, human soldier sworn to defend the golden walls of Sunspire, warrior class, golden plate armor with spear, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "uncommon_hero_3",
+    "name": "Crypt Scholar",
+    "type": "hero",
+    "rarity": "uncommon",
+    "prompt": "cute chibi fantasy character illustration, big head small body proportions, stylized collectible card game character, vibrant colors, expressive face, simplified but detailed armor and equipment, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi version of Crypt Scholar, scholar studying necromancy to understand the Lich King's magic, mage class, dark robes with tome and skull motifs, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "uncommon_hero_4",
+    "name": "Frost Ranger",
+    "type": "hero",
+    "rarity": "uncommon",
+    "prompt": "cute chibi fantasy character illustration, big head small body proportions, stylized collectible card game character, vibrant colors, expressive face, simplified but detailed armor and equipment, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi version of Frost Ranger, hunter who tracks beasts across the glaciers of Frosthold, archer class, white fur cloak with ice-touched bow, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "uncommon_hero_5",
+    "name": "Ashland Rogue",
+    "type": "hero",
+    "rarity": "uncommon",
+    "prompt": "cute chibi fantasy character illustration, big head small body proportions, stylized collectible card game character, vibrant colors, expressive face, simplified but detailed armor and equipment, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi version of Ashland Rogue, scout who infiltrates demonic fortresses near Ember City, rogue class, dark ash-stained leather armor with twin daggers, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "uncommon_hero_6",
+    "name": "Iron Legion Recruit",
+    "type": "hero",
+    "rarity": "uncommon",
+    "prompt": "cute chibi fantasy character illustration, big head small body proportions, stylized collectible card game character, vibrant colors, expressive face, simplified but detailed armor and equipment, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi version of Iron Legion Recruit, new warrior trained within the walls of the Iron Citadel, warrior class, iron armor with sword and shield, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "common_hero_1",
+    "name": "Village Militia",
+    "type": "hero",
+    "rarity": "common",
+    "prompt": "cute chibi fantasy character illustration, big head small body proportions, stylized collectible card game character, vibrant colors, expressive face, simplified but detailed armor and equipment, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi version of Village Militia, farmers and hunters who rise to defend their homes, warrior class, simple cloth and leather armor with pitchfork or sword, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "common_hero_2",
+    "name": "Forest Scout",
+    "type": "hero",
+    "rarity": "common",
+    "prompt": "cute chibi fantasy character illustration, big head small body proportions, stylized collectible card game character, vibrant colors, expressive face, simplified but detailed armor and equipment, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi version of Forest Scout, messenger who runs through the forests of Evershade carrying warnings, archer class, light green tunic with small bow, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "common_hero_3",
+    "name": "Sunspire Apprentice",
+    "type": "hero",
+    "rarity": "common",
+    "prompt": "cute chibi fantasy character illustration, big head small body proportions, stylized collectible card game character, vibrant colors, expressive face, simplified but detailed armor and equipment, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi version of Sunspire Apprentice, young mage studying the arcane arts in Sunspire, mage class, simple white robes with practice wand, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "common_hero_4",
+    "name": "Graveyard Watcher",
+    "type": "hero",
+    "rarity": "common",
+    "prompt": "cute chibi fantasy character illustration, big head small body proportions, stylized collectible card game character, vibrant colors, expressive face, simplified but detailed armor and equipment, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi version of Graveyard Watcher, guardian stationed near haunted burial grounds, warrior class, dark cloth armor with lantern and club, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "common_hero_5",
+    "name": "Frosthold Hunter",
+    "type": "hero",
+    "rarity": "common",
+    "prompt": "cute chibi fantasy character illustration, big head small body proportions, stylized collectible card game character, vibrant colors, expressive face, simplified but detailed armor and equipment, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi version of Frosthold Hunter, hunter who survives the frozen wilderness, archer class, thick fur coat with hunting bow, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "common_hero_6",
+    "name": "Lava Pit Miner",
+    "type": "hero",
+    "rarity": "common",
+    "prompt": "cute chibi fantasy character illustration, big head small body proportions, stylized collectible card game character, vibrant colors, expressive face, simplified but detailed armor and equipment, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi version of Lava Pit Miner, worker hardened by Ember City's volcanic mines, blacksmith class, heat-resistant gear with pickaxe, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "common_hero_7",
+    "name": "Citadel Messenger",
+    "type": "hero",
+    "rarity": "common",
+    "prompt": "cute chibi fantasy character illustration, big head small body proportions, stylized collectible card game character, vibrant colors, expressive face, simplified but detailed armor and equipment, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi version of Citadel Messenger, swift rider carrying orders between the Five Realms, warrior class, light armor with messenger bag and riding gear, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "common_hero_8",
+    "name": "Frontier Adventurer",
+    "type": "hero",
+    "rarity": "common",
+    "prompt": "cute chibi fantasy character illustration, big head small body proportions, stylized collectible card game character, vibrant colors, expressive face, simplified but detailed armor and equipment, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi version of Frontier Adventurer, wanderer seeking glory across dangerous lands, rogue class, traveler's gear with short sword and backpack, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "legendary_equipment_1",
+    "name": "Celestial Blade",
+    "type": "equipment",
+    "rarity": "legendary",
+    "prompt": "stylized chibi fantasy item illustration, collectible card game item design, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible item Celestial Blade, a divine sword forged in the sacred forges of Sunspire that cuts through undead like shadows, melee weapon class, glowing golden blade with holy runes, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "epic_equipment_1",
+    "name": "Mythic Halberd",
+    "type": "equipment",
+    "rarity": "epic",
+    "prompt": "stylized chibi fantasy item illustration, collectible card game item design, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible item Mythic Halberd, a massive halberd carried by champions of the Iron Citadel during the war against the Demon Lord, melee weapon class, ornate polearm with glowing blade, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "epic_equipment_2",
+    "name": "Dragonscale Armor",
+    "type": "equipment",
+    "rarity": "epic",
+    "prompt": "stylized chibi fantasy item illustration, collectible card game item design, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible item Dragonscale Armor, armor crafted from scales of fallen dragons nearly impervious to flame and steel, defense class, iridescent dragon scale plate armor, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "rare_equipment_1",
+    "name": "Evershade Longbow",
+    "type": "equipment",
+    "rarity": "rare",
+    "prompt": "stylized chibi fantasy item illustration, collectible card game item design, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible item Evershade Longbow, an elegant bow carved from ancient forestwood favored by elven rangers, range weapon class, ornate wooden bow with leaf motifs, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "rare_equipment_2",
+    "name": "Sunspire Warhammer",
+    "type": "equipment",
+    "rarity": "rare",
+    "prompt": "stylized chibi fantasy item illustration, collectible card game item design, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible item Sunspire Warhammer, a radiant warhammer blessed by paladins to crush undead warriors, melee weapon class, golden hammer head with sun emblem, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "rare_equipment_3",
+    "name": "Froststeel Axe",
+    "type": "equipment",
+    "rarity": "rare",
+    "prompt": "stylized chibi fantasy item illustration, collectible card game item design, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible item Froststeel Axe, forged in the icy halls of Frosthold this axe remains cold even in battle, melee weapon class, ice-blue metal axe with frost particles, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "uncommon_equipment_1",
+    "name": "Hunter Crossbow",
+    "type": "equipment",
+    "rarity": "uncommon",
+    "prompt": "stylized chibi fantasy item illustration, collectible card game item design, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible item Hunter Crossbow, a reliable weapon used by scouts patrolling the wilderness, range weapon class, wooden crossbow with metal fittings, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "uncommon_equipment_2",
+    "name": "Sunforge Blade",
+    "type": "equipment",
+    "rarity": "uncommon",
+    "prompt": "stylized chibi fantasy item illustration, collectible card game item design, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible item Sunforge Blade, a sword tempered in the sacred flames of Sunspire, melee weapon class, glowing orange-gold sword, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "uncommon_equipment_3",
+    "name": "Cryptbreaker Mace",
+    "type": "equipment",
+    "rarity": "uncommon",
+    "prompt": "stylized chibi fantasy item illustration, collectible card game item design, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible item Cryptbreaker Mace, a blunt weapon designed to shatter skeleton armies, melee weapon class, heavy iron mace with bone-crushing spikes, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "uncommon_equipment_4",
+    "name": "Icefang Dagger",
+    "type": "equipment",
+    "rarity": "uncommon",
+    "prompt": "stylized chibi fantasy item illustration, collectible card game item design, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible item Icefang Dagger, a dagger cooled in glacial water that leaves frost in its wake, melee weapon class, crystalline ice blade with frost aura, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "uncommon_equipment_5",
+    "name": "Ashen Shield",
+    "type": "equipment",
+    "rarity": "uncommon",
+    "prompt": "stylized chibi fantasy item illustration, collectible card game item design, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible item Ashen Shield, a shield hardened in the volcanic forges of Ember City, defense class, dark metal shield with ember glow and ash texture, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "common_equipment_1",
+    "name": "Iron Dagger",
+    "type": "equipment",
+    "rarity": "common",
+    "prompt": "stylized chibi fantasy item illustration, collectible card game item design, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible item Iron Dagger, a simple dagger carried by many adventurers, melee weapon class, basic iron blade with leather grip, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "common_equipment_2",
+    "name": "Traveler Sword",
+    "type": "equipment",
+    "rarity": "common",
+    "prompt": "stylized chibi fantasy item illustration, collectible card game item design, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible item Traveler Sword, a sturdy blade used by merchants and travelers for protection, melee weapon class, simple steel longsword, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "common_equipment_3",
+    "name": "Ranger Bow",
+    "type": "equipment",
+    "rarity": "common",
+    "prompt": "stylized chibi fantasy item illustration, collectible card game item design, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible item Ranger Bow, a bow often used by hunters in the forests of Evershade, range weapon class, simple wooden hunting bow, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "common_equipment_4",
+    "name": "Steel Shield",
+    "type": "equipment",
+    "rarity": "common",
+    "prompt": "stylized chibi fantasy item illustration, collectible card game item design, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible item Steel Shield, a reliable shield carried by soldiers across the realms, defense class, round steel shield with simple emblem, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "common_equipment_5",
+    "name": "Hunter Spear",
+    "type": "equipment",
+    "rarity": "common",
+    "prompt": "stylized chibi fantasy item illustration, collectible card game item design, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible item Hunter Spear, a spear used by hunters to fend off beasts, melee weapon class, wooden shaft with iron tip, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "common_equipment_6",
+    "name": "Leather Armor",
+    "type": "equipment",
+    "rarity": "common",
+    "prompt": "stylized chibi fantasy item illustration, collectible card game item design, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible item Leather Armor, basic armor worn by scouts and adventurers, defense class, brown leather chest piece with straps, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "common_equipment_7",
+    "name": "Adventurer Blade",
+    "type": "equipment",
+    "rarity": "common",
+    "prompt": "stylized chibi fantasy item illustration, collectible card game item design, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible item Adventurer Blade, a balanced sword trusted by explorers of dangerous lands, melee weapon class, practical steel sword with worn leather grip, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "common_equipment_8",
+    "name": "Guard Halberd",
+    "type": "equipment",
+    "rarity": "common",
+    "prompt": "stylized chibi fantasy item illustration, collectible card game item design, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible item Guard Halberd, standard weapon of city guards across the Five Realms, melee weapon class, simple polearm with axe and spear head, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "legendary_mount_1",
+    "name": "Storm Phoenix",
+    "type": "mount",
+    "rarity": "legendary",
+    "prompt": "cute chibi fantasy creature illustration, big head small body proportions, stylized collectible card game mount, vibrant colors, expressive face, simplified but detailed feathers and flames, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi version of Storm Phoenix, a mythical phoenix that rides the thunderstorm winds above the Iron Citadel, flying mount class, blazing feathers with lightning crackling, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "epic_mount_1",
+    "name": "Thunder Wyvern",
+    "type": "mount",
+    "rarity": "epic",
+    "prompt": "cute chibi fantasy creature illustration, big head small body proportions, stylized collectible card game mount, vibrant colors, expressive face, simplified but detailed scales and wings, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi version of Thunder Wyvern, a powerful wyvern that crackles with lightning as it soars across the skies, flying mount class, blue-scaled wyvern with electrical sparks, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "rare_mount_1",
+    "name": "Frostfang Wolf",
+    "type": "mount",
+    "rarity": "rare",
+    "prompt": "cute chibi fantasy creature illustration, big head small body proportions, stylized collectible card game mount, vibrant colors, expressive face, simplified but detailed fur, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi version of Frostfang Wolf, a massive wolf from the frozen wilderness of Frosthold, swift mount class, white fur with icy blue eyes and frost breath, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "rare_mount_2",
+    "name": "Ashscale Drake",
+    "type": "mount",
+    "rarity": "rare",
+    "prompt": "cute chibi fantasy creature illustration, big head small body proportions, stylized collectible card game mount, vibrant colors, expressive face, simplified but detailed scales, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi version of Ashscale Drake, a fiery drake that nests in the volcanic cliffs surrounding Ember City, flying mount class, dark red scales with ember glow and smoke, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "uncommon_mount_1",
+    "name": "War Boar",
+    "type": "mount",
+    "rarity": "uncommon",
+    "prompt": "cute chibi fantasy creature illustration, big head small body proportions, stylized collectible card game mount, vibrant colors, expressive face, simplified but detailed fur and tusks, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi version of War Boar, a battle-trained boar strong enough to charge through enemy lines, heavy mount class, muscular boar with battle scars and armor, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "uncommon_mount_2",
+    "name": "Snow Leopard",
+    "type": "mount",
+    "rarity": "uncommon",
+    "prompt": "cute chibi fantasy creature illustration, big head small body proportions, stylized collectible card game mount, vibrant colors, expressive face, simplified but detailed spotted fur, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi version of Snow Leopard, a swift predator that hunts across the snowy cliffs of Frosthold, swift mount class, white spotted fur with piercing eyes, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "uncommon_mount_3",
+    "name": "Ember Hound",
+    "type": "mount",
+    "rarity": "uncommon",
+    "prompt": "cute chibi fantasy creature illustration, big head small body proportions, stylized collectible card game mount, vibrant colors, expressive face, simplified but detailed fur with ember glow, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi version of Ember Hound, a fierce beast that thrives in the blazing heat of Ember City's lava pits, heavy mount class, dark fur with glowing ember patches, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "common_mount_1",
+    "name": "Forest Stag",
+    "type": "mount",
+    "rarity": "common",
+    "prompt": "cute chibi fantasy creature illustration, big head small body proportions, stylized collectible card game mount, vibrant colors, expressive face, simplified but detailed antlers and fur, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi version of Forest Stag, graceful creature that roams the dense woods of Evershade, swift mount class, brown deer with majestic antlers, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "common_mount_2",
+    "name": "Plains Horse",
+    "type": "mount",
+    "rarity": "common",
+    "prompt": "cute chibi fantasy creature illustration, big head small body proportions, stylized collectible card game mount, vibrant colors, expressive face, simplified but detailed mane and coat, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi version of Plains Horse, reliable horse raised on the open plains near Sunspire, swift mount class, brown horse with flowing mane, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "common_mount_3",
+    "name": "Pack Mule",
+    "type": "mount",
+    "rarity": "common",
+    "prompt": "cute chibi fantasy creature illustration, big head small body proportions, stylized collectible card game mount, vibrant colors, expressive face, simplified but detailed fur and saddlebags, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi version of Pack Mule, hardy beast capable of traveling long distances carrying supplies, heavy mount class, gray mule with cargo bags, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "common_mount_4",
+    "name": "Highland Ram",
+    "type": "mount",
+    "rarity": "common",
+    "prompt": "cute chibi fantasy creature illustration, big head small body proportions, stylized collectible card game mount, vibrant colors, expressive face, simplified but detailed horns and wool, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi version of Highland Ram, mountain ram that navigates steep cliffs with ease, heavy mount class, thick wool with curved horns, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "legendary_transport_1",
+    "name": "Celestial Airship",
+    "type": "transport",
+    "rarity": "legendary",
+    "prompt": "stylized chibi fantasy vehicle illustration, collectible card game transport design, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible transport Celestial Airship, a legendary vessel that sails through both sky and sea with divine grace, prestige class, golden flying ship with glowing sails and angelic motifs, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "epic_transport_1",
+    "name": "War Galleon",
+    "type": "transport",
+    "rarity": "epic",
+    "prompt": "stylized chibi fantasy vehicle illustration, collectible card game transport design, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible transport War Galleon, a massive warship equipped with powerful cannons and defensive structures, military class, armored ship with cannon ports and battle flags, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "rare_transport_1",
+    "name": "Trade Caravan",
+    "type": "transport",
+    "rarity": "rare",
+    "prompt": "stylized chibi fantasy vehicle illustration, collectible card game transport design, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible transport Trade Caravan, a well-equipped caravan suitable for long merchant journeys, merchant class, covered wagon with merchant goods and lanterns, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "rare_transport_2",
+    "name": "Scout Vessel",
+    "type": "transport",
+    "rarity": "rare",
+    "prompt": "stylized chibi fantasy vehicle illustration, collectible card game transport design, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible transport Scout Vessel, a swift military transport for reconnaissance missions, military class, sleek fast ship with lookout mast, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "rare_transport_3",
+    "name": "Royal Carriage Fleet",
+    "type": "transport",
+    "rarity": "rare",
+    "prompt": "stylized chibi fantasy vehicle illustration, collectible card game transport design, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible transport Royal Carriage Fleet, an ornate fleet of luxury carriages for transporting nobility, luxury class, golden carriage with royal emblems and velvet curtains, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "uncommon_transport_1",
+    "name": "Merchant Wagon",
+    "type": "transport",
+    "rarity": "uncommon",
+    "prompt": "stylized chibi fantasy vehicle illustration, collectible card game transport design, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible transport Merchant Wagon, a sturdy wagon suitable for trading goods between villages, merchant class, wooden wagon with trade goods and canvas cover, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "uncommon_transport_2",
+    "name": "Fishing Boat",
+    "type": "transport",
+    "rarity": "uncommon",
+    "prompt": "stylized chibi fantasy vehicle illustration, collectible card game transport design, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible transport Fishing Boat, a reliable fishing vessel used by communities near coastlines, merchant class, wooden boat with fishing nets and catch, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "uncommon_transport_3",
+    "name": "Cargo Sled",
+    "type": "transport",
+    "rarity": "uncommon",
+    "prompt": "stylized chibi fantasy vehicle illustration, collectible card game transport design, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible transport Cargo Sled, a specialized sled for transporting goods across frozen terrain, merchant class, wooden sled with cargo boxes and fur lining, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "uncommon_transport_4",
+    "name": "Supply Cart",
+    "type": "transport",
+    "rarity": "uncommon",
+    "prompt": "stylized chibi fantasy vehicle illustration, collectible card game transport design, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible transport Supply Cart, a practical cart used by armies for moving supplies and equipment, military class, reinforced cart with military supplies and banners, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "common_transport_1",
+    "name": "Wooden Cart",
+    "type": "transport",
+    "rarity": "common",
+    "prompt": "stylized chibi fantasy vehicle illustration, collectible card game transport design, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible transport Wooden Cart, a basic wooden cart for simple transportation needs, merchant class, simple wooden cart with wheels, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "common_transport_2",
+    "name": "Rowboat",
+    "type": "transport",
+    "rarity": "common",
+    "prompt": "stylized chibi fantasy vehicle illustration, collectible card game transport design, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible transport Rowboat, a simple rowboat for crossing rivers and shallow waters, merchant class, small wooden boat with oars, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "common_transport_3",
+    "name": "Hand Cart",
+    "type": "transport",
+    "rarity": "common",
+    "prompt": "stylized chibi fantasy vehicle illustration, collectible card game transport design, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible transport Hand Cart, a small hand cart suitable for carrying goods in villages, merchant class, two-wheeled push cart, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "common_transport_4",
+    "name": "Raft",
+    "type": "transport",
+    "rarity": "common",
+    "prompt": "stylized chibi fantasy vehicle illustration, collectible card game transport design, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible transport Raft, a basic raft for moving people and light cargo across water, merchant class, wooden log raft with rope bindings, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "common_transport_5",
+    "name": "Ox Wagon",
+    "type": "transport",
+    "rarity": "common",
+    "prompt": "stylized chibi fantasy vehicle illustration, collectible card game transport design, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible transport Ox Wagon, a sturdy wagon pulled by oxen for basic agricultural transport, merchant class, heavy wooden wagon with yoke, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "common_transport_6",
+    "name": "Pack Animal Caravan",
+    "type": "transport",
+    "rarity": "common",
+    "prompt": "stylized chibi fantasy vehicle illustration, collectible card game transport design, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible transport Pack Animal Caravan, a simple caravan of pack animals for short-distance trade routes, merchant class, line of laden donkeys or mules, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "legendary_artifact_1",
+    "name": "Crown of Dominion",
+    "type": "artifact",
+    "rarity": "legendary",
+    "prompt": "stylized chibi fantasy item illustration, collectible card game artifact design, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible artifact Crown of Dominion, a crown once worn by the ancient ruler who united the Five Realms before the wars began, ceremonial class, golden crown with five gemstones representing each realm, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "epic_artifact_1",
+    "name": "Seal of Legends",
+    "type": "artifact",
+    "rarity": "epic",
+    "prompt": "stylized chibi fantasy item illustration, collectible card game artifact design, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible artifact Seal of Legends, a royal seal used to mark the decrees of legendary kings and queens, ceremonial class, ornate golden seal with wax and ribbon, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "rare_artifact_1",
+    "name": "Crown of Fallen Kings",
+    "type": "artifact",
+    "rarity": "rare",
+    "prompt": "stylized chibi fantasy item illustration, collectible card game artifact design, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible artifact Crown of Fallen Kings, a shattered crown recovered from the ruins of an ancient battlefield, ceremonial class, broken golden crown with battle damage, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "rare_artifact_2",
+    "name": "Runestone of Dominion",
+    "type": "artifact",
+    "rarity": "rare",
+    "prompt": "stylized chibi fantasy item illustration, collectible card game artifact design, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible artifact Runestone of Dominion, an engraved stone once used to record the laws of forgotten empires, historical class, ancient stone tablet with glowing runes, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "rare_artifact_3",
+    "name": "Dragonbone Scepter",
+    "type": "artifact",
+    "rarity": "rare",
+    "prompt": "stylized chibi fantasy item illustration, collectible card game artifact design, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible artifact Dragonbone Scepter, a ceremonial scepter crafted from the bones of an ancient dragon, ceremonial class, bone white scepter with dragon skull head, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "uncommon_artifact_1",
+    "name": "Sunspire Banner",
+    "type": "artifact",
+    "rarity": "uncommon",
+    "prompt": "stylized chibi fantasy item illustration, collectible card game artifact design, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible artifact Sunspire Banner, a battle banner carried by the armies defending Sunspire Citadel, historical class, golden banner with sun emblem on pole, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "uncommon_artifact_2",
+    "name": "Iron Legion Standard",
+    "type": "artifact",
+    "rarity": "uncommon",
+    "prompt": "stylized chibi fantasy item illustration, collectible card game artifact design, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible artifact Iron Legion Standard, a war standard raised by the united forces of the Iron Citadel, historical class, iron-topped banner with legion emblem, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "common_artifact_1",
+    "name": "War Banner",
+    "type": "artifact",
+    "rarity": "common",
+    "prompt": "stylized chibi fantasy item illustration, collectible card game artifact design, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible artifact War Banner, a simple banner carried by soldiers during battles across the realms, historical class, cloth banner on wooden pole, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "common_artifact_2",
+    "name": "Ancient Scroll",
+    "type": "artifact",
+    "rarity": "common",
+    "prompt": "stylized chibi fantasy item illustration, collectible card game artifact design, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible artifact Ancient Scroll, a weathered scroll containing fragments of forgotten knowledge, historical class, aged parchment scroll with faded text, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "common_artifact_3",
+    "name": "Forgotten Relic",
+    "type": "artifact",
+    "rarity": "common",
+    "prompt": "stylized chibi fantasy item illustration, collectible card game artifact design, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible artifact Forgotten Relic, an old artifact whose origins have long been lost to history, historical class, mysterious ancient object with worn engravings, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "common_artifact_4",
+    "name": "King's Emblem",
+    "type": "artifact",
+    "rarity": "common",
+    "prompt": "stylized chibi fantasy item illustration, collectible card game artifact design, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible artifact King's Emblem, an emblem worn by knights who once served the royal courts, ceremonial class, ornate metal badge with royal crest, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "legendary_booster_xp",
+    "name": "Ancient Knowledge Orb",
+    "type": "booster",
+    "rarity": "legendary",
+    "prompt": "stylized chibi fantasy item illustration, collectible card game booster design, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible booster Ancient Knowledge Orb, a relic that contains memories of ancient warriors and mages granting 25x XP, xp boost class, glowing orb with swirling knowledge symbols, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "epic_booster_xp",
+    "name": "Scholar's Tome",
+    "type": "booster",
+    "rarity": "epic",
+    "prompt": "stylized chibi fantasy item illustration, collectible card game booster design, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible booster Scholar's Tome, an arcane book from the libraries of Sunspire that accelerates magical learning granting 15x XP, xp boost class, ornate magical book with glowing pages, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "rare_booster_xp",
+    "name": "Veteran's Treatise",
+    "type": "booster",
+    "rarity": "rare",
+    "prompt": "stylized chibi fantasy item illustration, collectible card game booster design, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible booster Veteran's Treatise, a battle-worn manuscript compiled by seasoned warriors of the realm granting 10x XP, xp boost class, worn leather-bound book with battle maps, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "uncommon_booster_xp",
+    "name": "Training Manual",
+    "type": "booster",
+    "rarity": "uncommon",
+    "prompt": "stylized chibi fantasy item illustration, collectible card game booster design, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible booster Training Manual, a combat guide used by recruits of the Iron Citadel to improve battle experience granting 5x XP, xp boost class, practical training book with diagrams, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "common_booster_xp",
+    "name": "Novice's Journal",
+    "type": "booster",
+    "rarity": "common",
+    "prompt": "stylized chibi fantasy item illustration, collectible card game booster design, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible booster Novice's Journal, a simple journal kept by beginning adventurers to record lessons learned in combat granting 2x XP, xp boost class, simple leather notebook with quill, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "legendary_booster_energy",
+    "name": "Eternal Wellspring",
+    "type": "booster",
+    "rarity": "legendary",
+    "prompt": "stylized chibi fantasy item illustration, collectible card game booster design, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible booster Eternal Wellspring, a mystical wellspring of endless vitality that flows through the ages granting 25x Energy, energy boost class, magical fountain with glowing blue water, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "epic_booster_energy",
+    "name": "Aether Crystal",
+    "type": "booster",
+    "rarity": "epic",
+    "prompt": "stylized chibi fantasy item illustration, collectible card game booster design, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible booster Aether Crystal, a glowing crystal infused with pure aetheric energy that never depletes granting 15x Energy, energy boost class, brilliant blue crystal with energy swirls, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "rare_booster_energy",
+    "name": "Guardian's Blessing",
+    "type": "booster",
+    "rarity": "rare",
+    "prompt": "stylized chibi fantasy item illustration, collectible card game booster design, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible booster Guardian's Blessing, a blessing from the ancient guardians that grants enduring protection granting 10x Energy, energy boost class, glowing magical ward with protective symbols, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "uncommon_booster_energy",
+    "name": "Vitality Charm",
+    "type": "booster",
+    "rarity": "uncommon",
+    "prompt": "stylized chibi fantasy item illustration, collectible card game booster design, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible booster Vitality Charm, a mystical charm blessed by healers to grant renewed strength granting 5x Energy, energy boost class, small glowing amulet with healing symbols, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "common_booster_energy",
+    "name": "Traveler's Waterskin",
+    "type": "booster",
+    "rarity": "common",
+    "prompt": "stylized chibi fantasy item illustration, collectible card game booster design, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible booster Traveler's Waterskin, a well-crafted waterskin that restores vitality on long journeys granting 2x Energy, energy boost class, leather water flask with magical glow, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "legendary_booster_material",
+    "name": "Philosopher's Stone",
+    "type": "booster",
+    "rarity": "legendary",
+    "prompt": "stylized chibi fantasy item illustration, collectible card game booster design, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible booster Philosopher's Stone, a legendary philosopher's stone that multiplies all resources infinitely granting 25x Materials, material boost class, glowing red-gold alchemical stone with transmutation symbols, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "epic_booster_material",
+    "name": "Alchemist's Satchel",
+    "type": "booster",
+    "rarity": "epic",
+    "prompt": "stylized chibi fantasy item illustration, collectible card game booster design, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible booster Alchemist's Satchel, a legendary satchel used by alchemists to harvest rare ingredients granting 15x Materials, material boost class, magical bag overflowing with glowing ingredients, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "rare_booster_material",
+    "name": "Prospector's Tools",
+    "type": "booster",
+    "rarity": "rare",
+    "prompt": "stylized chibi fantasy item illustration, collectible card game booster design, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible booster Prospector's Tools, ancient tools of master prospectors who could find treasure in stone granting 10x Materials, material boost class, pickaxe and pan with glowing gems, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "uncommon_booster_material",
+    "name": "Gatherer's Gloves",
+    "type": "booster",
+    "rarity": "uncommon",
+    "prompt": "stylized chibi fantasy item illustration, collectible card game booster design, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible booster Gatherer's Gloves, enchanted gloves that enhance the wearer's ability to gather resources granting 5x Materials, material boost class, leather gloves with glowing fingertips, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "common_booster_material",
+    "name": "Scout's Satchel",
+    "type": "booster",
+    "rarity": "common",
+    "prompt": "stylized chibi fantasy item illustration, collectible card game booster design, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible booster Scout's Satchel, a scout's practical satchel that helps gather materials more efficiently granting 2x Materials, material boost class, small leather bag with pouches, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "story_special_1",
+    "name": "Evershade Scout",
+    "type": "hero",
+    "rarity": "special",
+    "prompt": "cute chibi fantasy character illustration, big head small body proportions, stylized collectible card game character, vibrant colors, expressive face, simplified but detailed armor and equipment, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi version of Evershade Scout, a seasoned scout who first discovered the goblin uprising and survived to sound the alarm, special story card, forest green cloak with survival gear, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "story_special_2",
+    "name": "Ambusher's Cloak",
+    "type": "equipment",
+    "rarity": "special",
+    "prompt": "stylized chibi fantasy item illustration, collectible card game item design, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible item Ambusher's Cloak, taken from goblin raiders who attacked forest caravans with surprising discipline, special story card, dark hooded cloak with goblin markings, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "story_special_3",
+    "name": "Webspinner Arachna",
+    "type": "mount",
+    "rarity": "special",
+    "prompt": "cute chibi fantasy creature illustration, big head small body proportions, stylized collectible card game mount, vibrant colors, expressive face, simplified but detailed spider features, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi version of Webspinner Arachna, a giant spider tamed from the Broodmother's lair loyal only to the one who defeated its queen, special story card, large friendly spider with saddle, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "story_special_4",
+    "name": "Broodmother's Silk",
+    "type": "relic",
+    "rarity": "special",
+    "prompt": "stylized chibi fantasy item illustration, collectible card game relic design, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible relic Broodmother's Silk, silk harvested from the lair of the Spider Queen humming with residual dark energy, special story card, shimmering dark silk bundle with magical glow, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "story_special_5",
+    "name": "Goblin King's Crown",
+    "type": "artifact",
+    "rarity": "special",
+    "prompt": "stylized chibi fantasy item illustration, collectible card game artifact design, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible artifact Goblin King's Crown, the jagged crown worn by the warlord who united the goblin tribes into an army, special story card, crude iron crown with sharp points, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "story_special_6",
+    "name": "Sunspire Paladin",
+    "type": "hero",
+    "rarity": "special",
+    "prompt": "cute chibi fantasy character illustration, big head small body proportions, stylized collectible card game character, vibrant colors, expressive face, simplified but detailed armor and equipment, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi version of Sunspire Paladin, a devoted paladin who braved the Graveyard of Souls to investigate the rising dead, special story card, golden armor with holy symbols, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "story_special_7",
+    "name": "Bone Commander's Shield",
+    "type": "equipment",
+    "rarity": "special",
+    "prompt": "stylized chibi fantasy item illustration, collectible card game item design, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible item Bone Commander's Shield, shield carried by skeletal generals marching toward Sunspire in organized undead ranks, special story card, bone-rimmed shield with skull emblem, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "story_special_8",
+    "name": "Soul Reaver's Steed",
+    "type": "mount",
+    "rarity": "special",
+    "prompt": "cute chibi fantasy creature illustration, big head small body proportions, stylized collectible card game mount, vibrant colors, expressive face, simplified but detailed ghostly features, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi version of Soul Reaver's Steed, a ghostly warhorse that once carried the Soul Reaver across the haunted plains, special story card, spectral horse with ethereal mane, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "story_special_9",
+    "name": "Crypt Guardian's Sigil",
+    "type": "relic",
+    "rarity": "special",
+    "prompt": "stylized chibi fantasy item illustration, collectible card game relic design, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible relic Crypt Guardian's Sigil, a relic of authority worn by the undead guardians within the Crypt of the Undying, special story card, ancient medallion with death symbols, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "story_special_10",
+    "name": "Lich King's Phylactery",
+    "type": "artifact",
+    "rarity": "special",
+    "prompt": "stylized chibi fantasy item illustration, collectible card game artifact design, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible artifact Lich King's Phylactery, the shattered vessel that once held the Lich King's soul and the key to his defeat, special story card, cracked soul container with dark energy wisps, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "story_special_11",
+    "name": "Frosthold Ranger",
+    "type": "hero",
+    "rarity": "special",
+    "prompt": "cute chibi fantasy character illustration, big head small body proportions, stylized collectible card game character, vibrant colors, expressive face, simplified but detailed armor and equipment, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi version of Frosthold Ranger, a hardened ranger who tracks beasts across glaciers and survived the awakening of the Frost Giant, special story card, white fur armor with ice weapons, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "story_special_12",
+    "name": "Giant's Frostblade",
+    "type": "equipment",
+    "rarity": "special",
+    "prompt": "stylized chibi fantasy item illustration, collectible card game item design, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible item Giant's Frostblade, a blade carved from enchanted ice found in the cavern of the Frost Giant, special story card, massive ice sword with frost aura, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "story_special_13",
+    "name": "Cursed Forest Stag",
+    "type": "mount",
+    "rarity": "special",
+    "prompt": "cute chibi fantasy creature illustration, big head small body proportions, stylized collectible card game mount, vibrant colors, expressive face, simplified but detailed corrupted features, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi version of Cursed Forest Stag, a stag twisted by the Dark Forest's corruption now bound to serve the one who freed it, special story card, dark stag with glowing eyes and shadowy antlers, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "story_special_14",
+    "name": "Treant's Heartwood",
+    "type": "relic",
+    "rarity": "special",
+    "prompt": "stylized chibi fantasy item illustration, collectible card game relic design, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible relic Treant's Heartwood, wood taken from the fallen Ancient Treant still pulsing with corrupted life magic, special story card, glowing wooden heart with dark vines, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "story_special_15",
+    "name": "Crown of Eternal Frost",
+    "type": "artifact",
+    "rarity": "special",
+    "prompt": "stylized chibi fantasy item illustration, collectible card game artifact design, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible artifact Crown of Eternal Frost, an artifact symbolizing the total victory over Frosthold's ancient threats, special story card, ice crown with never-melting frost crystals, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "story_special_16",
+    "name": "Ember City Blacksmith",
+    "type": "hero",
+    "rarity": "special",
+    "prompt": "cute chibi fantasy character illustration, big head small body proportions, stylized collectible card game character, vibrant colors, expressive face, simplified but detailed armor and equipment, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi version of Ember City Blacksmith, a veteran forge worker hardened by volcanic mines who took up arms when demons arrived, special story card, heat-resistant armor with forge hammer, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "story_special_17",
+    "name": "Magma Pickaxe",
+    "type": "equipment",
+    "rarity": "special",
+    "prompt": "stylized chibi fantasy item illustration, collectible card game item design, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible item Magma Pickaxe, a pickaxe recovered from the fiery depths of the Molten Quarry still hot to the touch, special story card, glowing orange pickaxe with lava drips, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "story_special_18",
+    "name": "Ashen Drake",
+    "type": "mount",
+    "rarity": "special",
+    "prompt": "cute chibi fantasy creature illustration, big head small body proportions, stylized collectible card game mount, vibrant colors, expressive face, simplified but detailed fiery scales, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi version of Ashen Drake, a fiery drake recovered from the volcanic cliffs of the Ashen Fortress, special story card, dark red drake with ember glow and smoke, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "story_special_19",
+    "name": "Ash Lord's Scepter",
+    "type": "relic",
+    "rarity": "special",
+    "prompt": "stylized chibi fantasy item illustration, collectible card game relic design, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible relic Ash Lord's Scepter, the corrupted staff wielded by the demon commander who ruled the Ashen Fortress, special story card, dark scepter with demonic flames, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "story_special_20",
+    "name": "Infernal Gate Key",
+    "type": "artifact",
+    "rarity": "special",
+    "prompt": "stylized chibi fantasy item illustration, collectible card game artifact design, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible artifact Infernal Gate Key, a key used to open portals between the demon realm and the mortal world, special story card, twisted metal key with hellfire glow, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "story_special_21",
+    "name": "Iron Citadel Champion",
+    "type": "hero",
+    "rarity": "special",
+    "prompt": "cute chibi fantasy character illustration, big head small body proportions, stylized collectible card game character, vibrant colors, expressive face, simplified but detailed armor and equipment, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi version of Iron Citadel Champion, the greatest defender of the Iron Citadel who held the gate against the demon invasion, special story card, heavy iron armor with legendary sword, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "story_special_22",
+    "name": "Demon Lord's War Horn",
+    "type": "equipment",
+    "rarity": "special",
+    "prompt": "stylized chibi fantasy item illustration, collectible card game item design, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible item Demon Lord's War Horn, the battle horn used by the Demon Lord to rally his forces at the gates of the Iron Citadel, special story card, twisted horn with demonic inscriptions, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "story_special_23",
+    "name": "Dragon's Eye Drake",
+    "type": "mount",
+    "rarity": "special",
+    "prompt": "cute chibi fantasy creature illustration, big head small body proportions, stylized collectible card game mount, vibrant colors, expressive face, simplified but detailed dragon features, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi version of Dragon's Eye Drake, a young drake bonded with a shard of the Ancient Dragon's eye gifted with dragon sight, special story card, small dragon with glowing eye gem, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "story_special_24",
+    "name": "Dragonfire Warplate",
+    "type": "relic",
+    "rarity": "special",
+    "prompt": "stylized chibi fantasy item illustration, collectible card game relic design, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible relic Dragonfire Warplate, armor forged from dragonfire during the final battle impervious to flame and shadow, special story card, glowing dragon-scale armor with fire runes, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "story_special_25",
+    "name": "Crown of the Five Realms",
+    "type": "artifact",
+    "rarity": "special",
+    "prompt": "stylized chibi fantasy item illustration, collectible card game artifact design, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible artifact Crown of the Five Realms, the ultimate symbol of victory worn only by the hero who ended the ancient war, special story card, magnificent crown with five different realm gems, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  }
+]
