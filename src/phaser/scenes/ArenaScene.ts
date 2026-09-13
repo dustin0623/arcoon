@@ -28,6 +28,7 @@ export interface ArenaHudState {
   score: number;
   kills: number;
   enemiesLeft: number;
+  enemiesTotal: number;
   intermission: boolean;
   gameOver: boolean;
   gold: number;

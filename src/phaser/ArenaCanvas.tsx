@@ -100,10 +100,7 @@ export default function ArenaCanvas() {
 
       {ready && (
         <div className="pointer-events-none absolute inset-0 p-3 pb-9">
-          <div className="flex items-start justify-between gap-3">
-            <VitalsPanel hud={hud} onOpenSkills={() => setSkillsOpen((v) => !v)} />
-            <WavePanel hud={hud} />
-          </div>
+          <TopBar hud={hud} onOpenSkills={() => setSkillsOpen((v) => !v)} />
 
           {levelUp !== null && (
             <div className="absolute inset-x-0 top-24 flex justify-center">
