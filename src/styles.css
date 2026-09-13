@@ -142,3 +142,53 @@
     color: var(--color-foreground);
   }
 }
+
+/* ---------------------------------------------------------------
+ * Pixel-art game UI palette + typography (matches reference art)
+ * ------------------------------------------------------------- */
+@theme {
+  --font-pixel: "Press Start 2P", monospace;
+
+  --color-brown-100: #ead4aa;
+  --color-brown-200: #e7a873;
+  --color-brown-300: #c28669;
+  --color-brown-400: #966953;
+  --color-brown-600: #b96f50;
+  --color-brown-700: #945542;
+  --color-silver-300: #bfcbda;
+  --color-gold: #d4a017;
+  --color-neon: #3db85a;
+  --color-rose: #e05252;
+
+  --text-xxs: 0.6rem;
+}
+
+@utility text-shadow {
+  text-shadow: 1px 1px 0 #000;
+}
+
+@utility text-outline {
+  text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000,
+    0 -1px 0 #000,
+    0 1px 0 #000,
+    -1px 0 0 #000,
+    1px 0 0 #000;
+}
+
+@utility pixelated {
+  image-rendering: pixelated;
+}
+
+/* Pixel frames are drawn with border-image; a solid border-color from the
+   design system bleeds through the seams, so clear it inside the game. */
+[data-game-route] * {
+  border-color: transparent;
+}
+
+[data-game-route] img {
+  image-rendering: pixelated;
+}
