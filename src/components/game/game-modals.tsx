@@ -4,6 +4,7 @@
  */
 import React from "react";
 import clsx from "clsx";
+import { Coins, Skull, Swords } from "lucide-react";
 import { OuterPanel, InnerPanel, Label, PixelButton } from "@/components/ui/pixel-panel";
 import { BOW_TIER, getNextBowTier, type BowTier } from "@/features/game/bow";
 import { getLevelProgress } from "@/features/game/experience";
@@ -45,14 +46,18 @@ export interface HudModel {
 }
 
 /** Icon + value readout used across the HUD panels. */
-export function Stat({ icon, alt, value }: { icon: string; alt: string; value: string }) {
+export function Stat({ icon, value }: { icon: React.ReactNode; value: string }) {
   return (
     <div className="flex items-center gap-1.5">
-      <img src={icon} alt={alt} className="h-4 w-4 object-contain" />
+      {icon}
       <span className="text-[10px] tabular-nums">{value}</span>
     </div>
   );
 }
+
+const GoldIcon = <Coins className="h-4 w-4 text-yellow-300" aria-label="gold" />;
+const SkullIcon = <Skull className="h-4 w-4 text-brown-100" aria-label="enemies left" />;
+const KillsIcon = <Swords className="h-4 w-4 text-brown-100" aria-label="kills" />;
 
 /** Top-left panel: avatar, gold, the equipped bow, level and skills. HP floats above the player in-game. */
 export function VitalsPanel({
