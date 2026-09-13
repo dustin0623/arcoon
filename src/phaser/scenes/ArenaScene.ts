@@ -62,6 +62,8 @@ export class ArenaScene extends Phaser.Scene {
   private level = 1;
   private skillPoints = 0;
   private ranks: SkillRanks = { ...EMPTY_RANKS };
+  private hpBar!: Phaser.GameObjects.Graphics;
+  private hpText!: Phaser.GameObjects.Text;
   private onShopAction = (e: Event) => this.handleShopAction(e);
   private onSkillAction = (e: Event) => this.handleSkillAction(e);
 
@@ -98,6 +100,19 @@ export class ArenaScene extends Phaser.Scene {
 
     this.player = createPlayer(this, worldW / 2, worldH / 2);
     this.cameras.main.startFollow(this.player.sprite, true, 0.12, 0.12);
+
+    // Floating health bar with numeric readout above the player.
+    this.hpBar = this.add.graphics().setDepth(2500);
+    this.hpText = this.add
+      .text(0, 0, "", {
+        fontFamily: "monospace",
+        fontSize: "9px",
+        color: "#ffffff",
+        stroke: "#1b1526",
+        strokeThickness: 2,
+      })
+      .setOrigin(0.5, 1)
+      .setDepth(2501);
 
     this.controls = new InputSystem(this);
     this.projectiles = new ProjectileSystem(this);
@@ -347,7 +362,7 @@ export class ArenaScene extends Phaser.Scene {
   /** Pushes passive skill effects onto the player and pickup systems. */
   private applySkills() {
     const mods = getSkillModifiers(this.ranks);
-    const maxHp = PLAYER_CONFIG.MAX_HP + mods.bonusHearts;
+    const maxHp = PLAYER_CONFIG.MAX_HP + mods.bonusHp;
     if (maxHp > this.player.maxHp) {
       this.player.hp += maxHp - this.player.maxHp;
     }
