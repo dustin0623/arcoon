@@ -67,7 +67,7 @@ export class CoinSystem {
     }
   }
 
-  /** Applies scatter physics, magnetizes, and collects. Returns gold collected. */
+  /** Applies scatter physics, magnetizes, and collects. Returns XP collected. */
   update(px: number, py: number, collectEnabled: boolean): number {
     let collected = 0;
 
