@@ -360,6 +360,28 @@ export class ArenaScene extends Phaser.Scene {
     this.emitHud();
   }
 
+  /** Draws the health bar and numeric readout floating above the player. */
+  private updateHpBar() {
+    const { sprite, hp, maxHp } = this.player;
+    const width = 36;
+    const height = 5;
+    const x = Math.round(sprite.x - width / 2);
+    const y = Math.round(sprite.y - sprite.displayHeight / 2 - 12);
+    const ratio = maxHp > 0 ? Phaser.Math.Clamp(hp / maxHp, 0, 1) : 0;
+
+    const g = this.hpBar;
+    g.clear();
+    g.fillStyle(0x1b1526, 1);
+    g.fillRect(x - 1, y - 1, width + 2, height + 2);
+    g.fillStyle(0x4a2f28, 1);
+    g.fillRect(x, y, width, height);
+    g.fillStyle(ratio > 0.5 ? 0x4ade80 : ratio > 0.25 ? 0xffd166 : 0xff7b7b, 1);
+    g.fillRect(x, y, Math.round(width * ratio), height);
+
+    this.hpText.setText(`${hp} / ${maxHp}`);
+    this.hpText.setPosition(sprite.x, y - 2);
+  }
+
   /** Pushes passive skill effects onto the player and pickup systems. */
   private applySkills() {
     const mods = getSkillModifiers(this.ranks);
