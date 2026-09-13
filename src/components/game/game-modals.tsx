@@ -74,7 +74,7 @@ export function RaccoonAvatar({ className }: { className?: string }) {
         role="img"
         aria-label="Raccoon avatar"
         className="h-full w-full bg-[url('/assets/phaser/sprites/raccoon/idle_strip6.png')] bg-no-repeat pixelated"
-        style={{ backgroundSize: "600% 400%", backgroundPosition: "0% 33.3333%" }}
+        style={{ backgroundSize: "1800% 1200%", backgroundPosition: "6.18% 36.8%" }}
       />
     </div>
   );
