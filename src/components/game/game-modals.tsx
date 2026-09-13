@@ -4,6 +4,7 @@
  */
 import React from "react";
 import clsx from "clsx";
+import { Coins, Skull, Swords } from "lucide-react";
 import { OuterPanel, InnerPanel, Label, PixelButton } from "@/components/ui/pixel-panel";
 import { BOW_TIER, getNextBowTier, type BowTier } from "@/features/game/bow";
 import { getLevelProgress } from "@/features/game/experience";
@@ -18,11 +19,7 @@ import {
 } from "@/features/game/skill-tree";
 
 export const ICONS = {
-  heart: "/assets/icons/heart.png",
-  coin: "/assets/icons/token.png",
   bow: "/assets/icons/bow.png",
-  skull: "/assets/icons/goblin_head.png",
-  sword: "/assets/icons/sword.png",
   star: "/assets/icons/quest.png",
 };
 
@@ -45,14 +42,18 @@ export interface HudModel {
 }
 
 /** Icon + value readout used across the HUD panels. */
-export function Stat({ icon, alt, value }: { icon: string; alt: string; value: string }) {
+export function Stat({ icon, value }: { icon: React.ReactNode; value: string }) {
   return (
     <div className="flex items-center gap-1.5">
-      <img src={icon} alt={alt} className="h-4 w-4 object-contain" />
+      {icon}
       <span className="text-[10px] tabular-nums">{value}</span>
     </div>
   );
 }
+
+const GoldIcon = <Coins className="h-4 w-4 text-yellow-300" aria-label="gold" />;
+const SkullIcon = <Skull className="h-4 w-4 text-brown-100" aria-label="enemies left" />;
+const KillsIcon = <Swords className="h-4 w-4 text-brown-100" aria-label="kills" />;
 
 /** Top-left panel: avatar, gold, the equipped bow, level and skills. HP floats above the player in-game. */
 export function VitalsPanel({
@@ -76,7 +77,7 @@ export function VitalsPanel({
       </div>
       <OuterPanel className="px-2 py-1.5">
         <div className="flex items-center gap-3">
-          <Stat icon={ICONS.coin} alt="gold" value={`${hud.gold}`} />
+          <Stat icon={GoldIcon} value={`${hud.gold}`} />
           <div className="flex items-center gap-1.5">
             <img src={ICONS.bow} alt="bow" className="h-4 w-4 object-contain" />
             <span className="text-[10px]">{hud.bowTier}</span>
@@ -106,8 +107,8 @@ export function WavePanel({ hud }: { hud: HudModel }) {
         <Label className="-mt-3.5 text-[9px]">Wave {hud.wave}</Label>
       </div>
       <div className="mt-1 flex items-center gap-3">
-        <Stat icon={ICONS.skull} alt="enemies left" value={`${hud.enemiesLeft}`} />
-        <Stat icon={ICONS.sword} alt="kills" value={`${hud.kills}`} />
+        <Stat icon={SkullIcon} value={`${hud.enemiesLeft}`} />
+        <Stat icon={KillsIcon} value={`${hud.kills}`} />
         <span className="text-[11px] tabular-nums">{hud.score}</span>
       </div>
     </OuterPanel>
@@ -189,7 +190,7 @@ export function ShopModal({
               </p>
             </div>
           </div>
-          <Stat icon={ICONS.coin} alt="gold" value={`${hud.gold}`} />
+          <Stat icon={GoldIcon} value={`${hud.gold}`} />
         </div>
       </InnerPanel>
 
@@ -209,7 +210,7 @@ export function ShopModal({
           <div className="mt-1 flex gap-1">
             <PixelButton className="flex-1" disabled={!affordable} onClick={() => onAction("upgrade")}>
               <span className="flex items-center gap-1 text-[9px]">
-                <img src={ICONS.coin} alt="" className="h-3.5 w-3.5" />
+                <Coins className="h-3.5 w-3.5 text-yellow-300" />
                 {nextStats.goldCost}
               </span>
             </PixelButton>
@@ -239,8 +240,8 @@ export function GameOverModal({ hud, onRestart }: { hud: HudModel; onRestart: ()
           Reached wave {hud.wave} · level {hud.level}
         </p>
         <div className="flex justify-center gap-3 pt-1">
-          <Stat icon={ICONS.sword} alt="kills" value={`${hud.kills}`} />
-          <Stat icon={ICONS.coin} alt="gold earned" value={`${hud.goldEarned}`} />
+          <Stat icon={KillsIcon} value={`${hud.kills}`} />
+          <Stat icon={GoldIcon} value={`${hud.goldEarned}`} />
         </div>
         <p className="pt-1 text-[10px] tabular-nums">{hud.score} points</p>
       </InnerPanel>
