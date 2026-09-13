@@ -57,6 +57,31 @@ const SkullIcon = <Skull className="h-4 w-4 text-brown-100" aria-label="enemies 
 const KillsIcon = <Swords className="h-4 w-4 text-brown-100" aria-label="kills" />;
 
 /**
+ * Circular raccoon portrait cropped from the idle sheet.
+ * The sheet is 6 columns × 4 direction rows, so one frame needs
+ * 600%/400% sizing; row 1 (facing the camera) sits at 33.3% down.
+ * Uses a ring rather than a border — the game route clears border colors.
+ */
+export function RaccoonAvatar({ className }: { className?: string }) {
+  return (
+    <div
+      className={clsx(
+        "shrink-0 overflow-hidden rounded-full bg-brown-300 ring-2 ring-brown-100",
+        className,
+      )}
+    >
+      <div
+        role="img"
+        aria-label="Raccoon avatar"
+        className="h-full w-full bg-[url('/assets/phaser/sprites/raccoon/idle_strip6.png')] bg-no-repeat pixelated"
+        style={{ backgroundSize: "1800% 1200%", backgroundPosition: "6.18% 36.8%" }}
+      />
+    </div>
+  );
+}
+
+
+/**
  * Single top bar spanning the screen: resources + level + skills on the left,
  * wave status in the middle, run stats and settings on the right.
  */
@@ -78,14 +103,7 @@ export function TopBar({
     <div className="pointer-events-auto flex items-start justify-between gap-2">
       {/* Left: avatar, bow, level, skills */}
       <OuterPanel className="flex items-center gap-3 px-2 py-1.5">
-        <div className="h-9 w-9 shrink-0 overflow-hidden rounded-full border-2 border-brown-100 bg-brown-300">
-          <div
-            role="img"
-            aria-label="Raccoon avatar"
-            className="h-full w-full bg-[url('/assets/phaser/sprites/raccoon/idle_strip6.png')] bg-left bg-no-repeat pixelated"
-            style={{ backgroundSize: "600% 100%" }}
-          />
-        </div>
+        <RaccoonAvatar className="h-9 w-9" />
 
         <div className="flex items-center gap-1.5 border-l border-brown-100/40 pl-3">
           <img src={ICONS.bow} alt="bow" className="h-4 w-4 object-contain" />

@@ -12,7 +12,7 @@ import { InnerPanel, Label, OuterPanel, PixelButton } from "@/components/ui/pixe
 import { BOW_TIER, getNextBowTier } from "@/features/game/bow";
 import { getLevelProgress } from "@/features/game/experience";
 import { SKILL_TREE, getSkillModifiers } from "@/features/game/skill-tree";
-import { ICONS, Stat, type HudModel } from "@/components/game/game-modals";
+import { ICONS, RaccoonAvatar, Stat, type HudModel } from "@/components/game/game-modals";
 
 export type GameTab = "world" | "inventory" | "packs" | "character";
 
@@ -34,8 +34,10 @@ export function BottomNav({
   return (
     <nav
       aria-label="Game tabs"
-      className="pointer-events-auto absolute inset-x-0 bottom-0 border-t-4 border-brown-800 bg-brown-600/95"
+      className="pointer-events-auto absolute inset-x-0 bottom-0 bg-brown-600/95"
     >
+      {/* Top edge strip — a border would be cleared by the game-route border reset. */}
+      <div className="h-1 w-full bg-brown-700" aria-hidden />
       <div className="mx-auto flex max-w-lg items-stretch justify-around px-2">
         {TABS.map((tab) => {
           const isActive = tab.id === active;
@@ -184,14 +186,7 @@ export function CharacterPanel({
     <TabOverlay title="Character" onClose={onClose}>
       <InnerPanel className="p-2">
         <div className="flex items-center gap-2">
-          <div className="h-10 w-10 shrink-0 overflow-hidden rounded-full border-2 border-brown-100 bg-brown-300">
-            <div
-              role="img"
-              aria-label="Raccoon avatar"
-              className="h-full w-full bg-[url('/assets/phaser/sprites/raccoon/idle_strip6.png')] bg-left bg-no-repeat pixelated"
-              style={{ backgroundSize: "600% 100%" }}
-            />
-          </div>
+          <RaccoonAvatar className="h-10 w-10" />
           <div className="min-w-0 flex-1">
             <p className="text-[10px]">Raccoon · Lv {progress.level}</p>
             <div className="mt-0.5 h-1.5 w-full overflow-hidden rounded-full bg-black/50">

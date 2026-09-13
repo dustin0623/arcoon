@@ -31,7 +31,7 @@ export interface SkillDef {
 
 export const SKILL_TREE: SkillDef[] = [
   // Marksman
-  { id: "sharpshooter", branch: "Marksman", name: "Sharpshooter", icon: "/assets/icons/sword.png", maxRank: 5, effect: "+15% arrow damage" },
+  { id: "sharpshooter", branch: "Marksman", name: "Sharpshooter", icon: "/assets/icons/target.png", maxRank: 5, effect: "+15% arrow damage" },
   { id: "rapid_draw", branch: "Marksman", name: "Rapid Draw", icon: "/assets/icons/lightning.png", maxRank: 5, effect: "-7% draw time", requires: "sharpshooter" },
   { id: "long_shot", branch: "Marksman", name: "Long Shot", icon: "/assets/icons/bow.png", maxRank: 3, effect: "+1 tile bow range", requires: "rapid_draw" },
 
@@ -43,7 +43,7 @@ export const SKILL_TREE: SkillDef[] = [
   // Fortune
   { id: "greed", branch: "Fortune", name: "Greed", icon: "/assets/icons/token.png", maxRank: 5, effect: "+20% gold drops" },
   { id: "magnetism", branch: "Fortune", name: "Magnetism", icon: "/assets/icons/indicator.png", maxRank: 3, effect: "+35% coin pickup range" },
-  { id: "scholar", branch: "Fortune", name: "Scholar", icon: "/assets/icons/quest.png", maxRank: 5, effect: "+12% experience", requires: "greed" },
+  { id: "scholar", branch: "Fortune", name: "Scholar", icon: "/assets/icons/book.png", maxRank: 5, effect: "+12% experience", requires: "greed" },
 ];
 
 export const SKILL_BRANCHES: SkillBranch[] = ["Marksman", "Survival", "Fortune"];
