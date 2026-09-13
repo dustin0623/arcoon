@@ -34,7 +34,7 @@ export function directionalKey(base: string, facing: Facing): string {
 export function animBase(key?: string | null): string {
   if (!key) return ''
   const match = /^(.*)_(up|down|left|right)$/.exec(key)
-  return match ? match[1] : key
+  return match?.[1] ?? key
 }
 
 /** Reads the facing suffix from an animation key, if it has one. */
