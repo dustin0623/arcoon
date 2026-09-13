@@ -6,6 +6,7 @@ import { DEFAULT_FACING, playDirectional, type Facing } from "@/phaser/systems/D
 export class Enemy {
   id: string;
   type: EnemyType;
+  /** Base config with this map's health and damage scaling already applied. */
   config: EnemyConfig;
   sprite: Phaser.Physics.Arcade.Sprite;
   hpBar: Phaser.GameObjects.Graphics;
@@ -24,13 +25,15 @@ export class Enemy {
     type: EnemyType,
     x: number,
     y: number,
-    hpOverride?: number,
+    hp: number,
+    damage: number,
   ) {
     this.id = id;
     this.type = type;
-    this.config = ENEMY_CONFIG[type];
-    this.hp = hpOverride ?? this.config.hp;
-    this.maxHp = this.hp;
+    this.config = { ...ENEMY_CONFIG[type], hp, damage };
+    this.hp = hp;
+    this.maxHp = hp;
+
 
     this.sprite = scene.physics.add.sprite(x, y, "enemy_idle");
     this.sprite.setTint(this.config.tint);

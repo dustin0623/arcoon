@@ -19,8 +19,8 @@ export class EnemySystem {
     this.group = scene.physics.add.group();
   }
 
-  spawn(type: EnemyType, x: number, y: number, hpOverride?: number): Enemy {
-    const enemy = new Enemy(this.scene, `e${this.nextId++}`, type, x, y, hpOverride);
+  spawn(type: EnemyType, x: number, y: number, hp: number, damage: number): Enemy {
+    const enemy = new Enemy(this.scene, `e${this.nextId++}`, type, x, y, hp, damage);
     this.group.add(enemy.sprite);
     enemy.sprite.setData("enemyId", enemy.id);
     this.enemies.push(enemy);
