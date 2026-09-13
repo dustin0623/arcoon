@@ -54,7 +54,7 @@ export class CoinSystem {
       remaining -= value;
 
       const sprite = this.scene.add
-        .image(x + Phaser.Math.Between(-6, 6), y + Phaser.Math.Between(-4, 4), COIN_ART)
+        .image(x + Phaser.Math.Between(-6, 6), y + Phaser.Math.Between(-4, 4), ORB_ART)
         .setDepth(1000 + y);
       const angle = Math.random() * Math.PI * 2;
       const speed = Phaser.Math.Between(50, 110);
@@ -107,10 +107,10 @@ export class CoinSystem {
     this.coins = this.coins.filter((c) => c !== coin);
 
     const text = this.scene.add
-      .text(x, y - 10, `+${coin.value}g`, {
+      .text(x, y - 10, `+${coin.value} XP`, {
         fontFamily: "monospace",
         fontSize: "10px",
-        color: "#ffd166",
+        color: "#4ade80",
         stroke: "#1b1526",
         strokeThickness: 2,
       })
