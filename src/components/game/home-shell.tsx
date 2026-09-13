@@ -178,7 +178,7 @@ function MapCard({ map, progress }: { map: MapDef; progress: Progress }) {
 function HomeInventoryTab({ progress }: { progress: Progress }) {
   const wood = BOW_TIER.Wood;
   return (
-    <div className="mx-auto max-w-md space-y-2">
+    <div className="space-y-2">
       <h2 className="text-center text-[10px] text-white text-shadow">Inventory</h2>
       <OuterPanel className="p-2">
         <InnerPanel className="flex items-center justify-between gap-2 p-2">
@@ -211,7 +211,7 @@ const PACKS = [
 
 function HomePacksTab() {
   return (
-    <div className="mx-auto max-w-md space-y-2">
+    <div className="space-y-2">
       <h2 className="text-center text-[10px] text-white text-shadow">Packs</h2>
       {PACKS.map((pack) => (
         <OuterPanel key={pack.name} className="p-2">
@@ -239,7 +239,7 @@ function HomeCharacterTab({ progress }: { progress: Progress }) {
     0,
   );
   return (
-    <div className="mx-auto max-w-md space-y-2">
+    <div className="space-y-2">
       <h2 className="text-center text-[10px] text-white text-shadow">Character</h2>
       <OuterPanel className="p-2">
         <InnerPanel className="flex items-center gap-2 p-2">
