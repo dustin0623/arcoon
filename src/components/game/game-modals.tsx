@@ -77,9 +77,9 @@ export function TopBar({ hud, onOpenSkills }: { hud: HudState; onOpenSkills?: ()
   const waveRatio = hud.intermission ? 1 : cleared / total;
 
   return (
-    <div className="pointer-events-auto flex items-start justify-between gap-2">
+    <div className="pointer-events-auto flex flex-wrap items-start justify-between gap-1.5">
       {/* Left: avatar, bow, level, skills */}
-      <OuterPanel className="flex items-center gap-3 px-2 py-1.5">
+      <OuterPanel className="flex items-center gap-2 px-2 py-1.5 sm:gap-3">
         <FrogAvatar className="h-9 w-9" />
 
         <div className="flex items-center gap-1.5 border-l border-brown-100/40 pl-3">
@@ -106,7 +106,7 @@ export function TopBar({ hud, onOpenSkills }: { hud: HudState; onOpenSkills?: ()
       </OuterPanel>
 
       {/* Center: wave status */}
-      <OuterPanel className="w-56 shrink-0 px-2 py-1.5 text-center">
+      <OuterPanel className="min-w-40 flex-1 px-2 py-1.5 text-center sm:max-w-56">
         <div className="flex items-center justify-center gap-2">
           <Swords className="h-3.5 w-3.5 text-brown-100" />
           <span className="text-[14px]">
