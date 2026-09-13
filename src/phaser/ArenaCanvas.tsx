@@ -8,8 +8,7 @@ import {
   LoadingOverlay,
   ShopModal,
   SkillTreeModal,
-  VitalsPanel,
-  WavePanel,
+  TopBar,
   XpBar,
 } from "@/components/game/game-modals";
 
@@ -17,6 +16,7 @@ const TouchJoystick = lazy(() => import("@/components/game/touch-joystick"));
 
 const EMPTY_HUD: ArenaHudState = {
   hp: 0,
+  enemiesTotal: 1,
   maxHp: 0,
   wave: 0,
   score: 0,
@@ -101,10 +101,7 @@ export default function ArenaCanvas() {
 
       {ready && (
         <div className="pointer-events-none absolute inset-0 p-3 pb-9">
-          <div className="flex items-start justify-between gap-3">
-            <VitalsPanel hud={hud} onOpenSkills={() => setSkillsOpen((v) => !v)} />
-            <WavePanel hud={hud} />
-          </div>
+          <TopBar hud={hud} onOpenSkills={() => setSkillsOpen((v) => !v)} />
 
           {levelUp !== null && (
             <div className="absolute inset-x-0 top-24 flex justify-center">

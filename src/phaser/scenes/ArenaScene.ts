@@ -28,6 +28,7 @@ export interface ArenaHudState {
   score: number;
   kills: number;
   enemiesLeft: number;
+  enemiesTotal: number;
   intermission: boolean;
   gameOver: boolean;
   gold: number;
@@ -390,6 +391,7 @@ export class ArenaScene extends Phaser.Scene {
       score: this.score,
       kills: this.kills,
       enemiesLeft: this.waves.toSpawn + this.enemies.aliveCount,
+      enemiesTotal: Math.max(this.waves.pending, 1),
       intermission: this.waves.intermission,
       gameOver: this.gameOver,
       gold: this.gold,
