@@ -6,8 +6,10 @@ const ArenaCanvas = lazy(() => import("@/phaser/ArenaCanvas"));
 
 export const Route = createFileRoute("/game")({
   validateSearch: (search: Record<string, unknown>) => {
-    const mapId = getMap(typeof search.map === "string" ? search.map : undefined).id;
-    const stage = Math.max(1, Math.min(Number(search.stage) || 1, getMap(mapId).stages));
+    const raw = search["map"];
+    const map = getMap(typeof raw === "string" ? raw : undefined);
+    const stage = Math.max(1, Math.min(Number(search["stage"]) || 1, map.stages));
+    const mapId = map.id;
     return { map: mapId, stage };
   },
   head: () => ({

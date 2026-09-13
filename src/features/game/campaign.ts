@@ -16,7 +16,7 @@ export interface MapDef {
   playable: boolean;
 }
 
-export const MAPS: MapDef[] = [
+export const MAPS = [
   {
     id: "meadow",
     name: "Sunny Meadow",
@@ -49,7 +49,7 @@ export const MAPS: MapDef[] = [
     stages: 5,
     playable: false,
   },
-];
+] as const satisfies readonly MapDef[];
 
 export function getMap(id: string | undefined): MapDef {
   return MAPS.find((m) => m.id === id) ?? MAPS[0];
@@ -103,6 +103,7 @@ export function isMapUnlocked(progress: Progress, mapId: string): boolean {
   const index = MAPS.findIndex((m) => m.id === mapId);
   if (index <= 0) return index === 0;
   const prev = MAPS[index - 1];
+  if (!prev) return false;
   return (progress.cleared[prev.id] ?? 0) >= prev.stages;
 }
 
