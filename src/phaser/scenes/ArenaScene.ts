@@ -351,12 +351,11 @@ export class ArenaScene extends Phaser.Scene {
 
   /** Draws the health bar centered above the player. */
   private updateHpBar() {
-    const { sprite, hp, maxHp } = this.player;
+    const { hp, maxHp } = this.player;
     const width = 28;
     const height = 4;
-    const bounds = sprite.getBounds();
-    const x = Math.round(bounds.centerX - width / 2);
-    const y = Math.round(bounds.top - 8);
+    const x = Math.round(this.player.bodyX - width / 2);
+    const y = Math.round(this.player.bodyY - 20);
     const ratio = maxHp > 0 ? Phaser.Math.Clamp(hp / maxHp, 0, 1) : 0;
 
     const g = this.hpBar;
