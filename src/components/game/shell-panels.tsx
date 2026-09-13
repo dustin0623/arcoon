@@ -34,10 +34,10 @@ export function BottomNav({
   return (
     <nav
       aria-label="Game tabs"
-      className="pointer-events-auto absolute inset-x-0 bottom-0 bg-brown-600/95"
+      className="pointer-events-auto absolute inset-x-0 bottom-0 z-10 bg-ink-800/95 shadow-card backdrop-blur"
     >
-      {/* Top edge strip — a border would be cleared by the game-route border reset. */}
-      <div className="h-1 w-full bg-brown-700" aria-hidden />
+      {/* Gold hairline along the top edge, as in the reference shell. */}
+      <div className="fantasy-rule w-full" aria-hidden />
       <div className="mx-auto flex max-w-lg items-stretch justify-around px-2">
         {TABS.map((tab) => {
           const isActive = tab.id === active;
@@ -51,13 +51,21 @@ export function BottomNav({
               className="relative flex flex-1 cursor-pointer flex-col items-center gap-0.5 py-1.5"
             >
               {isActive && (
-                <span className="absolute top-0 h-1 w-8 rounded-full bg-neon" aria-hidden />
+                <span
+                  className="bg-gradient-gold absolute top-0 h-1 w-8 rounded-full"
+                  aria-hidden
+                />
               )}
-              <Icon className={clsx("h-5 w-5", isActive ? "text-neon" : "text-brown-100/70")} />
+              <Icon
+                className={clsx(
+                  "h-5 w-5 transition-colors",
+                  isActive ? "text-fgold" : "text-brown-100/50",
+                )}
+              />
               <span
                 className={clsx(
                   "text-[8px]",
-                  isActive ? "text-white text-shadow" : "text-brown-100/70",
+                  isActive ? "text-fgold text-glow-gold" : "text-brown-100/50",
                 )}
               >
                 {tab.label}
@@ -69,6 +77,7 @@ export function BottomNav({
     </nav>
   );
 }
+
 
 /** Shared overlay wrapper: dims the arena and centers a pixel panel. */
 function TabOverlay({
