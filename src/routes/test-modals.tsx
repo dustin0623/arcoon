@@ -108,7 +108,7 @@ function TestModalsPage() {
         </Slot>
 
         <Slot title="Experience bar (bottom, full width)" className="lg:col-span-2">
-          <div className="relative h-20 w-full">
+          <div className="relative h-20 w-full overflow-hidden">
             <XpBar xp={xp} skillPoints={points} onOpenSkills={() => setXp(xp + 120)} />
           </div>
         </Slot>

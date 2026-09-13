@@ -123,7 +123,7 @@ export function XpBar({
         </div>
 
         {onOpenSkills && (
-          <PixelButton className="w-auto shrink-0 px-2" onClick={onOpenSkills}>
+          <PixelButton className="shrink-0" onClick={onOpenSkills}>
             <span className="flex items-center gap-1 text-[8px] whitespace-nowrap">
               <img src={ICONS.star} alt="" className="h-3 w-3" />
               Skills{skillPoints > 0 ? ` (${skillPoints})` : ""}
@@ -138,15 +138,15 @@ export function XpBar({
 /** Loading screen shown while the arena assets stream in. */
 export function LoadingOverlay({ progress }: { progress: number }) {
   return (
-    <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 bg-background font-pixel">
-      <p className="text-[11px] tracking-widest text-foreground">LOADING ARCOON</p>
-      <OuterPanel className="w-56">
-        <InnerPanel className="h-3 p-0">
+    <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 bg-[#1b1526] font-pixel">
+      <p className="text-[11px] tracking-widest text-white text-outline">LOADING ARCOON</p>
+      <OuterPanel className="w-56 px-2 py-1.5">
+        <div className="h-3 overflow-hidden rounded-full bg-black/50">
           <div
-            className="h-full bg-neon transition-all"
+            className="h-full rounded-full bg-neon transition-all"
             style={{ width: `${Math.round(progress * 100)}%` }}
           />
-        </InnerPanel>
+        </div>
       </OuterPanel>
     </div>
   );
@@ -200,19 +200,19 @@ export function ShopModal({
           </InnerPanel>
 
           <div className="mt-1 flex gap-1">
-            <PixelButton disabled={!affordable} onClick={() => onAction("upgrade")}>
+            <PixelButton className="flex-1" disabled={!affordable} onClick={() => onAction("upgrade")}>
               <span className="flex items-center gap-1 text-[9px]">
                 <img src={ICONS.coin} alt="" className="h-3.5 w-3.5" />
                 {nextStats.goldCost}
               </span>
             </PixelButton>
-            <PixelButton onClick={() => onAction("start")}>
+            <PixelButton className="flex-1" onClick={() => onAction("start")}>
               <span className="text-[9px]">Fight</span>
             </PixelButton>
           </div>
         </>
       ) : (
-        <PixelButton className="mt-1" onClick={() => onAction("start")}>
+        <PixelButton className="mt-1 w-full" onClick={() => onAction("start")}>
           <span className="text-[9px]">Start next wave</span>
         </PixelButton>
       )}
@@ -237,7 +237,7 @@ export function GameOverModal({ hud, onRestart }: { hud: HudModel; onRestart: ()
         </div>
         <p className="pt-1 text-[10px] tabular-nums">{hud.score} points</p>
       </InnerPanel>
-      <PixelButton className="mt-1" onClick={onRestart}>
+      <PixelButton className="mt-1 w-full" onClick={onRestart}>
         <span className="text-[9px]">Play again</span>
       </PixelButton>
     </OuterPanel>
@@ -344,7 +344,7 @@ export function SkillTreeModal({
         </p>
       </InnerPanel>
 
-      <PixelButton className="mt-1" onClick={onClose}>
+      <PixelButton className="mt-1 w-full" onClick={onClose}>
         <span className="text-[9px]">Close</span>
       </PixelButton>
     </OuterPanel>
