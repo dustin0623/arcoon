@@ -19,11 +19,7 @@ import {
 } from "@/features/game/skill-tree";
 
 export const ICONS = {
-  heart: "/assets/icons/heart.png",
-  coin: "/assets/icons/token.png",
   bow: "/assets/icons/bow.png",
-  skull: "/assets/icons/goblin_head.png",
-  sword: "/assets/icons/sword.png",
   star: "/assets/icons/quest.png",
 };
 
