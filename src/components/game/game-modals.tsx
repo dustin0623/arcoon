@@ -4,7 +4,7 @@
  */
 import React from "react";
 import clsx from "clsx";
-import { Coins, Skull, Swords } from "lucide-react";
+import { Coins, Settings, Skull, Swords } from "lucide-react";
 import { OuterPanel, InnerPanel, Label, PixelButton } from "@/components/ui/pixel-panel";
 import { BOW_TIER, getNextBowTier, type BowTier } from "@/features/game/bow";
 import { getLevelProgress } from "@/features/game/experience";
