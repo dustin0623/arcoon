@@ -285,15 +285,24 @@ export class ArenaScene extends Phaser.Scene {
       32,
       this.physics.world.bounds.height - 32,
     );
-    this.enemies.spawn(this.waves.pickType(), x, y);
+    const type = this.waves.pickType();
+    const hp =
+      type === "boss"
+        ? Math.round(
+            ENEMY_CONFIG.boss.hp * (1 + (this.stage - 1) * WAVE_CONFIG.BOSS_HP_PER_STAGE),
+          )
+        : undefined;
+    this.enemies.spawn(type, x, y, hp);
   }
 
   /** Gold is credited instantly on kill (scaled by wave and the Fortune skill). */
   private gainGold(enemy: Enemy) {
     const base =
-      enemy.config.type === "brute"
-        ? Phaser.Math.Between(5, 8)
-        : Phaser.Math.Between(2, 4);
+      enemy.config.type === "boss"
+        ? Phaser.Math.Between(60, 90)
+        : enemy.config.type === "brute"
+          ? Phaser.Math.Between(5, 8)
+          : Phaser.Math.Between(2, 4);
     let total = base * this.waves.wave;
     if (enemy.config.type === "runner" && Math.random() < 0.08) total += 10;
     total = Math.round(total * getSkillModifiers(this.ranks).goldMult);
@@ -407,6 +416,7 @@ export class ArenaScene extends Phaser.Scene {
       hp: this.player.hp,
       maxHp: this.player.maxHp,
       wave: this.waves.wave,
+      boss: this.waves.isBoss,
       score: this.score,
       kills: this.kills,
       enemiesLeft: this.waves.toSpawn + this.enemies.aliveCount,
