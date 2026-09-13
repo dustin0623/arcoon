@@ -34,8 +34,10 @@ export function BottomNav({
   return (
     <nav
       aria-label="Game tabs"
-      className="pointer-events-auto absolute inset-x-0 bottom-0 border-t-4 border-brown-800 bg-brown-600/95"
+      className="pointer-events-auto absolute inset-x-0 bottom-0 bg-brown-600/95"
     >
+      {/* Top edge strip — a border would be cleared by the game-route border reset. */}
+      <div className="h-1 w-full bg-brown-700" aria-hidden />
       <div className="mx-auto flex max-w-lg items-stretch justify-around px-2">
         {TABS.map((tab) => {
           const isActive = tab.id === active;
