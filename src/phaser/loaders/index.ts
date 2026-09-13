@@ -36,8 +36,8 @@ export const EnemyAssetLoader = {
 export const ProjectileAssetLoader = {
   load(scene: Phaser.Scene) {
     scene.load.spritesheet("vfx_arrow", `${SPR}/projectiles/arrow_strip4.png`, {
-      frameWidth: 16,
-      frameHeight: 16,
+      frameWidth: 48,
+      frameHeight: 48,
     });
   },
 };

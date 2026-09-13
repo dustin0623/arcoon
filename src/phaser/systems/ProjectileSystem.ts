@@ -33,7 +33,7 @@ export class ProjectileSystem {
       Math.sin(angle) * PLAYER_CONFIG.ARROW_SPEED,
     );
     const body = sprite.body as Phaser.Physics.Arcade.Body | null;
-    body?.setSize(6, 6).setOffset(5, 5);
+    body?.setSize(8, 8).setOffset(20, 20);
     this.group.add(sprite);
 
     this.arrows.push({
