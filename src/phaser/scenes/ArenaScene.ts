@@ -1,5 +1,5 @@
 import Phaser from "phaser";
-import { GAME_CONFIG, PLAYER_CONFIG, WAVE_CONFIG } from "@/phaser/config/GameConfig";
+import { ENEMY_CONFIG, GAME_CONFIG, PLAYER_CONFIG, WAVE_CONFIG } from "@/phaser/config/GameConfig";
 import { AnimationSystem } from "@/phaser/systems/AnimationSystem";
 import { InputSystem } from "@/phaser/systems/InputSystem";
 import { ProjectileSystem } from "@/phaser/systems/ProjectileSystem";
