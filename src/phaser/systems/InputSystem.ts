@@ -35,7 +35,16 @@ export class InputSystem {
     scene.input.keyboard?.on("keydown-SPACE", this.onAttackKey);
     scene.input.on("pointermove", this.onPointerMove);
     scene.input.on("pointerdown", this.onPointerDown);
+    window.addEventListener("arena-move", this.onTouchMove);
+    scene.events.once(Phaser.Scenes.Events.SHUTDOWN, () => this.destroy());
   }
+
+  /** Joystick vector from the React overlay. */
+  private onTouchMove = (e: Event) => {
+    const d = (e as CustomEvent<{ x: number; y: number }>).detail;
+    this.touchVector.x = d.x;
+    this.touchVector.y = d.y;
+  };
 
   private down(...names: string[]): boolean {
     return names.some((n) => this.keys[n]?.isDown);
@@ -98,6 +107,7 @@ export class InputSystem {
   }
 
   destroy() {
+    window.removeEventListener("arena-move", this.onTouchMove);
     this.scene.input.keyboard?.off("keydown-SPACE", this.onAttackKey);
     this.scene.input.off("pointermove", this.onPointerMove);
     this.scene.input.off("pointerdown", this.onPointerDown);
