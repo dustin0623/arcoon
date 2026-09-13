@@ -65,8 +65,8 @@ export class InputSystem {
       body.setVelocity(0, 0);
     }
 
-    if (this.aim) {
-      player.facing = facingFromVector(this.aim.x - player.sprite.x, this.aim.y - player.sprite.y);
+    if (moving) {
+      player.facing = facingFromVector(dx, dy);
     }
 
     const current = player.sprite.anims.currentAnim?.key ?? "";

@@ -118,37 +118,35 @@ export class ArenaScene extends Phaser.Scene {
     this.emitHud();
   }
 
+  /** Auto-attack: locks onto the closest living enemy in bow range and fires on cooldown. */
   private handleShooting(time: number) {
-    if (this.player.dead || !this.controls.consumeAttack()) return;
+    if (this.player.dead) return;
     const stats = getBowStats("Wood");
     if (time - this.player.lastShotAt < stats.fireRateMs) return;
-    this.player.lastShotAt = time;
 
-    let facing = this.player.facing;
     const bx = this.player.sprite.x;
     const by = this.player.sprite.y;
-    const aim = this.controls.aim;
-    const angle = aim ? Phaser.Math.Angle.Between(bx, by, aim.x, aim.y) : undefined;
-    if (aim) {
-      facing = facingFromVector(aim.x - bx, aim.y - by);
-      this.player.facing = facing;
-    }
-    const dir = angle === undefined
-      ? {
-          up: { x: 0, y: -1 },
-          down: { x: 0, y: 1 },
-          left: { x: -1, y: 0 },
-          right: { x: 1, y: 0 },
-        }[facing]
-      : { x: Math.cos(angle), y: Math.sin(angle) };
+    const range = stats.rangeTiles * GAME_CONFIG.TILE_SIZE;
 
-    this.projectiles.fire(
-      bx + dir.x * 10,
-      by + dir.y * 10,
-      facing,
-      stats,
-      angle,
-    );
+    let target: { x: number; y: number } | null = null;
+    let best = Infinity;
+    for (const enemy of this.enemies.enemies) {
+      if (enemy.dying || enemy.isDead()) continue;
+      const d = Phaser.Math.Distance.Between(bx, by, enemy.bodyX, enemy.bodyY);
+      if (d <= range && d < best) {
+        best = d;
+        target = { x: enemy.bodyX, y: enemy.bodyY };
+      }
+    }
+    if (!target) return;
+
+    this.player.lastShotAt = time;
+    const angle = Phaser.Math.Angle.Between(bx, by, target.x, target.y);
+    const facing = facingFromVector(target.x - bx, target.y - by);
+    this.player.facing = facing;
+    const dir = { x: Math.cos(angle), y: Math.sin(angle) };
+
+    this.projectiles.fire(bx + dir.x * 10, by + dir.y * 10, facing, stats, angle);
     playDirectional(this.player.sprite, "player_bow", facing, false);
   }
 
