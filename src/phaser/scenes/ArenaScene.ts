@@ -219,8 +219,8 @@ export class ArenaScene extends Phaser.Scene {
           this.kills += 1;
           this.score += killed.config.points * this.waves.wave;
           this.waves.pending = Math.max(0, this.waves.pending - 1);
-          this.dropGold(killed);
-          this.addXp(xpForKill(killed.config.type, this.waves.wave));
+          this.gainGold(killed);
+          this.dropXp(killed);
         }
         break;
       }
@@ -266,8 +266,8 @@ export class ArenaScene extends Phaser.Scene {
     this.enemies.spawn(this.waves.pickType(), x, y);
   }
 
-  /** Gold coins burst out of a fallen enemy, scaled by the current wave. */
-  private dropGold(enemy: Enemy) {
+  /** Gold is credited instantly on kill (scaled by wave and the Fortune skill). */
+  private gainGold(enemy: Enemy) {
     const base =
       enemy.config.type === "brute"
         ? Phaser.Math.Between(5, 8)
@@ -275,6 +275,34 @@ export class ArenaScene extends Phaser.Scene {
     let total = base * this.waves.wave;
     if (enemy.config.type === "runner" && Math.random() < 0.08) total += 10;
     total = Math.round(total * getSkillModifiers(this.ranks).goldMult);
+    this.gold += total;
+    this.goldEarned += total;
+
+    const text = this.add
+      .text(enemy.bodyX, enemy.bodyY - 14, `+${total}g`, {
+        fontFamily: "monospace",
+        fontSize: "10px",
+        color: "#ffd166",
+        stroke: "#1b1526",
+        strokeThickness: 2,
+      })
+      .setOrigin(0.5)
+      .setDepth(3000);
+    this.tweens.add({
+      targets: text,
+      y: text.y - 16,
+      alpha: 0,
+      duration: 650,
+      onComplete: () => text.destroy(),
+    });
+  }
+
+  /** XP orbs burst out of a fallen enemy for the player to collect. */
+  private dropXp(enemy: Enemy) {
+    const total = Math.max(
+      1,
+      Math.round(xpForKill(enemy.config.type, this.waves.wave) * getSkillModifiers(this.ranks).xpMult),
+    );
     this.coins.spawnBurst(enemy.bodyX, enemy.bodyY, total);
   }
 
@@ -296,10 +324,9 @@ export class ArenaScene extends Phaser.Scene {
     }
   }
 
-  /** Grants experience (scaled by the Scholar skill) and awards skill points on level-up. */
+  /** Grants collected experience (Scholar scaling applied at drop) and awards skill points on level-up. */
   private addXp(amount: number) {
-    const mods = getSkillModifiers(this.ranks);
-    this.xp += Math.max(1, Math.round(amount * mods.xpMult));
+    this.xp += amount;
     const level = getLevel(this.xp);
     if (level > this.level) {
       this.skillPoints += level - this.level;
