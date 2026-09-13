@@ -11,6 +11,15 @@ import { playDirectional } from "@/phaser/systems/DirectionalAnimation";
 import { facingFromVector } from "@/phaser/systems/DirectionalAnimation";
 import { getBowStats, BOW_TIER, getNextBowTier, type BowTier } from "@/features/game/bow";
 import { CoinSystem } from "@/phaser/systems/CoinSystem";
+import { getLevel, xpForKill } from "@/features/game/experience";
+import {
+  EMPTY_RANKS,
+  SKILL_TREE,
+  canLearn,
+  getSkillModifiers,
+  type SkillId,
+  type SkillRanks,
+} from "@/features/game/skill-tree";
 
 export interface ArenaHudState {
   hp: number;
@@ -24,6 +33,10 @@ export interface ArenaHudState {
   gold: number;
   goldEarned: number;
   bowTier: BowTier;
+  xp: number;
+  level: number;
+  skillPoints: number;
+  ranks: SkillRanks;
 }
 
 /**
@@ -45,7 +58,12 @@ export class ArenaScene extends Phaser.Scene {
   private goldEarned = 0;
   private bowTier: BowTier = "Wood";
   private coins!: CoinSystem;
+  private xp = 0;
+  private level = 1;
+  private skillPoints = 0;
+  private ranks: SkillRanks = { ...EMPTY_RANKS };
   private onShopAction = (e: Event) => this.handleShopAction(e);
+  private onSkillAction = (e: Event) => this.handleSkillAction(e);
 
   constructor() {
     super("ArenaScene");
@@ -88,8 +106,10 @@ export class ArenaScene extends Phaser.Scene {
     this.waves.beginIntermission(this.time.now);
     this.coins = new CoinSystem(this);
     window.addEventListener("arena-shop", this.onShopAction);
+    window.addEventListener("arena-skill", this.onSkillAction);
     this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => {
       window.removeEventListener("arena-shop", this.onShopAction);
+      window.removeEventListener("arena-skill", this.onSkillAction);
       this.coins?.destroy();
     });
 
@@ -142,7 +162,14 @@ export class ArenaScene extends Phaser.Scene {
   /** Auto-attack: locks onto the closest living enemy in bow range and fires on cooldown. */
   private handleShooting(time: number) {
     if (this.player.dead) return;
-    const stats = getBowStats(this.bowTier);
+    const mods = getSkillModifiers(this.ranks);
+    const base = getBowStats(this.bowTier);
+    const stats = {
+      ...base,
+      damage: Math.round(base.damage * mods.damageMult),
+      fireRateMs: base.fireRateMs * mods.fireRateMult,
+      rangeTiles: base.rangeTiles + mods.rangeBonusTiles,
+    };
     if (time - this.player.lastShotAt < stats.fireRateMs) return;
 
     const bx = this.player.sprite.x;
@@ -193,6 +220,7 @@ export class ArenaScene extends Phaser.Scene {
           this.score += killed.config.points * this.waves.wave;
           this.waves.pending = Math.max(0, this.waves.pending - 1);
           this.dropGold(killed);
+          this.addXp(xpForKill(killed.config.type, this.waves.wave));
         }
         break;
       }
@@ -246,6 +274,7 @@ export class ArenaScene extends Phaser.Scene {
         : Phaser.Math.Between(2, 4);
     let total = base * this.waves.wave;
     if (enemy.config.type === "runner" && Math.random() < 0.08) total += 10;
+    total = Math.round(total * getSkillModifiers(this.ranks).goldMult);
     this.coins.spawnBurst(enemy.bodyX, enemy.bodyY, total);
   }
 
@@ -267,6 +296,44 @@ export class ArenaScene extends Phaser.Scene {
     }
   }
 
+  /** Grants experience (scaled by the Scholar skill) and awards skill points on level-up. */
+  private addXp(amount: number) {
+    const mods = getSkillModifiers(this.ranks);
+    this.xp += Math.max(1, Math.round(amount * mods.xpMult));
+    const level = getLevel(this.xp);
+    if (level > this.level) {
+      this.skillPoints += level - this.level;
+      this.level = level;
+    }
+  }
+
+  /** Learns one rank of a skill from the React skill tree and re-applies its effects. */
+  private handleSkillAction(e: Event) {
+    const id = (e as CustomEvent<{ id: SkillId }>).detail?.id;
+    const skill = SKILL_TREE.find((s) => s.id === id);
+    if (!skill || this.gameOver) return;
+    if (!canLearn(skill, this.ranks, this.skillPoints)) return;
+
+    this.ranks[skill.id] = (this.ranks[skill.id] ?? 0) + 1;
+    this.skillPoints -= 1;
+    this.applySkills();
+    this.emitHud();
+  }
+
+  /** Pushes passive skill effects onto the player and pickup systems. */
+  private applySkills() {
+    const mods = getSkillModifiers(this.ranks);
+    const maxHp = PLAYER_CONFIG.MAX_HP + mods.bonusHearts;
+    if (maxHp > this.player.maxHp) {
+      this.player.hp += maxHp - this.player.maxHp;
+    }
+    this.player.maxHp = maxHp;
+    this.player.hp = Math.min(this.player.hp, maxHp);
+    this.player.speed = GAME_CONFIG.PLAYER_SPEED * mods.speedMult;
+    this.player.iframeMs = PLAYER_CONFIG.IFRAME_MS * mods.iframeMult;
+    this.coins.magnetMult = mods.magnetMult;
+  }
+
   private emitHud() {
     const detail: ArenaHudState = {
       hp: this.player.hp,
@@ -280,6 +347,10 @@ export class ArenaScene extends Phaser.Scene {
       gold: this.gold,
       goldEarned: this.goldEarned,
       bowTier: this.bowTier,
+      xp: this.xp,
+      level: this.level,
+      skillPoints: this.skillPoints,
+      ranks: { ...this.ranks },
     };
     window.dispatchEvent(new CustomEvent("arena-hud", { detail }));
   }

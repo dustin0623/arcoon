@@ -88,7 +88,7 @@ export const PixelButton: React.FC<ButtonProps> = ({
     disabled={disabled}
     onClick={onClick}
     className={clsx(
-      "bg-brown-200 hover:bg-brown-300 flex w-full cursor-pointer items-center justify-center p-1 text-white text-shadow disabled:cursor-not-allowed disabled:opacity-50",
+      "bg-brown-200 hover:bg-brown-300 flex cursor-pointer items-center justify-center px-2 py-1 text-white text-shadow disabled:cursor-not-allowed disabled:opacity-50",
       className,
     )}
     style={frame(lightBorder, "5px", "15px")}
