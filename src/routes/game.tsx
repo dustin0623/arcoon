@@ -6,17 +6,17 @@ const ArenaCanvas = lazy(() => import("@/phaser/ArenaCanvas"));
 export const Route = createFileRoute("/game")({
   head: () => ({
     meta: [
-      { title: "Play the Arena — Wave Survival Roguelite" },
+      { title: "Play ARCOON — Wave Survival Roguelite" },
       {
         name: "description",
         content:
-          "Survive escalating enemy waves in a top-down pixel arena. Move, aim and fire your bow to rack up kills and points.",
+          "Survive escalating enemy waves in ARCOON's top-down pixel arena. Move, aim and fire your bow to rack up kills and points.",
       },
-      { property: "og:title", content: "Play the Arena — Wave Survival Roguelite" },
+      { property: "og:title", content: "Play ARCOON — Wave Survival Roguelite" },
       {
         property: "og:description",
         content:
-          "Survive escalating enemy waves in a top-down pixel arena. Move, aim and fire your bow to rack up kills and points.",
+          "Survive escalating enemy waves in ARCOON's top-down pixel arena. Move, aim and fire your bow to rack up kills and points.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
