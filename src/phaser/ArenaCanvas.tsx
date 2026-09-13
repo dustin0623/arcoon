@@ -16,6 +16,7 @@ const TouchJoystick = lazy(() => import("@/components/game/touch-joystick"));
 
 const EMPTY_HUD: ArenaHudState = {
   hp: 0,
+  enemiesTotal: 1,
   maxHp: 0,
   wave: 0,
   score: 0,
