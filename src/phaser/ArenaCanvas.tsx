@@ -29,6 +29,7 @@ const EMPTY_HUD: ArenaHudState = {
   enemiesTotal: 1,
   maxHp: 0,
   wave: 0,
+  boss: false,
   score: 0,
   kills: 0,
   enemiesLeft: 0,
