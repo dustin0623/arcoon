@@ -150,6 +150,19 @@ export class ArenaScene extends Phaser.Scene {
     this.emitHud();
   }
 
+  /**
+   * Keeps roughly the same amount of world visible on phones, tablets and
+   * desktops: zoom scales with the smaller screen edge, clamped to sane values.
+   */
+  private applyResponsiveZoom() {
+    const cam = this.cameras?.main;
+    if (!cam) return;
+    const minEdge = Math.min(this.scale.width, this.scale.height) || 720;
+    const zoom = Phaser.Math.Clamp(minEdge / 200, 1.8, GAME_CONFIG.ZOOM);
+    cam.setZoom(Math.round(zoom * 4) / 4);
+  }
+
+
   override update(time: number) {
     if (!this.player) return;
 
