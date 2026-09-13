@@ -4,6 +4,8 @@ import clsx from "clsx";
 const darkBorder = "/assets/ui/panel/dark_border.png";
 const lightBorder = "/assets/ui/panel/light_border.png";
 const whiteBorder = "/assets/ui/panel/white_border.png";
+const redBorder = "/assets/ui/panel/red_border.png";
+const greenBorder = "/assets/ui/panel/green_border.png";
 
 const frame = (src: string, width: string, radius: string): React.CSSProperties => ({
   borderStyle: "solid",
