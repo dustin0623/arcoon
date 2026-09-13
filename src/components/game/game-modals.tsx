@@ -4,10 +4,12 @@
  */
 import React from "react";
 import clsx from "clsx";
-import { Coins, Settings, Skull, Swords } from "lucide-react";
+import { Coins, Skull, Star, Swords } from "lucide-react";
 import { OuterPanel, InnerPanel, Label, PixelButton } from "@/components/ui/pixel-panel";
-import { BOW_TIER, getNextBowTier, type BowTier } from "@/features/game/bow";
+import { BOWS, bowStats, MAX_STARS, type BowRarity } from "@/features/game/bow";
 import { getLevelProgress } from "@/features/game/experience";
+import type { HudState } from "@/features/game/hud";
+import { getMap } from "@/features/game/campaign";
 import {
   SKILL_BRANCHES,
   SKILL_TREE,
@@ -20,33 +22,7 @@ import {
 
 export const ICONS = {
   bow: "/assets/icons/bow.png",
-  star: "/assets/icons/quest.png",
 };
-
-export interface HudModel {
-  hp: number;
-  maxHp: number;
-  wave: number;
-  /** True while the current wave is the stage's boss wave. */
-  boss?: boolean;
-  score: number;
-  kills: number;
-  enemiesLeft: number;
-  enemiesTotal?: number;
-  intermission: boolean;
-  gameOver: boolean;
-  stage?: number;
-  stageWaves?: number;
-  mapId?: string;
-  victory?: boolean;
-  gold: number;
-  goldEarned: number;
-  bowTier: BowTier;
-  xp: number;
-  level: number;
-  skillPoints: number;
-  ranks: SkillRanks;
-}
 
 /** Icon + value readout used across the HUD panels. */
 export function Stat({ icon, value }: { icon: React.ReactNode; value: string }) {
@@ -62,31 +38,7 @@ const GoldIcon = <Coins className="h-4 w-4 text-yellow-300" aria-label="gold" />
 const SkullIcon = <Skull className="h-4 w-4 text-brown-100" aria-label="enemies left" />;
 const KillsIcon = <Swords className="h-4 w-4 text-brown-100" aria-label="kills" />;
 
-/**
- * Circular raccoon portrait cropped from the idle sheet.
- * The sheet is 6 columns × 4 direction rows, so one frame needs
- * 600%/400% sizing; row 1 (facing the camera) sits at 33.3% down.
- * Uses a ring rather than a border — the game route clears border colors.
- */
-export function RaccoonAvatar({ className }: { className?: string }) {
-  return (
-    <div
-      className={clsx(
-        "shrink-0 overflow-hidden rounded-full bg-brown-300 ring-2 ring-brown-100",
-        className,
-      )}
-    >
-      <div
-        role="img"
-        aria-label="Raccoon avatar"
-        className="h-full w-full bg-[url('/assets/phaser/sprites/raccoon/idle_strip6.png')] bg-no-repeat pixelated"
-        style={{ backgroundSize: "1800% 1200%", backgroundPosition: "6.18% 36.8%" }}
-      />
-    </div>
-  );
-}
-
-/** Circular frog portrait — the hero of ARCOON — used on the home shell. */
+/** Circular frog portrait — the hero of ARCOON. */
 export function FrogAvatar({ className }: { className?: string }) {
   return (
     <div
@@ -95,31 +47,32 @@ export function FrogAvatar({ className }: { className?: string }) {
         className,
       )}
     >
-      <img
-        src="/assets/brand/frog.png"
-        alt="Frog avatar"
-        className="h-full w-full object-cover"
-      />
+      <img src="/assets/brand/frog.png" alt="Frog avatar" className="h-full w-full object-cover" />
     </div>
   );
 }
 
+/** Row of filled/empty stars showing a bow's upgrade level. */
+export function StarRow({ stars, className }: { stars: number; className?: string }) {
+  return (
+    <span className={clsx("inline-flex items-center gap-0.5", className)} aria-label={`${stars} stars`}>
+      {Array.from({ length: MAX_STARS }, (_, i) => (
+        <Star
+          key={i}
+          className={clsx("h-3 w-3", i < stars ? "fill-yellow-300 text-yellow-300" : "text-brown-100/50")}
+        />
+      ))}
+    </span>
+  );
+}
 
 /**
- * Single top bar spanning the screen: resources + level + skills on the left,
- * wave status in the middle, run stats and settings on the right.
+ * Single top bar spanning the screen: hero + bow + level on the left,
+ * wave status in the middle, run stats on the right.
  */
-export function TopBar({
-  hud,
-  onOpenSkills,
-  onOpenSettings,
-}: {
-  hud: HudModel;
-  onOpenSkills?: () => void;
-  onOpenSettings?: () => void;
-}) {
+export function TopBar({ hud, onOpenSkills }: { hud: HudState; onOpenSkills?: () => void }) {
   const progress = getLevelProgress(hud.xp);
-  const total = Math.max(hud.enemiesTotal ?? hud.enemiesLeft, hud.enemiesLeft, 1);
+  const total = Math.max(hud.enemiesTotal, hud.enemiesLeft, 1);
   const cleared = Math.max(0, total - hud.enemiesLeft);
   const waveRatio = hud.intermission ? 1 : cleared / total;
 
@@ -127,11 +80,12 @@ export function TopBar({
     <div className="pointer-events-auto flex items-start justify-between gap-2">
       {/* Left: avatar, bow, level, skills */}
       <OuterPanel className="flex items-center gap-3 px-2 py-1.5">
-        <RaccoonAvatar className="h-9 w-9" />
+        <FrogAvatar className="h-9 w-9" />
 
         <div className="flex items-center gap-1.5 border-l border-brown-100/40 pl-3">
           <img src={ICONS.bow} alt="bow" className="h-4 w-4 object-contain" />
-          <span className="text-[13px]">{hud.bowTier}</span>
+          <span className="text-[13px]">{hud.bowRarity}</span>
+          <StarRow stars={hud.bowStars} />
         </div>
 
         <div className="border-l border-brown-100/40 pl-3">
@@ -144,7 +98,7 @@ export function TopBar({
         {onOpenSkills && (
           <PixelButton className="py-0.5" onClick={onOpenSkills}>
             <span className="flex items-center gap-1 text-[12px]">
-              <img src={ICONS.star} alt="" className="h-3 w-3" />
+              <Star className="h-3 w-3 text-yellow-300" />
               Skills{hud.skillPoints > 0 ? ` (${hud.skillPoints})` : ""}
             </span>
           </PixelButton>
@@ -156,7 +110,7 @@ export function TopBar({
         <div className="flex items-center justify-center gap-2">
           <Swords className="h-3.5 w-3.5 text-brown-100" />
           <span className="text-[14px]">
-            Wave {hud.wave}/{hud.stageWaves ?? 10}
+            Wave {hud.wave}/{hud.stageWaves}
           </span>
           <Swords className="h-3.5 w-3.5 text-brown-100" />
         </div>
@@ -168,41 +122,28 @@ export function TopBar({
         </div>
         <p className="mt-1 text-[12px] opacity-80">
           {hud.boss && !hud.intermission
-            ? `BOSS FIGHT — ${hud.enemiesLeft} left`
+            ? `${getMap(hud.mapId).boss} — ${hud.enemiesLeft} left`
             : hud.intermission
               ? "Next wave in..."
               : `${hud.enemiesLeft} enemies left`}
         </p>
       </OuterPanel>
 
-      {/* Right: run stats + settings */}
-      <div className="flex items-start gap-1.5">
-        <OuterPanel className="px-2 py-1.5">
-          <div className="flex items-center gap-3">
-            <Stat icon={SkullIcon} value={`${hud.enemiesLeft}`} />
-            <Stat icon={KillsIcon} value={`${hud.kills}`} />
-            <Stat icon={GoldIcon} value={`${hud.gold}`} />
-            <span className="text-[14px] tabular-nums opacity-80">{hud.score}</span>
-          </div>
-        </OuterPanel>
-        {onOpenSettings && (
-          <PixelButton className="h-[38px] w-10" onClick={onOpenSettings}>
-            <Settings className="h-4 w-4" />
-          </PixelButton>
-        )}
-      </div>
+      {/* Right: run stats */}
+      <OuterPanel className="px-2 py-1.5">
+        <div className="flex items-center gap-3">
+          <Stat icon={SkullIcon} value={`${hud.enemiesLeft}`} />
+          <Stat icon={KillsIcon} value={`${hud.kills}`} />
+          <Stat icon={GoldIcon} value={`${hud.goldEarned}`} />
+          <span className="text-[14px] tabular-nums opacity-80">{hud.score}</span>
+        </div>
+      </OuterPanel>
     </div>
   );
 }
 
 /** Thin experience bar flush with the bottom edge, level info floating above it. */
-export function XpBar({
-  xp,
-  className,
-}: {
-  xp: number;
-  className?: string;
-}) {
+export function XpBar({ xp, className }: { xp: number; className?: string }) {
   const p = getLevelProgress(xp);
 
   return (
@@ -242,23 +183,17 @@ export function LoadingOverlay({ progress }: { progress: number }) {
   );
 }
 
-/** Between-waves shop: upgrade the bow with gold or jump into the next wave. */
-export function ShopModal({
-  hud,
-  onAction,
-}: {
-  hud: HudModel;
-  onAction: (action: "upgrade" | "start") => void;
-}) {
-  const next = getNextBowTier(hud.bowTier);
-  const cur = BOW_TIER[hud.bowTier];
-  const nextStats = next ? BOW_TIER[next] : null;
-  const affordable = nextStats ? hud.gold >= nextStats.goldCost : false;
+/** Between-waves breather: shows the equipped bow and starts the next wave. */
+export function WaveBreakModal({ hud, onFight }: { hud: HudState; onFight: () => void }) {
+  const stats = bowStats(hud.bowRarity, hud.bowStars);
+  const nextIsBoss = hud.wave + 1 >= hud.stageWaves;
 
   return (
     <OuterPanel className="w-full max-w-sm">
       <div className="flex justify-center">
-        <Label className="-mt-4 mb-1 text-[11px]">Wave {hud.wave + 1} incoming</Label>
+        <Label className="-mt-4 mb-1 text-[11px]">
+          {nextIsBoss ? `${getMap(hud.mapId).boss} awaits` : `Wave ${hud.wave + 1} incoming`}
+        </Label>
       </div>
 
       <InnerPanel className="p-2">
@@ -266,64 +201,45 @@ export function ShopModal({
           <div className="flex items-center gap-2">
             <img src={ICONS.bow} alt="bow" className="h-6 w-6 object-contain" />
             <div>
-              <p className="text-[14px]">{hud.bowTier} Bow</p>
+              <p className="text-[14px]">{BOWS[hud.bowRarity].name}</p>
               <p className="text-[12px] opacity-80 tabular-nums">
-                {cur.damage} dmg · {cur.rangeTiles} tiles · {(1000 / cur.fireRateMs).toFixed(1)}/s
+                {stats.damage} dmg · {stats.rangeTiles} tiles ·{" "}
+                {(1000 / stats.fireRateMs).toFixed(1)}/s
               </p>
             </div>
           </div>
-          <Stat icon={GoldIcon} value={`${hud.gold}`} />
+          <StarRow stars={hud.bowStars} />
         </div>
       </InnerPanel>
 
-      {nextStats && next ? (
-        <>
-          <InnerPanel className="mt-1 p-2">
-            <p className="text-[14px]">{next} Bow</p>
-            <p className="text-[12px] opacity-80 tabular-nums">
-              +{nextStats.damage - cur.damage} dmg · +{nextStats.rangeTiles - cur.rangeTiles} tiles ·{" "}
-              {(1000 / nextStats.fireRateMs).toFixed(1)}/s
-            </p>
-            {!affordable && (
-              <p className="mt-1 text-[12px] text-brown-100">Not enough gold — keep farming waves.</p>
-            )}
-          </InnerPanel>
+      <InnerPanel className="mt-1 p-2">
+        <div className="flex items-center justify-between">
+          <Stat icon={GoldIcon} value={`${hud.goldEarned}`} />
+          <span className="text-[12px] opacity-80">Banked when the stage ends</span>
+        </div>
+      </InnerPanel>
 
-          <div className="mt-1 flex gap-1">
-            <PixelButton className="flex-1" disabled={!affordable} onClick={() => onAction("upgrade")}>
-              <span className="flex items-center gap-1 text-[13px]">
-                <Coins className="h-3.5 w-3.5 text-yellow-300" />
-                {nextStats.goldCost}
-              </span>
-            </PixelButton>
-            <PixelButton className="flex-1" onClick={() => onAction("start")}>
-              <span className="text-[13px]">Fight</span>
-            </PixelButton>
-          </div>
-        </>
-      ) : (
-        <PixelButton className="mt-1 w-full" onClick={() => onAction("start")}>
-          <span className="text-[13px]">Start next wave</span>
-        </PixelButton>
-      )}
+      <PixelButton className="mt-1 w-full" onClick={onFight}>
+        <span className="text-[13px]">Fight</span>
+      </PixelButton>
     </OuterPanel>
   );
 }
 
-/** End-of-run summary. */
+/** End-of-run summary. Half the gold earned is kept on a defeat. */
 export function GameOverModal({
   hud,
   onRestart,
   onHome,
 }: {
-  hud: HudModel;
+  hud: HudState;
   onRestart: () => void;
   onHome?: () => void;
 }) {
   return (
     <OuterPanel className="w-full max-w-sm text-center">
       <div className="flex justify-center">
-        <Label className="-mt-4 mb-1 text-[11px]">Game Over</Label>
+        <Label className="-mt-4 mb-1 text-[11px]">Defeated</Label>
       </div>
       <InnerPanel className="space-y-1 p-3">
         <p className="text-[14px] tabular-nums">
@@ -331,8 +247,9 @@ export function GameOverModal({
         </p>
         <div className="flex justify-center gap-3 pt-1">
           <Stat icon={KillsIcon} value={`${hud.kills}`} />
-          <Stat icon={GoldIcon} value={`${hud.goldEarned}`} />
+          <Stat icon={GoldIcon} value={`${Math.floor(hud.goldEarned / 2)}`} />
         </div>
+        <p className="text-[12px] opacity-80">Half your gold makes it home.</p>
         <p className="pt-1 text-[14px] tabular-nums">{hud.score} points</p>
       </InnerPanel>
       <div className="mt-1 flex gap-1">
@@ -355,7 +272,7 @@ export function VictoryModal({
   onNextStage,
   onHome,
 }: {
-  hud: HudModel;
+  hud: HudState;
   onNextStage: (() => void) | null;
   onHome: () => void;
 }) {
@@ -366,7 +283,7 @@ export function VictoryModal({
       </div>
       <InnerPanel className="space-y-1 p-3">
         <p className="text-[14px] tabular-nums">
-          Stage {hud.stage ?? 1} · {hud.stageWaves ?? hud.wave} waves survived
+          {getMap(hud.mapId).name} · stage {hud.stage} · {hud.stageWaves} waves
         </p>
         <div className="flex justify-center gap-3 pt-1">
           <Stat icon={KillsIcon} value={`${hud.kills}`} />
@@ -493,4 +410,9 @@ export function SkillTreeModal({
       </PixelButton>
     </OuterPanel>
   );
+}
+
+/** Rarity name used by the armory list on the home shell. */
+export function rarityLabel(rarity: BowRarity): string {
+  return `${rarity} · ${BOWS[rarity].name}`;
 }
