@@ -133,11 +133,8 @@ export class ArenaScene extends Phaser.Scene {
       this.handleShooting(time);
       this.resolveArrowHits();
       this.runWaves(time);
-      const collected = this.coins.update(this.player.bodyX, this.player.bodyY, !this.gameOver);
-      if (collected > 0) {
-        this.gold += collected;
-        this.goldEarned += collected;
-      }
+      const collectedXp = this.coins.update(this.player.bodyX, this.player.bodyY, !this.gameOver);
+      if (collectedXp > 0) this.addXp(collectedXp);
 
       const damage = this.enemies.update(this.player, time);
       if (damage > 0 && this.player.takeDamage(damage, time)) {
