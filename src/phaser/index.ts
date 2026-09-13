@@ -28,6 +28,7 @@ export default function startArenaGame(
       autoCenter: Phaser.Scale.NO_CENTER,
       width: "100%",
       height: "100%",
+      expandParent: false,
     },
     scene: [],
     callbacks: {
