@@ -7,8 +7,22 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "@tanstack/react-router";
 import clsx from "clsx";
-import { Check, Coins, Lock, Package, Skull, Star, Swords } from "lucide-react";
+import {
+  ArrowLeftRight,
+  Check,
+  Coins,
+  Gem,
+  Lock,
+  Package,
+  Skull,
+  Sparkles,
+  Star,
+  Swords,
+  Wallet as WalletIcon,
+} from "lucide-react";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { InnerPanel, Label, OuterPanel, PixelButton } from "@/components/ui/pixel-panel";
+
 import { ICONS, RaccoonAvatar, Stat } from "@/components/game/game-modals";
 import { BottomNav, type GameTab } from "@/components/game/shell-panels";
 import { BOW_TIER } from "@/features/game/bow";
@@ -85,11 +99,11 @@ function HomeHeader({ progress }: { progress: Progress }) {
           </div>
         </div>
 
-        {/* Right: resources */}
+        {/* Right: energy-style stats + wallet, as in the reference header */}
         <div className="flex shrink-0 items-center gap-1">
-          <Chip icon={<Coins className="h-3.5 w-3.5 text-fgold" />} value={progress.gold} />
           <Chip icon={<Skull className="h-3.5 w-3.5 text-brown-100" />} value={progress.kills} />
           <Chip icon={<Star className="h-3.5 w-3.5 text-fgold" />} value={progress.bestScore} />
+          <WalletPopover progress={progress} />
         </div>
       </div>
       {/* Gold hairline under the header, as in the reference shell. */}
@@ -107,6 +121,87 @@ function Chip({ icon, value }: { icon: React.ReactNode; value: number }) {
     </span>
   );
 }
+
+/**
+ * Wallet popover ported from the Idle Raiders header
+ * (ref/idleraiders-copy/components/popover/Wallet.tsx): a compact trigger that
+ * shows the gold balance, opening a balance sheet of every currency.
+ */
+function WalletPopover({ progress }: { progress: Progress }) {
+  const balances = [
+    {
+      label: "Gold",
+      value: progress.gold,
+      icon: <Coins className="h-4 w-4 text-fgold" />,
+      tone: "text-fgold",
+    },
+    {
+      label: "Soul Shards",
+      value: 0,
+      icon: <Gem className="h-4 w-4 text-purple-400" />,
+      tone: "text-purple-300",
+    },
+    {
+      label: "Arrow Tokens",
+      value: 0,
+      icon: <Sparkles className="h-4 w-4 text-frost" />,
+      tone: "text-frost",
+    },
+  ];
+
+  return (
+    <Popover>
+      <PopoverTrigger asChild>
+        <button
+          type="button"
+          aria-label="Wallet"
+          className="flex cursor-pointer items-center gap-1 rounded-md bg-ink-700 px-1.5 py-1 ring-1 ring-fgold/40 transition-colors hover:bg-ink-600"
+        >
+          <WalletIcon className="h-3.5 w-3.5 text-fgold" />
+          <span className="text-[9px] tabular-nums text-fgold text-shadow">{progress.gold}</span>
+        </button>
+      </PopoverTrigger>
+      <PopoverContent
+        align="end"
+        className="fantasy-card w-56 border-0 p-0 font-pixel text-brown-100"
+      >
+        <div className="flex items-center gap-2 px-3 py-2">
+          <WalletIcon className="h-4 w-4 text-fgold" />
+          <div>
+            <p className="text-[9px] text-gradient-gold">Wallet</p>
+            <p className="text-[7px] text-brown-100/60">Your balances</p>
+          </div>
+        </div>
+        <div className="fantasy-rule w-full" aria-hidden />
+        <div className="space-y-2 px-3 py-2.5">
+          {balances.map((b) => (
+            <div key={b.label} className="flex items-center justify-between gap-2">
+              <div className="flex items-center gap-2">
+                {b.icon}
+                <span className="text-[8px] text-brown-100/70">{b.label}</span>
+              </div>
+              <span className={clsx("text-[9px] tabular-nums", b.tone)}>
+                {b.value.toLocaleString()}
+              </span>
+            </div>
+          ))}
+        </div>
+        <div className="fantasy-rule w-full" aria-hidden />
+        <div className="px-3 py-2">
+          <button
+            type="button"
+            disabled
+            className="w-full rounded-md bg-ink-700 py-1.5 text-[8px] text-brown-100/50 ring-1 ring-ink-line"
+          >
+            <ArrowLeftRight className="mr-1 inline h-3 w-3" />
+            Deposit / Withdraw soon
+          </button>
+        </div>
+      </PopoverContent>
+    </Popover>
+  );
+}
+
 
 
 /** World tab: every map with its stage chain. */
