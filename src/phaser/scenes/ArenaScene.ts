@@ -109,8 +109,12 @@ export class ArenaScene extends Phaser.Scene {
     const worldH = map.heightInPixels || GAME_CONFIG.HEIGHT;
     this.physics.world.setBounds(0, 0, worldW, worldH);
     this.cameras.main.setBounds(0, 0, worldW, worldH);
-    this.cameras.main.setZoom(GAME_CONFIG.ZOOM);
+    this.applyResponsiveZoom();
     this.cameras.main.roundPixels = true;
+    this.scale.on(Phaser.Scale.Events.RESIZE, this.applyResponsiveZoom, this);
+    this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => {
+      this.scale.off(Phaser.Scale.Events.RESIZE, this.applyResponsiveZoom, this);
+    });
 
     new AnimationSystem(this).createAll();
 
