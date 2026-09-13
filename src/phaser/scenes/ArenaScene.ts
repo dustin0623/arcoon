@@ -62,6 +62,8 @@ export class ArenaScene extends Phaser.Scene {
   private level = 1;
   private skillPoints = 0;
   private ranks: SkillRanks = { ...EMPTY_RANKS };
+  private hpBar!: Phaser.GameObjects.Graphics;
+  private hpText!: Phaser.GameObjects.Text;
   private onShopAction = (e: Event) => this.handleShopAction(e);
   private onSkillAction = (e: Event) => this.handleSkillAction(e);
 
@@ -98,6 +100,19 @@ export class ArenaScene extends Phaser.Scene {
 
     this.player = createPlayer(this, worldW / 2, worldH / 2);
     this.cameras.main.startFollow(this.player.sprite, true, 0.12, 0.12);
+
+    // Floating health bar with numeric readout above the player.
+    this.hpBar = this.add.graphics().setDepth(2500);
+    this.hpText = this.add
+      .text(0, 0, "", {
+        fontFamily: "monospace",
+        fontSize: "9px",
+        color: "#ffffff",
+        stroke: "#1b1526",
+        strokeThickness: 2,
+      })
+      .setOrigin(0.5, 1)
+      .setDepth(2501);
 
     this.controls = new InputSystem(this);
     this.projectiles = new ProjectileSystem(this);
@@ -153,6 +168,7 @@ export class ArenaScene extends Phaser.Scene {
     this.player.sprite.setAlpha(
       !this.gameOver && time < this.player.invulnUntil && Math.floor(time / 90) % 2 === 0 ? 0.4 : 1,
     );
+    this.updateHpBar();
     this.emitHud();
   }
 
@@ -344,10 +360,32 @@ export class ArenaScene extends Phaser.Scene {
     this.emitHud();
   }
 
+  /** Draws the health bar and numeric readout floating above the player. */
+  private updateHpBar() {
+    const { sprite, hp, maxHp } = this.player;
+    const width = 36;
+    const height = 5;
+    const x = Math.round(sprite.x - width / 2);
+    const y = Math.round(sprite.y - sprite.displayHeight / 2 - 12);
+    const ratio = maxHp > 0 ? Phaser.Math.Clamp(hp / maxHp, 0, 1) : 0;
+
+    const g = this.hpBar;
+    g.clear();
+    g.fillStyle(0x1b1526, 1);
+    g.fillRect(x - 1, y - 1, width + 2, height + 2);
+    g.fillStyle(0x4a2f28, 1);
+    g.fillRect(x, y, width, height);
+    g.fillStyle(ratio > 0.5 ? 0x4ade80 : ratio > 0.25 ? 0xffd166 : 0xff7b7b, 1);
+    g.fillRect(x, y, Math.round(width * ratio), height);
+
+    this.hpText.setText(`${hp} / ${maxHp}`);
+    this.hpText.setPosition(sprite.x, y - 2);
+  }
+
   /** Pushes passive skill effects onto the player and pickup systems. */
   private applySkills() {
     const mods = getSkillModifiers(this.ranks);
-    const maxHp = PLAYER_CONFIG.MAX_HP + mods.bonusHearts;
+    const maxHp = PLAYER_CONFIG.MAX_HP + mods.bonusHp;
     if (maxHp > this.player.maxHp) {
       this.player.hp += maxHp - this.player.maxHp;
     }

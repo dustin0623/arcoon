@@ -54,7 +54,7 @@ export function Stat({ icon, alt, value }: { icon: string; alt: string; value: s
   );
 }
 
-/** Top-left panel: hearts, gold and the equipped bow. */
+/** Top-left panel: avatar, gold, the equipped bow, level and skills. HP floats above the player in-game. */
 export function VitalsPanel({
   hud,
   onOpenSkills,
@@ -75,17 +75,7 @@ export function VitalsPanel({
         />
       </div>
       <OuterPanel className="px-2 py-1.5">
-        <div className="flex gap-0.5">
-          {Array.from({ length: Math.max(0, hud.maxHp) }).map((_, i) => (
-            <img
-              key={i}
-              src={ICONS.heart}
-              alt=""
-              className={clsx("h-4 w-4 object-contain", i < hud.hp ? "" : "opacity-25 grayscale")}
-            />
-          ))}
-        </div>
-        <div className="mt-1.5 flex items-center gap-3">
+        <div className="flex items-center gap-3">
           <Stat icon={ICONS.coin} alt="gold" value={`${hud.gold}`} />
           <div className="flex items-center gap-1.5">
             <img src={ICONS.bow} alt="bow" className="h-4 w-4 object-contain" />

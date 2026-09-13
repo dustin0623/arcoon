@@ -36,7 +36,7 @@ export const SKILL_TREE: SkillDef[] = [
   { id: "long_shot", branch: "Marksman", name: "Long Shot", icon: "/assets/icons/bow.png", maxRank: 3, effect: "+1 tile bow range", requires: "rapid_draw" },
 
   // Survival
-  { id: "vitality", branch: "Survival", name: "Vitality", icon: "/assets/icons/heart.png", maxRank: 5, effect: "+1 max heart" },
+  { id: "vitality", branch: "Survival", name: "Vitality", icon: "/assets/icons/heart.png", maxRank: 5, effect: "+20 max HP" },
   { id: "swiftness", branch: "Survival", name: "Swiftness", icon: "/assets/icons/arrow_right.png", maxRank: 5, effect: "+7% move speed" },
   { id: "second_wind", branch: "Survival", name: "Second Wind", icon: "/assets/icons/timer.png", maxRank: 3, effect: "+20% invulnerability", requires: "vitality" },
 
@@ -78,7 +78,7 @@ export interface SkillModifiers {
   damageMult: number;
   fireRateMult: number;
   rangeBonusTiles: number;
-  bonusHearts: number;
+  bonusHp: number;
   speedMult: number;
   iframeMult: number;
   goldMult: number;
@@ -91,7 +91,7 @@ export function getSkillModifiers(ranks: SkillRanks): SkillModifiers {
     damageMult: 1 + 0.15 * (ranks.sharpshooter ?? 0),
     fireRateMult: Math.pow(0.93, ranks.rapid_draw ?? 0),
     rangeBonusTiles: ranks.long_shot ?? 0,
-    bonusHearts: ranks.vitality ?? 0,
+    bonusHp: (ranks.vitality ?? 0) * 20,
     speedMult: 1 + 0.07 * (ranks.swiftness ?? 0),
     iframeMult: 1 + 0.2 * (ranks.second_wind ?? 0),
     goldMult: 1 + 0.2 * (ranks.greed ?? 0),
