@@ -4,7 +4,10 @@ import { ArenaScene } from "@/phaser/scenes/ArenaScene";
 import { GAME_CONFIG } from "@/phaser/config/GameConfig";
 
 /** Creates the Phaser game. Client-only — called from ArenaCanvas after mount. */
-export default function startArenaGame(parent: string | HTMLElement): Phaser.Game {
+export default function startArenaGame(
+  parent: string | HTMLElement,
+  options: { mapId?: string; stage?: number } = {},
+): Phaser.Game {
   return new Phaser.Game({
     type: Phaser.AUTO,
     parent,
@@ -24,6 +27,8 @@ export default function startArenaGame(parent: string | HTMLElement): Phaser.Gam
     scene: [],
     callbacks: {
       postBoot(game: Phaser.Game) {
+        game.registry.set("mapId", options.mapId ?? "meadow");
+        game.registry.set("stage", options.stage ?? 1);
         game.scene.add("LoaderScene", LoaderScene, true);
         game.scene.add("ArenaScene", ArenaScene, false);
       },

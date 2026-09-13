@@ -33,6 +33,10 @@ export interface HudModel {
   enemiesTotal?: number;
   intermission: boolean;
   gameOver: boolean;
+  stage?: number;
+  stageWaves?: number;
+  mapId?: string;
+  victory?: boolean;
   gold: number;
   goldEarned: number;
   bowTier: BowTier;
@@ -281,7 +285,15 @@ export function ShopModal({
 }
 
 /** End-of-run summary. */
-export function GameOverModal({ hud, onRestart }: { hud: HudModel; onRestart: () => void }) {
+export function GameOverModal({
+  hud,
+  onRestart,
+  onHome,
+}: {
+  hud: HudModel;
+  onRestart: () => void;
+  onHome?: () => void;
+}) {
   return (
     <OuterPanel className="w-full max-w-sm text-center">
       <div className="flex justify-center">
@@ -297,9 +309,55 @@ export function GameOverModal({ hud, onRestart }: { hud: HudModel; onRestart: ()
         </div>
         <p className="pt-1 text-[10px] tabular-nums">{hud.score} points</p>
       </InnerPanel>
-      <PixelButton className="mt-1 w-full" onClick={onRestart}>
-        <span className="text-[9px]">Play again</span>
-      </PixelButton>
+      <div className="mt-1 flex gap-1">
+        <PixelButton className="flex-1" onClick={onRestart}>
+          <span className="text-[9px]">Retry</span>
+        </PixelButton>
+        {onHome && (
+          <PixelButton className="flex-1" onClick={onHome}>
+            <span className="text-[9px]">World map</span>
+          </PixelButton>
+        )}
+      </div>
+    </OuterPanel>
+  );
+}
+
+/** Stage-clear summary with links back to the map screen or the next stage. */
+export function VictoryModal({
+  hud,
+  onNextStage,
+  onHome,
+}: {
+  hud: HudModel;
+  onNextStage: (() => void) | null;
+  onHome: () => void;
+}) {
+  return (
+    <OuterPanel className="w-full max-w-sm text-center">
+      <div className="flex justify-center">
+        <Label className="-mt-4 mb-1 text-[10px]">Stage Clear</Label>
+      </div>
+      <InnerPanel className="space-y-1 p-3">
+        <p className="text-[10px] tabular-nums">
+          Stage {hud.stage ?? 1} · {hud.stageWaves ?? hud.wave} waves survived
+        </p>
+        <div className="flex justify-center gap-3 pt-1">
+          <Stat icon={KillsIcon} value={`${hud.kills}`} />
+          <Stat icon={GoldIcon} value={`${hud.goldEarned}`} />
+        </div>
+        <p className="pt-1 text-[10px] tabular-nums">{hud.score} points</p>
+      </InnerPanel>
+      <div className="mt-1 flex gap-1">
+        {onNextStage && (
+          <PixelButton className="flex-1" onClick={onNextStage}>
+            <span className="text-[9px]">Next stage</span>
+          </PixelButton>
+        )}
+        <PixelButton className="flex-1" onClick={onHome}>
+          <span className="text-[9px]">World map</span>
+        </PixelButton>
+      </div>
     </OuterPanel>
   );
 }

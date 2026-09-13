@@ -1,4 +1,5 @@
 import { lazy, Suspense, useEffect, useRef, useState } from "react";
+import { useNavigate } from "@tanstack/react-router";
 import type Phaser from "phaser";
 import type { ArenaHudState } from "@/phaser/scenes/ArenaScene";
 import { EMPTY_RANKS, type SkillId } from "@/features/game/skill-tree";
@@ -7,10 +8,12 @@ import {
   LevelUpToast,
   LoadingOverlay,
   ShopModal,
+  VictoryModal,
   SkillTreeModal,
   TopBar,
   XpBar,
 } from "@/components/game/game-modals";
+import { nextStage, recordStageClear } from "@/features/game/campaign";
 import {
   BottomNav,
   CharacterPanel,
@@ -31,6 +34,10 @@ const EMPTY_HUD: ArenaHudState = {
   enemiesLeft: 0,
   intermission: true,
   gameOver: false,
+  stage: 1,
+  stageWaves: 3,
+  mapId: "meadow",
+  victory: false,
   gold: 0,
   goldEarned: 0,
   bowTier: "Wood",
@@ -49,7 +56,14 @@ function sendSkillAction(id: SkillId) {
 }
 
 /** Mounts the Phaser game and renders the React HUD on top of the canvas. */
-export default function ArenaCanvas() {
+export default function ArenaCanvas({
+  mapId = "meadow",
+  stage = 1,
+}: {
+  mapId?: string;
+  stage?: number;
+}) {
+  const navigate = useNavigate();
   const hostRef = useRef<HTMLDivElement>(null);
   const gameRef = useRef<Phaser.Game | null>(null);
   const [hud, setHud] = useState<ArenaHudState>(EMPTY_HUD);
@@ -80,7 +94,7 @@ export default function ArenaCanvas() {
 
     void import("@/phaser/index").then(({ default: startArenaGame }) => {
       if (disposed || !hostRef.current) return;
-      gameRef.current = startArenaGame(hostRef.current);
+      gameRef.current = startArenaGame(hostRef.current, { mapId, stage });
     });
 
     return () => {
@@ -90,7 +104,22 @@ export default function ArenaCanvas() {
       gameRef.current?.destroy(true);
       gameRef.current = null;
     };
-  }, []);
+  }, [mapId, stage]);
+
+  // Persist the stage win once, the first time victory is reported.
+  const saved = useRef(false);
+  useEffect(() => {
+    if (!hud.victory || saved.current) return;
+    saved.current = true;
+    recordStageClear(mapId, stage, {
+      gold: hud.goldEarned,
+      kills: hud.kills,
+      score: hud.score,
+    });
+  }, [hud.victory, hud.goldEarned, hud.kills, hud.score, mapId, stage]);
+
+  const follow = nextStage(mapId, stage);
+  const goHome = () => void navigate({ to: "/" });
 
   // Flash a banner whenever the player gains a level.
   useEffect(() => {
@@ -117,7 +146,21 @@ export default function ArenaCanvas() {
             </div>
           )}
 
-          {hud.intermission && !hud.gameOver && !skillsOpen && tab === "world" && (
+          {hud.victory && (
+            <div className="pointer-events-auto absolute inset-0 flex items-center justify-center bg-black/70 px-4">
+              <VictoryModal
+                hud={hud}
+                onNextStage={
+                  follow
+                    ? () => void navigate({ to: "/game", search: { map: mapId, stage: follow } })
+                    : null
+                }
+                onHome={goHome}
+              />
+            </div>
+          )}
+
+          {hud.intermission && !hud.gameOver && !hud.victory && !skillsOpen && tab === "world" && (
             <div className="pointer-events-auto absolute inset-0 flex items-center justify-center px-4">
               <ShopModal hud={hud} onAction={sendShopAction} />
             </div>
@@ -148,11 +191,15 @@ export default function ArenaCanvas() {
 
           {hud.gameOver && (
             <div className="pointer-events-auto absolute inset-0 flex items-center justify-center bg-black/70 px-4">
-              <GameOverModal hud={hud} onRestart={() => window.location.reload()} />
+              <GameOverModal
+                hud={hud}
+                onRestart={() => window.location.reload()}
+                onHome={goHome}
+              />
             </div>
           )}
 
-          {touch && !hud.gameOver && !hud.intermission && !skillsOpen && tab === "world" && (
+          {touch && !hud.gameOver && !hud.victory && !hud.intermission && !skillsOpen && tab === "world" && (
             <Suspense fallback={null}>
               <TouchJoystick />
             </Suspense>
