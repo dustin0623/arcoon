@@ -93,7 +93,7 @@ export default function ArenaCanvas() {
       {!ready && <LoadingOverlay progress={progress} />}
 
       {ready && (
-        <div className="pointer-events-none absolute inset-0 p-3 pb-12">
+        <div className="pointer-events-none absolute inset-0 p-3 pb-9">
           <div className="flex items-start justify-between gap-3">
             <VitalsPanel hud={hud} />
             <WavePanel hud={hud} />

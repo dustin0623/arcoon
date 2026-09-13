@@ -95,7 +95,7 @@ export function WavePanel({ hud }: { hud: HudModel }) {
   );
 }
 
-/** Full-width experience bar pinned to the bottom of the screen. */
+/** Thin experience bar flush with the bottom edge, level info floating above it. */
 export function XpBar({
   xp,
   skillPoints,
@@ -108,29 +108,34 @@ export function XpBar({
   const p = getLevelProgress(xp);
 
   return (
-    <div className="pointer-events-auto absolute inset-x-0 bottom-0 px-2 pb-2">
-      <OuterPanel className="flex items-center gap-2 px-2 py-1">
-        <Label className="shrink-0 text-[9px]">Lv {p.level}</Label>
-
-        <div className="relative h-3.5 flex-1 overflow-hidden rounded-full bg-black/50">
-          <div
-            className="h-full rounded-full bg-neon transition-[width] duration-300"
-            style={{ width: `${Math.round(p.ratio * 100)}%` }}
-          />
-          <span className="absolute inset-0 flex items-center justify-center text-[8px] text-white text-outline tabular-nums">
-            {p.maxed ? "MAX LEVEL" : `${p.into} / ${p.needed} XP`}
-          </span>
-        </div>
-
-        {onOpenSkills && (
-          <PixelButton className="shrink-0" onClick={onOpenSkills}>
-            <span className="flex items-center gap-1 text-[8px] whitespace-nowrap">
-              <img src={ICONS.star} alt="" className="h-3 w-3" />
-              Skills{skillPoints > 0 ? ` (${skillPoints})` : ""}
-            </span>
-          </PixelButton>
+    <div className="pointer-events-auto absolute inset-x-0 bottom-0">
+      {/* Small readout row sitting just above the bar */}
+      <div className="flex items-end justify-between px-2 pb-1">
+        <span className="text-[9px] text-white text-outline tabular-nums">Lv {p.level}</span>
+        <span className="text-[9px] text-white text-outline tabular-nums">
+          {p.maxed ? "MAX LEVEL" : `${p.into} / ${p.needed} XP`}
+        </span>
+        {onOpenSkills ? (
+          <button
+            type="button"
+            onClick={onOpenSkills}
+            className="flex items-center gap-1 text-[9px] text-white text-outline"
+          >
+            <img src={ICONS.star} alt="" className="h-3.5 w-3.5" />
+            Skills{skillPoints > 0 ? ` (${skillPoints})` : ""}
+          </button>
+        ) : (
+          <span className="w-10" />
         )}
-      </OuterPanel>
+      </div>
+
+      {/* The bar itself, flush with the screen edge */}
+      <div className="relative h-2.5 w-full overflow-hidden bg-black/60">
+        <div
+          className="h-full bg-neon transition-[width] duration-300"
+          style={{ width: `${Math.round(p.ratio * 100)}%` }}
+        />
+      </div>
     </div>
   );
 }
