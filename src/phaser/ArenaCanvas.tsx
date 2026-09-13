@@ -11,6 +11,13 @@ import {
   TopBar,
   XpBar,
 } from "@/components/game/game-modals";
+import {
+  BottomNav,
+  CharacterPanel,
+  InventoryPanel,
+  PacksPanel,
+  type GameTab,
+} from "@/components/game/shell-panels";
 
 const TouchJoystick = lazy(() => import("@/components/game/touch-joystick"));
 
@@ -51,6 +58,7 @@ export default function ArenaCanvas() {
   const [skillsOpen, setSkillsOpen] = useState(false);
   const [levelUp, setLevelUp] = useState<number | null>(null);
   const [touch, setTouch] = useState(false);
+  const [tab, setTab] = useState<GameTab>("world");
   const lastLevel = useRef(1);
 
   useEffect(() => {
@@ -109,10 +117,22 @@ export default function ArenaCanvas() {
             </div>
           )}
 
-          {hud.intermission && !hud.gameOver && !skillsOpen && (
+          {hud.intermission && !hud.gameOver && !skillsOpen && tab === "world" && (
             <div className="pointer-events-auto absolute inset-0 flex items-center justify-center px-4">
               <ShopModal hud={hud} onAction={sendShopAction} />
             </div>
+          )}
+
+          {!hud.gameOver && tab === "inventory" && (
+            <InventoryPanel hud={hud} onClose={() => setTab("world")} />
+          )}
+          {!hud.gameOver && tab === "packs" && <PacksPanel onClose={() => setTab("world")} />}
+          {!hud.gameOver && tab === "character" && (
+            <CharacterPanel
+              hud={hud}
+              onOpenSkills={() => setSkillsOpen(true)}
+              onClose={() => setTab("world")}
+            />
           )}
 
           {skillsOpen && !hud.gameOver && (
@@ -132,13 +152,14 @@ export default function ArenaCanvas() {
             </div>
           )}
 
-          {touch && !hud.gameOver && !hud.intermission && !skillsOpen && (
+          {touch && !hud.gameOver && !hud.intermission && !skillsOpen && tab === "world" && (
             <Suspense fallback={null}>
               <TouchJoystick />
             </Suspense>
           )}
 
-          <XpBar xp={hud.xp} />
+          <XpBar xp={hud.xp} className="bottom-[54px]" />
+          <BottomNav active={tab} onChange={setTab} />
         </div>
       )}
     </div>

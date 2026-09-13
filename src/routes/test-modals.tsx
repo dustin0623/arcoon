@@ -10,6 +10,13 @@ import {
   XpBar,
   type HudModel,
 } from "@/components/game/game-modals";
+import {
+  BottomNav,
+  CharacterPanel,
+  InventoryPanel,
+  PacksPanel,
+  type GameTab,
+} from "@/components/game/shell-panels";
 import { OuterPanel } from "@/components/ui/pixel-panel";
 import { EMPTY_RANKS, canLearn, getSkill, type SkillId } from "@/features/game/skill-tree";
 
@@ -81,6 +88,8 @@ function TestModalsPage() {
   const [progress, setProgress] = useState(0.62);
   const [xp, setXp] = useState(SAMPLE.xp);
 
+  const [tab, setTab] = useState<GameTab>("world");
+
   const learn = (id: SkillId) => {
     const skill = getSkill(id);
     if (!canLearn(skill, ranks, points)) return;
@@ -139,6 +148,30 @@ function TestModalsPage() {
 
         <Slot title="Skill tree" className="lg:col-span-2">
           <SkillTreeModal ranks={ranks} points={points} onLearn={learn} onClose={() => {}} />
+        </Slot>
+
+        <Slot title="Shell — bottom tab bar" className="lg:col-span-2">
+          <div className="relative h-16 w-full overflow-hidden rounded">
+            <BottomNav active={tab} onChange={setTab} />
+          </div>
+        </Slot>
+
+        <Slot title="Inventory tab overlay">
+          <div className="relative h-72 w-full overflow-hidden rounded">
+            <InventoryPanel hud={{ ...SAMPLE, ranks }} onClose={() => {}} />
+          </div>
+        </Slot>
+
+        <Slot title="Packs tab overlay">
+          <div className="relative h-72 w-full overflow-hidden rounded">
+            <PacksPanel onClose={() => {}} />
+          </div>
+        </Slot>
+
+        <Slot title="Character tab overlay" className="lg:col-span-2">
+          <div className="relative h-80 w-full overflow-hidden rounded">
+            <CharacterPanel hud={{ ...SAMPLE, ranks }} onOpenSkills={() => {}} onClose={() => {}} />
+          </div>
         </Slot>
 
         <Slot title="Panel primitives" className="lg:col-span-2">

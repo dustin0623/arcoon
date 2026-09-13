@@ -150,13 +150,15 @@ export function TopBar({
 /** Thin experience bar flush with the bottom edge, level info floating above it. */
 export function XpBar({
   xp,
+  className,
 }: {
   xp: number;
+  className?: string;
 }) {
   const p = getLevelProgress(xp);
 
   return (
-    <div className="pointer-events-auto absolute inset-x-0 bottom-0">
+    <div className={clsx("pointer-events-auto absolute inset-x-0 bottom-0", className)}>
       {/* Small readout row sitting just above the bar */}
       <div className="flex items-end justify-center px-2 pb-1">
         <span className="text-[9px] text-white text-outline tabular-nums">
