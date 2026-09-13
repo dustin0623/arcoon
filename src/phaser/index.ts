@@ -14,6 +14,11 @@ export default function startArenaGame(
     backgroundColor: GAME_CONFIG.BG_COLOR,
     pixelArt: GAME_CONFIG.PIXEL_ART,
     render: { antialias: false, roundPixels: true },
+    disableContextMenu: true,
+    input: {
+      activePointers: 3,
+      touch: { capture: true },
+    },
     physics: {
       default: "arcade",
       arcade: { debug: false, gravity: { x: 0, y: 0 } },

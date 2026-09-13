@@ -69,7 +69,11 @@ export default function ArenaCanvas({
   const lastLevel = useRef(1);
 
   useEffect(() => {
-    setTouch(window.matchMedia("(pointer: coarse)").matches || "ontouchstart" in window);
+    setTouch(
+      window.matchMedia("(pointer: coarse)").matches ||
+        "ontouchstart" in window ||
+        navigator.maxTouchPoints > 0,
+    );
   }, []);
 
   useEffect(() => {
