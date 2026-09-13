@@ -15,6 +15,12 @@ export default function TouchJoystick() {
   const [origin, setOrigin] = useState<{ x: number; y: number } | null>(null);
   const [knob, setKnob] = useState({ x: 0, y: 0 });
   const pointerId = useRef<number | null>(null);
+  const zoneRef = useRef<HTMLDivElement>(null);
+
+  const localPoint = (e: React.PointerEvent) => {
+    const r = zoneRef.current?.getBoundingClientRect();
+    return { x: e.clientX - (r?.left ?? 0), y: e.clientY - (r?.top ?? 0) };
+  };
 
   const reset = useCallback(() => {
     pointerId.current = null;
@@ -29,14 +35,15 @@ export default function TouchJoystick() {
     if (pointerId.current !== null) return;
     pointerId.current = e.pointerId;
     (e.target as HTMLElement).setPointerCapture(e.pointerId);
-    setOrigin({ x: e.clientX, y: e.clientY });
+    setOrigin(localPoint(e));
     setKnob({ x: 0, y: 0 });
   };
 
   const onMove = (e: React.PointerEvent) => {
     if (pointerId.current !== e.pointerId || !origin) return;
-    let dx = e.clientX - origin.x;
-    let dy = e.clientY - origin.y;
+    const pt = localPoint(e);
+    let dx = pt.x - origin.x;
+    let dy = pt.y - origin.y;
     const len = Math.hypot(dx, dy);
     if (len > RADIUS) {
       dx = (dx / len) * RADIUS;
@@ -48,6 +55,7 @@ export default function TouchJoystick() {
 
   return (
     <div
+      ref={zoneRef}
       className="pointer-events-auto absolute inset-x-0 bottom-0 h-[45%] touch-none select-none"
       onPointerDown={onDown}
       onPointerMove={onMove}
