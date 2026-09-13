@@ -192,3 +192,120 @@
 [data-game-route] img {
   image-rendering: pixelated;
 }
+
+/* ---------------------------------------------------------------
+ * Fantasy shell theme (ported from the Idle Raiders reference) —
+ * dark slate surfaces + gold accents, layered under the pixel panels
+ * so the UI reads as a hybrid of both styles.
+ * ------------------------------------------------------------- */
+@theme {
+  --color-ink-900: hsl(230 15% 8%);
+  --color-ink-800: hsl(230 14% 10%);
+  --color-ink-700: hsl(230 12% 12%);
+  --color-ink-600: hsl(230 10% 18%);
+  --color-ink-line: hsl(230 10% 20%);
+  --color-fgold: hsl(43 85% 59%);
+  --color-fgold-dim: hsl(43 60% 35%);
+  --color-fgold-glow: hsl(43 95% 68%);
+  --color-ember: hsl(15 85% 58%);
+  --color-frost: hsl(200 70% 60%);
+}
+
+@utility glow-gold {
+  box-shadow:
+    0 0 20px hsl(43 85% 59% / 0.3),
+    0 0 40px hsl(43 85% 59% / 0.15),
+    inset 0 0 20px hsl(43 85% 59% / 0.1);
+}
+
+@utility glow-gold-strong {
+  box-shadow:
+    0 0 30px hsl(43 85% 59% / 0.4),
+    0 0 60px hsl(43 85% 59% / 0.2),
+    inset 0 0 30px hsl(43 85% 59% / 0.15);
+}
+
+@utility text-glow-gold {
+  text-shadow:
+    0 0 15px hsl(43 85% 59% / 0.6),
+    0 0 30px hsl(43 85% 59% / 0.3);
+}
+
+@utility bg-gradient-gold {
+  background: linear-gradient(135deg, hsl(43 85% 55%), hsl(43 85% 45%));
+}
+
+@utility text-gradient-gold {
+  background: linear-gradient(135deg, hsl(43 95% 65%), hsl(43 85% 55%));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@utility shadow-gold {
+  box-shadow: 0 4px 12px hsl(43 85% 59% / 0.3);
+}
+
+@utility shadow-card {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+@utility ember-glow {
+  background: radial-gradient(ellipse at center, hsl(43 80% 55% / 0.08) 0%, transparent 60%);
+}
+
+@utility fantasy-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.75rem;
+  border: 1px solid hsl(230 10% 20%);
+  background: linear-gradient(145deg, hsl(230 12% 14%), hsl(230 12% 10%));
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+@utility fantasy-rule {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, hsl(43 85% 59% / 0.45), transparent);
+}
+
+@utility fantasy-btn {
+  border-radius: 0.5rem;
+  background: linear-gradient(135deg, hsl(43 85% 55%), hsl(43 85% 45%));
+  color: hsl(230 15% 8%);
+  box-shadow:
+    0 4px 12px hsl(43 85% 59% / 0.3),
+    inset 0 1px 0 hsl(43 95% 70% / 0.3);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  transition: all 200ms ease;
+}
+
+@keyframes glow-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 20px hsl(43 85% 59% / 0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px hsl(43 85% 59% / 0.5);
+  }
+}
+
+@utility animate-glow-pulse {
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+/* Gold scrollbars, as in the reference shell. */
+.fantasy-shell * {
+  scrollbar-width: thin;
+  scrollbar-color: hsl(43 60% 35%) hsl(230 12% 10%);
+}
+.fantasy-shell ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.fantasy-shell ::-webkit-scrollbar-track {
+  background: hsl(230 12% 10%);
+}
+.fantasy-shell ::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, hsl(43 60% 30%), hsl(43 85% 55%), hsl(43 60% 30%));
+  border-radius: 4px;
+}
