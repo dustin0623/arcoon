@@ -4,7 +4,7 @@
  * tab is an Archero-style stage chain: clear every stage of a map to open the
  * next map. Picking a stage navigates to the Phaser run at /game.
  */
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "@tanstack/react-router";
 import clsx from "clsx";
 import { Check, Coins, Lock, Package, Skull, Star, Swords } from "lucide-react";
@@ -12,6 +12,7 @@ import { InnerPanel, Label, OuterPanel, PixelButton } from "@/components/ui/pixe
 import { ICONS, RaccoonAvatar, Stat } from "@/components/game/game-modals";
 import { BottomNav, type GameTab } from "@/components/game/shell-panels";
 import { BOW_TIER } from "@/features/game/bow";
+import { getLevelProgress } from "@/features/game/experience";
 import { SKILL_TREE } from "@/features/game/skill-tree";
 import {
   EMPTY_PROGRESS,
@@ -37,43 +38,78 @@ export default function HomeShell() {
     <div className="relative flex h-full w-full flex-col overflow-hidden bg-brown-500 font-pixel">
       <HomeHeader progress={progress} />
 
-      <div className="flex-1 overflow-y-auto px-3 pt-2 pb-24">
-        {tab === "world" && <WorldTab progress={progress} />}
-        {tab === "inventory" && <HomeInventoryTab progress={progress} />}
-        {tab === "packs" && <HomePacksTab />}
-        {tab === "character" && <HomeCharacterTab progress={progress} />}
-      </div>
+      <main className="flex-1 overflow-y-auto">
+        <div className="mx-auto w-full max-w-lg px-3 pt-3 pb-24">
+          {tab === "world" && <WorldTab progress={progress} />}
+          {tab === "inventory" && <HomeInventoryTab progress={progress} />}
+          {tab === "packs" && <HomePacksTab />}
+          {tab === "character" && <HomeCharacterTab progress={progress} />}
+        </div>
+      </main>
 
       <BottomNav active={tab} onChange={setTab} />
     </div>
   );
 }
 
+/**
+ * Header modelled on the Idle Raiders shell: a fixed top bar with the player
+ * identity (avatar, name, level, XP meter) on the left and compact resource
+ * chips on the right, both inside the same centred container as the content.
+ */
 function HomeHeader({ progress }: { progress: Progress }) {
+  const level = getLevelProgress(progress.xp);
   return (
-    <header className="px-3 pt-3">
-      <OuterPanel className="flex items-center justify-between gap-2 px-2 py-1.5">
-        <div className="flex items-center gap-2">
-          <RaccoonAvatar className="h-9 w-9" />
-          <div>
-            <p className="text-[10px] text-white text-shadow">ARCOON</p>
-            <p className="text-[8px] opacity-80">Raccoon archer</p>
+    <header className="shrink-0 bg-brown-600/95">
+      <div className="mx-auto flex w-full max-w-lg items-center justify-between gap-2 px-3 py-2">
+        {/* Left: identity */}
+        <div className="flex min-w-0 items-center gap-2">
+          <RaccoonAvatar className="h-9 w-9 shrink-0" />
+          <div className="min-w-0">
+            <p className="truncate text-[10px] leading-tight text-white text-shadow">
+              ARCOON <span className="text-[8px] opacity-70">Lv.{level.level}</span>
+            </p>
+            <div className="mt-1 flex items-center gap-1">
+              <div className="h-1.5 w-20 overflow-hidden rounded-full bg-black/50 sm:w-28">
+                <div
+                  className="h-full rounded-full bg-neon"
+                  style={{ width: `${Math.round(level.ratio * 100)}%` }}
+                />
+              </div>
+              <span className="text-[7px] whitespace-nowrap tabular-nums opacity-70">
+                {level.maxed ? "MAX" : `${level.into}/${level.needed}`}
+              </span>
+            </div>
           </div>
         </div>
-        <div className="flex items-center gap-3">
-          <Stat icon={<Coins className="h-4 w-4 text-yellow-300" />} value={`${progress.gold}`} />
-          <Stat icon={<Skull className="h-4 w-4 text-brown-100" />} value={`${progress.kills}`} />
-          <Stat icon={<Star className="h-4 w-4 text-yellow-300" />} value={`${progress.bestScore}`} />
+
+        {/* Right: resources */}
+        <div className="flex shrink-0 items-center gap-1">
+          <Chip icon={<Coins className="h-3.5 w-3.5 text-yellow-300" />} value={progress.gold} />
+          <Chip icon={<Skull className="h-3.5 w-3.5 text-brown-100" />} value={progress.kills} />
+          <Chip icon={<Star className="h-3.5 w-3.5 text-yellow-300" />} value={progress.bestScore} />
         </div>
-      </OuterPanel>
+      </div>
+      {/* Bottom edge strip — a border would be cleared by the game-route reset. */}
+      <div className="h-1 w-full bg-brown-700" aria-hidden />
     </header>
+  );
+}
+
+/** Compact resource pill used in the header, like the reference wallet chips. */
+function Chip({ icon, value }: { icon: React.ReactNode; value: number }) {
+  return (
+    <span className="flex items-center gap-1 rounded-md bg-brown-700/70 px-1.5 py-1">
+      {icon}
+      <span className="text-[9px] tabular-nums text-white text-shadow">{value}</span>
+    </span>
   );
 }
 
 /** World tab: every map with its stage chain. */
 function WorldTab({ progress }: { progress: Progress }) {
   return (
-    <div className="mx-auto max-w-md space-y-3">
+    <div className="space-y-3">
       <h2 className="text-center text-[10px] text-white text-shadow">Choose your hunt</h2>
       {MAPS.map((map) => (
         <MapCard key={map.id} map={map} progress={progress} />
@@ -143,7 +179,7 @@ function MapCard({ map, progress }: { map: MapDef; progress: Progress }) {
 function HomeInventoryTab({ progress }: { progress: Progress }) {
   const wood = BOW_TIER.Wood;
   return (
-    <div className="mx-auto max-w-md space-y-2">
+    <div className="space-y-2">
       <h2 className="text-center text-[10px] text-white text-shadow">Inventory</h2>
       <OuterPanel className="p-2">
         <InnerPanel className="flex items-center justify-between gap-2 p-2">
@@ -176,7 +212,7 @@ const PACKS = [
 
 function HomePacksTab() {
   return (
-    <div className="mx-auto max-w-md space-y-2">
+    <div className="space-y-2">
       <h2 className="text-center text-[10px] text-white text-shadow">Packs</h2>
       {PACKS.map((pack) => (
         <OuterPanel key={pack.name} className="p-2">
@@ -204,7 +240,7 @@ function HomeCharacterTab({ progress }: { progress: Progress }) {
     0,
   );
   return (
-    <div className="mx-auto max-w-md space-y-2">
+    <div className="space-y-2">
       <h2 className="text-center text-[10px] text-white text-shadow">Character</h2>
       <OuterPanel className="p-2">
         <InnerPanel className="flex items-center gap-2 p-2">

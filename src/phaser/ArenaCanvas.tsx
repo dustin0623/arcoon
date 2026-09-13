@@ -115,8 +115,9 @@ export default function ArenaCanvas({
       gold: hud.goldEarned,
       kills: hud.kills,
       score: hud.score,
+      xp: hud.xp,
     });
-  }, [hud.victory, hud.goldEarned, hud.kills, hud.score, mapId, stage]);
+  }, [hud.victory, hud.goldEarned, hud.kills, hud.score, hud.xp, mapId, stage]);
 
   const follow = nextStage(mapId, stage);
   const goHome = () => void navigate({ to: "/" });
