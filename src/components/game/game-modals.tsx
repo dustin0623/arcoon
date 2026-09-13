@@ -5,7 +5,7 @@
 import React from "react";
 import clsx from "clsx";
 import { Coins, Skull, Star, Swords } from "lucide-react";
-import { OuterPanel, InnerPanel, Label, PixelButton } from "@/components/ui/pixel-panel";
+import { OuterPanel, InnerPanel, Label, PixelButton, BarPanel } from "@/components/ui/pixel-panel";
 import { BOWS, bowStats, MAX_STARS } from "@/features/game/bow";
 import { getLevelProgress } from "@/features/game/experience";
 import type { HudState } from "@/features/game/hud";
@@ -77,68 +77,65 @@ export function TopBar({ hud, onOpenSkills }: { hud: HudState; onOpenSkills?: ()
   const waveRatio = hud.intermission ? 1 : cleared / total;
 
   return (
-    <div className="pointer-events-auto flex flex-wrap items-start justify-between gap-1.5">
-      {/* Left: avatar, bow, level, skills */}
-      <OuterPanel className="flex items-center gap-2 px-2 py-1.5 sm:gap-3">
-        <FrogAvatar className="h-9 w-9" />
-
-        <div className="flex items-center gap-1.5 border-l border-brown-100/40 pl-3">
-          <img src={ICONS.bow} alt="bow" className="h-4 w-4 object-contain" />
-          <span className="text-[13px]">{hud.bowRarity}</span>
-          <StarRow stars={hud.bowStars} />
-        </div>
-
-        <div className="border-l border-brown-100/40 pl-3">
-          <p className="text-[13px] tabular-nums">Lv {progress.level}</p>
-          <div className="mt-0.5 h-1.5 w-16 overflow-hidden rounded-full bg-black/50">
-            <div className="h-full bg-neon" style={{ width: `${Math.round(progress.ratio * 100)}%` }} />
-          </div>
-        </div>
-
-        {onOpenSkills && (
-          <PixelButton className="py-0.5" onClick={onOpenSkills}>
-            <span className="flex items-center gap-1 text-[12px]">
-              <Star className="h-3 w-3 text-yellow-300" />
-              Skills{hud.skillPoints > 0 ? ` (${hud.skillPoints})` : ""}
+    <BarPanel
+      className="pointer-events-auto"
+      center={
+        <div className="text-center">
+          <div className="flex items-center justify-center gap-2">
+            <Swords className="h-3.5 w-3.5 text-brown-100" />
+            <span className="text-[14px]">
+              Wave {hud.wave}/{hud.stageWaves}
             </span>
-          </PixelButton>
-        )}
-      </OuterPanel>
-
-      {/* Center: wave status */}
-      <OuterPanel className="min-w-40 flex-1 px-2 py-1.5 text-center sm:max-w-56">
-        <div className="flex items-center justify-center gap-2">
-          <Swords className="h-3.5 w-3.5 text-brown-100" />
-          <span className="text-[14px]">
-            Wave {hud.wave}/{hud.stageWaves}
-          </span>
-          <Swords className="h-3.5 w-3.5 text-brown-100" />
+            <Swords className="h-3.5 w-3.5 text-brown-100" />
+          </div>
+          <div className="mt-1 h-2.5 overflow-hidden rounded-full bg-black/50">
+            <div
+              className="h-full rounded-full bg-[#e03131] transition-[width] duration-300"
+              style={{ width: `${Math.round(waveRatio * 100)}%` }}
+            />
+          </div>
+          <p className="mt-1 text-[12px] opacity-80">
+            {hud.boss && !hud.intermission
+              ? `${getMap(hud.mapId).boss} — ${hud.enemiesLeft} left`
+              : hud.intermission
+                ? "Next wave in..."
+                : `${hud.enemiesLeft} enemies left`}
+          </p>
         </div>
-        <div className="mt-1 h-2.5 overflow-hidden rounded-full bg-black/50">
-          <div
-            className="h-full rounded-full bg-[#e03131] transition-[width] duration-300"
-            style={{ width: `${Math.round(waveRatio * 100)}%` }}
-          />
-        </div>
-        <p className="mt-1 text-[12px] opacity-80">
-          {hud.boss && !hud.intermission
-            ? `${getMap(hud.mapId).boss} — ${hud.enemiesLeft} left`
-            : hud.intermission
-              ? "Next wave in..."
-              : `${hud.enemiesLeft} enemies left`}
-        </p>
-      </OuterPanel>
-
-      {/* Right: run stats */}
-      <OuterPanel className="px-2 py-1.5">
-        <div className="flex items-center gap-3">
+      }
+      right={
+        <>
           <Stat icon={SkullIcon} value={`${hud.enemiesLeft}`} />
           <Stat icon={KillsIcon} value={`${hud.kills}`} />
           <Stat icon={GoldIcon} value={`${hud.goldEarned}`} />
           <span className="text-[14px] tabular-nums opacity-80">{hud.score}</span>
+        </>
+      }
+    >
+      <FrogAvatar className="h-9 w-9" />
+
+      <div className="flex items-center gap-1.5 border-l border-brown-100/40 pl-3">
+        <img src={ICONS.bow} alt="bow" className="h-4 w-4 object-contain" />
+        <span className="text-[13px]">{hud.bowRarity}</span>
+        <StarRow stars={hud.bowStars} />
+      </div>
+
+      <div className="border-l border-brown-100/40 pl-3">
+        <p className="text-[13px] tabular-nums">Lv {progress.level}</p>
+        <div className="mt-0.5 h-1.5 w-16 overflow-hidden rounded-full bg-black/50">
+          <div className="h-full bg-neon" style={{ width: `${Math.round(progress.ratio * 100)}%` }} />
         </div>
-      </OuterPanel>
-    </div>
+      </div>
+
+      {onOpenSkills && (
+        <PixelButton className="py-0.5" onClick={onOpenSkills}>
+          <span className="flex items-center gap-1 text-[12px]">
+            <Star className="h-3 w-3 text-yellow-300" />
+            Skills{hud.skillPoints > 0 ? ` (${hud.skillPoints})` : ""}
+          </span>
+        </PixelButton>
+      )}
+    </BarPanel>
   );
 }
 
