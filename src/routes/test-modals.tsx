@@ -100,7 +100,7 @@ function TestModalsPage() {
 
       <div className="grid gap-6 lg:grid-cols-2">
         <Slot title="HUD — vitals (top left)">
-          <VitalsPanel hud={{ ...SAMPLE, ranks }} />
+          <VitalsPanel hud={{ ...SAMPLE, ranks }} onOpenSkills={() => setPoints(points + 1)} />
         </Slot>
 
         <Slot title="HUD — wave & score (top right)">
@@ -109,7 +109,7 @@ function TestModalsPage() {
 
         <Slot title="Experience bar (bottom, full width)" className="lg:col-span-2">
           <div className="relative h-20 w-full overflow-hidden">
-            <XpBar xp={xp} skillPoints={points} onOpenSkills={() => setXp(xp + 120)} />
+            <XpBar xp={xp} />
           </div>
         </Slot>
 
