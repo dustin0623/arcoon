@@ -118,7 +118,7 @@ export default function ArenaCanvas() {
           )}
 
           <p className="absolute inset-x-0 bottom-4 text-center text-[11px] text-muted-foreground">
-            WASD to move · aim with the mouse · hold click to fire
+            WASD to move · aim with the mouse · click or press Space to fire
           </p>
         </div>
       )}
