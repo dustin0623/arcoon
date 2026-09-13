@@ -58,7 +58,7 @@ export const Label: React.FC<{ className?: string; children?: React.ReactNode }>
 }) => (
   <div
     className={clsx(
-      "bg-silver-300 flex items-center justify-center px-1 text-white text-shadow",
+      "bg-silver-300 font-pixel flex items-center justify-center px-1 text-white text-shadow",
       className,
     )}
     style={frame(whiteBorder, "5px", "15px")}

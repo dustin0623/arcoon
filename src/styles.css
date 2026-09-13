@@ -148,6 +148,7 @@
  * ------------------------------------------------------------- */
 @theme {
   --font-pixel: "Press Start 2P", monospace;
+  --font-body: "Chakra Petch", ui-sans-serif, system-ui, sans-serif;
 
   --color-brown-100: #ead4aa;
   --color-brown-200: #e7a873;
@@ -187,6 +188,11 @@
    design system bleeds through the seams, so clear it inside the game. */
 [data-game-route] * {
   border-color: transparent;
+}
+
+.font-body, .font-body button, .font-body input {
+  font-family: var(--font-body);
+  letter-spacing: 0.01em;
 }
 
 [data-game-route] img {

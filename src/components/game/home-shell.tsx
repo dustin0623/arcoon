@@ -83,8 +83,8 @@ function HomeHeader({ progress }: { progress: Progress }) {
         <div className="flex min-w-0 items-center gap-2">
           <FrogAvatar className="h-9 w-9 shrink-0 rounded-full ring-1 ring-leaf/60 glow-gold" />
           <div className="min-w-0">
-            <p className="truncate text-[14px] leading-tight text-gradient-gold">
-              ARCOON <span className="text-[12px] text-brown-100/70">Lv.{level.level}</span>
+            <p className="truncate font-pixel text-[12px] leading-tight text-gradient-gold">
+              ARCOON <span className="font-pixel text-[9px] text-brown-100/70">Lv.{level.level}</span>
             </p>
             <div className="mt-1 flex items-center gap-1">
               <div className="h-1.5 w-20 overflow-hidden rounded-full bg-ink-900 ring-1 ring-ink-line sm:w-28">
@@ -209,7 +209,7 @@ function WalletPopover({ progress }: { progress: Progress }) {
 function WorldTab({ progress }: { progress: Progress }) {
   return (
     <div className="space-y-3">
-      <h2 className="text-center text-[14px] text-gradient-gold">Choose your hunt</h2>
+      <h2 className="text-center font-pixel text-[12px] text-gradient-gold">Choose your hunt</h2>
       {MAPS.map((map) => (
         <MapCard key={map.id} map={map} progress={progress} />
       ))}
@@ -226,7 +226,7 @@ function MapCard({ map, progress }: { map: MapDef; progress: Progress }) {
     <OuterPanel className="px-2 py-2">
       <div className="flex items-start justify-between gap-2">
         <div className="min-w-0">
-          <p className="text-[14px] text-white text-shadow">{map.name}</p>
+          <p className="font-pixel text-[12px] text-white text-shadow">{map.name}</p>
           <p className="text-[12px] opacity-80">{map.blurb}</p>
         </div>
         <Label className="shrink-0 text-[12px]">
@@ -282,7 +282,7 @@ function HomeInventoryTab({ progress }: { progress: Progress }) {
   const wood = BOW_TIER.Wood;
   return (
     <div className="space-y-2">
-      <h2 className="text-center text-[14px] text-white text-shadow">Inventory</h2>
+      <h2 className="text-center font-pixel text-[12px] text-white text-shadow">Inventory</h2>
       <OuterPanel className="p-2">
         <InnerPanel className="flex items-center justify-between gap-2 p-2">
           <div className="flex items-center gap-2">
@@ -315,7 +315,7 @@ const PACKS = [
 function HomePacksTab() {
   return (
     <div className="space-y-2">
-      <h2 className="text-center text-[14px] text-white text-shadow">Packs</h2>
+      <h2 className="text-center font-pixel text-[12px] text-white text-shadow">Packs</h2>
       {PACKS.map((pack) => (
         <OuterPanel key={pack.name} className="p-2">
           <div className="flex items-center justify-between gap-2">
@@ -343,7 +343,7 @@ function HomeCharacterTab({ progress }: { progress: Progress }) {
   );
   return (
     <div className="space-y-2">
-      <h2 className="text-center text-[14px] text-white text-shadow">Character</h2>
+      <h2 className="text-center font-pixel text-[12px] text-white text-shadow">Character</h2>
       <OuterPanel className="p-2">
         <InnerPanel className="flex items-center gap-2 p-2">
           <FrogAvatar className="h-12 w-12" />
