@@ -199,14 +199,19 @@
  * so the UI reads as a hybrid of both styles.
  * ------------------------------------------------------------- */
 @theme {
-  --color-ink-900: hsl(230 15% 8%);
-  --color-ink-800: hsl(230 14% 10%);
-  --color-ink-700: hsl(230 12% 12%);
-  --color-ink-600: hsl(230 10% 18%);
-  --color-ink-line: hsl(230 10% 20%);
+  /* Deep moss greens — the frog-hero backdrop. Dark enough to sit behind
+     the brown pixel panels without competing with them. */
+  --color-ink-900: hsl(145 28% 6%);
+  --color-ink-800: hsl(145 24% 8%);
+  --color-ink-700: hsl(145 20% 11%);
+  --color-ink-600: hsl(145 15% 16%);
+  --color-ink-line: hsl(145 14% 20%);
   --color-fgold: hsl(43 85% 59%);
   --color-fgold-dim: hsl(43 60% 35%);
   --color-fgold-glow: hsl(43 95% 68%);
+  --color-leaf: hsl(120 55% 50%);
+  --color-leaf-bright: hsl(110 75% 60%);
+  --color-leaf-dim: hsl(130 40% 32%);
   --color-ember: hsl(15 85% 58%);
   --color-frost: hsl(200 70% 60%);
 }
@@ -251,15 +256,29 @@
 }
 
 @utility ember-glow {
-  background: radial-gradient(ellipse at center, hsl(43 80% 55% / 0.08) 0%, transparent 60%);
+  background: radial-gradient(ellipse at center, hsl(120 70% 55% / 0.09) 0%, transparent 60%);
+}
+
+/**
+ * Layered forest backdrop for the home shell: soft leaf-green light pools
+ * over a deep moss base, with a faint canopy vignette at the edges so the
+ * brown pixel panels pop against it.
+ */
+@utility forest-bg {
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -10%, hsl(120 60% 45% / 0.22) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 85% 110%, hsl(130 50% 35% / 0.18) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 35% at 10% 100%, hsl(95 55% 40% / 0.12) 0%, transparent 65%),
+    radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, 0.45) 100%),
+    linear-gradient(180deg, hsl(145 28% 8%), hsl(150 30% 5%));
 }
 
 @utility fantasy-card {
   position: relative;
   overflow: hidden;
   border-radius: 0.75rem;
-  border: 1px solid hsl(230 10% 20%);
-  background: linear-gradient(145deg, hsl(230 12% 14%), hsl(230 12% 10%));
+  border: 1px solid hsl(145 14% 20%);
+  background: linear-gradient(145deg, hsl(145 18% 13%), hsl(150 20% 9%));
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 
@@ -293,19 +312,19 @@
   animation: glow-pulse 2s ease-in-out infinite;
 }
 
-/* Gold scrollbars, as in the reference shell. */
+/* Moss-green scrollbars with a gold edge, matching the hybrid shell. */
 .fantasy-shell * {
   scrollbar-width: thin;
-  scrollbar-color: hsl(43 60% 35%) hsl(230 12% 10%);
+  scrollbar-color: hsl(130 40% 30%) hsl(150 20% 8%);
 }
 .fantasy-shell ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 .fantasy-shell ::-webkit-scrollbar-track {
-  background: hsl(230 12% 10%);
+  background: hsl(150 20% 8%);
 }
 .fantasy-shell ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, hsl(43 60% 30%), hsl(43 85% 55%), hsl(43 60% 30%));
+  background: linear-gradient(180deg, hsl(130 40% 25%), hsl(120 55% 42%), hsl(130 40% 25%));
   border-radius: 4px;
 }
