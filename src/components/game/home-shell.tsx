@@ -35,10 +35,11 @@ export default function HomeShell() {
   }, []);
 
   return (
-    <div className="relative flex h-full w-full flex-col overflow-hidden bg-brown-500 font-pixel">
+    <div className="fantasy-shell relative flex h-full w-full flex-col overflow-hidden bg-ink-900 font-pixel text-brown-100">
+      <div className="ember-glow pointer-events-none absolute inset-0" aria-hidden />
       <HomeHeader progress={progress} />
 
-      <main className="flex-1 overflow-y-auto">
+      <main className="relative flex-1 overflow-y-auto">
         <div className="mx-auto w-full max-w-lg px-3 pt-3 pb-24">
           {tab === "world" && <WorldTab progress={progress} />}
           {tab === "inventory" && <HomeInventoryTab progress={progress} />}
@@ -51,6 +52,7 @@ export default function HomeShell() {
     </div>
   );
 }
+
 
 /**
  * Header modelled on the Idle Raiders shell: a fixed top bar with the player
