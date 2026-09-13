@@ -10,6 +10,13 @@ import {
   XpBar,
   type HudModel,
 } from "@/components/game/game-modals";
+import {
+  BottomNav,
+  CharacterPanel,
+  InventoryPanel,
+  PacksPanel,
+  type GameTab,
+} from "@/components/game/shell-panels";
 import { OuterPanel } from "@/components/ui/pixel-panel";
 import { EMPTY_RANKS, canLearn, getSkill, type SkillId } from "@/features/game/skill-tree";
 
