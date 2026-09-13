@@ -6,9 +6,11 @@ import { ProjectileSystem } from "@/phaser/systems/ProjectileSystem";
 import { EnemySystem } from "@/phaser/systems/EnemySystem";
 import { WaveSystem } from "@/phaser/systems/WaveSystem";
 import { createPlayer, type Player } from "@/phaser/entities/Player";
+import type { Enemy } from "@/phaser/entities/Enemy";
 import { playDirectional } from "@/phaser/systems/DirectionalAnimation";
 import { facingFromVector } from "@/phaser/systems/DirectionalAnimation";
-import { getBowStats } from "@/features/game/bow";
+import { getBowStats, BOW_TIER, getNextBowTier, type BowTier } from "@/features/game/bow";
+import { CoinSystem } from "@/phaser/systems/CoinSystem";
 
 export interface ArenaHudState {
   hp: number;
@@ -19,6 +21,9 @@ export interface ArenaHudState {
   enemiesLeft: number;
   intermission: boolean;
   gameOver: boolean;
+  gold: number;
+  goldEarned: number;
+  bowTier: BowTier;
 }
 
 /**
@@ -36,6 +41,11 @@ export class ArenaScene extends Phaser.Scene {
   private score = 0;
   private kills = 0;
   private gameOver = false;
+  private gold = 0;
+  private goldEarned = 0;
+  private bowTier: BowTier = "Wood";
+  private coins!: CoinSystem;
+  private onShopAction = (e: Event) => this.handleShopAction(e);
 
   constructor() {
     super("ArenaScene");
@@ -76,6 +86,12 @@ export class ArenaScene extends Phaser.Scene {
     this.enemies = new EnemySystem(this);
     this.waves = new WaveSystem();
     this.waves.beginIntermission(this.time.now);
+    this.coins = new CoinSystem(this);
+    window.addEventListener("arena-shop", this.onShopAction);
+    this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => {
+      window.removeEventListener("arena-shop", this.onShopAction);
+      this.coins?.destroy();
+    });
 
     if (this.collisionLayer) {
       this.physics.add.collider(this.player.sprite, this.collisionLayer);
@@ -97,6 +113,11 @@ export class ArenaScene extends Phaser.Scene {
       this.handleShooting(time);
       this.resolveArrowHits();
       this.runWaves(time);
+      const collected = this.coins.update(this.player.bodyX, this.player.bodyY, !this.gameOver);
+      if (collected > 0) {
+        this.gold += collected;
+        this.goldEarned += collected;
+      }
 
       const damage = this.enemies.update(this.player, time);
       if (damage > 0 && this.player.takeDamage(damage, time)) {
@@ -121,7 +142,7 @@ export class ArenaScene extends Phaser.Scene {
   /** Auto-attack: locks onto the closest living enemy in bow range and fires on cooldown. */
   private handleShooting(time: number) {
     if (this.player.dead) return;
-    const stats = getBowStats("Wood");
+    const stats = getBowStats(this.bowTier);
     if (time - this.player.lastShotAt < stats.fireRateMs) return;
 
     const bx = this.player.sprite.x;
@@ -171,6 +192,7 @@ export class ArenaScene extends Phaser.Scene {
           this.kills += 1;
           this.score += killed.config.points * this.waves.wave;
           this.waves.pending = Math.max(0, this.waves.pending - 1);
+          this.dropGold(killed);
         }
         break;
       }
@@ -216,6 +238,35 @@ export class ArenaScene extends Phaser.Scene {
     this.enemies.spawn(this.waves.pickType(), x, y);
   }
 
+  /** Gold coins burst out of a fallen enemy, scaled by the current wave. */
+  private dropGold(enemy: Enemy) {
+    const base =
+      enemy.config.type === "brute"
+        ? Phaser.Math.Between(5, 8)
+        : Phaser.Math.Between(2, 4);
+    let total = base * this.waves.wave;
+    if (enemy.config.type === "runner" && Math.random() < 0.08) total += 10;
+    this.coins.spawnBurst(enemy.bodyX, enemy.bodyY, total);
+  }
+
+  /** Shop actions from the React HUD: upgrade the bow or start the next wave. */
+  private handleShopAction(e: Event) {
+    const action = (e as CustomEvent<{ action: "upgrade" | "start" }>).detail?.action;
+    if (this.gameOver) return;
+
+    if (action === "upgrade" && this.waves.intermission) {
+      const next = getNextBowTier(this.bowTier);
+      if (next && this.gold >= BOW_TIER[next].goldCost) {
+        this.gold -= BOW_TIER[next].goldCost;
+        this.bowTier = next;
+        this.emitHud();
+      }
+    } else if (action === "start" && this.waves.intermission) {
+      this.waves.startNextWave(this.time.now);
+      this.emitHud();
+    }
+  }
+
   private emitHud() {
     const detail: ArenaHudState = {
       hp: this.player.hp,
@@ -226,6 +277,9 @@ export class ArenaScene extends Phaser.Scene {
       enemiesLeft: this.waves.toSpawn + this.enemies.aliveCount,
       intermission: this.waves.intermission,
       gameOver: this.gameOver,
+      gold: this.gold,
+      goldEarned: this.goldEarned,
+      bowTier: this.bowTier,
     };
     window.dispatchEvent(new CustomEvent("arena-hud", { detail }));
   }
