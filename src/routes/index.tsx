@@ -1,19 +1,22 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { ClientOnly, createFileRoute } from "@tanstack/react-router";
+import { lazy, Suspense } from "react";
+
+const HomeShell = lazy(() => import("@/components/game/home-shell"));
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "ARCOON — Top-Down Bow Survival Game" },
+      { title: "ARCOON — Raccoon Archer Stage Runner" },
       {
         name: "description",
         content:
-          "ARCOON is a top-down pixel arena where you dodge swarms and fire your bow. Clear waves, chase a high score and see how long you last.",
+          "ARCOON is a pixel bow-combat game. Pick a map, clear every stage of escalating waves, and unlock the next hunting ground.",
       },
-      { property: "og:title", content: "ARCOON — Top-Down Bow Survival Game" },
+      { property: "og:title", content: "ARCOON — Raccoon Archer Stage Runner" },
       {
         property: "og:description",
         content:
-          "ARCOON is a top-down pixel arena where you dodge swarms and fire your bow. Clear waves, chase a high score and see how long you last.",
+          "Pick a map, clear every stage of escalating waves, and unlock the next hunting ground in ARCOON.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
@@ -22,20 +25,23 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
+function Loading() {
+  return (
+    <div className="flex h-screen w-screen items-center justify-center bg-brown-500">
+      <p className="text-sm tracking-widest text-white uppercase">Loading ARCOON</p>
+    </div>
+  );
+}
+
 function Index() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center bg-background px-4 text-center">
-      <h1 className="text-5xl font-bold tracking-tight text-foreground">ARCOON</h1>
-      <p className="mt-4 max-w-md text-lg text-muted-foreground">
-        One arena, endless waves. Move, aim, and let arrows fly — every wave hits harder and pays
-        more.
-      </p>
-      <Link
-        to="/game"
-        className="mt-8 rounded-md bg-primary px-6 py-3 text-sm font-medium text-primary-foreground"
-      >
-        Play ARCOON
-      </Link>
+    <main data-game-route className="h-screen w-screen overflow-hidden bg-brown-500">
+      <h1 className="sr-only">ARCOON — raccoon archer stage runner</h1>
+      <ClientOnly fallback={<Loading />}>
+        <Suspense fallback={<Loading />}>
+          <HomeShell />
+        </Suspense>
+      </ClientOnly>
     </main>
   );
 }
