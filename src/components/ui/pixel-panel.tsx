@@ -16,10 +16,10 @@ const frame = (src: string, width: string, radius: string): React.CSSProperties 
 });
 
 interface PanelProps {
-  className?: string;
-  style?: React.CSSProperties;
+  className?: string | undefined;
+  style?: React.CSSProperties | undefined;
   children?: React.ReactNode;
-  onClick?: React.MouseEventHandler<HTMLDivElement>;
+  onClick?: React.MouseEventHandler<HTMLDivElement> | undefined;
 }
 
 /** Dark pixel frame — the outer shell of every panel. */
