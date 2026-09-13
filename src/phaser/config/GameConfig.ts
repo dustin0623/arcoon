@@ -81,6 +81,18 @@ export const ENEMY_CONFIG: Record<EnemyType, EnemyConfig> = {
     tint: 0xff7b7b,
     points: 30,
   },
+  boss: {
+    type: "boss",
+    hp: 220,
+    speed: 42,
+    damage: 25,
+    attackCooldown: 1100,
+    attackRange: 26,
+    tint: 0xb072ff,
+    points: 300,
+    scale: 1.8,
+    barWidth: 34,
+  },
 };
 
 export const WAVE_CONFIG = {
@@ -95,4 +107,8 @@ export const WAVE_CONFIG = {
   SPAWN_INTERVAL_MS: 700,
   /** Bonus points for clearing a wave: wave × this. */
   CLEAR_BONUS: 25,
+  /** Boss wave: one boss plus this many escort enemies. */
+  BOSS_ESCORTS: 4,
+  /** Boss HP gains this fraction per stage beyond the first. */
+  BOSS_HP_PER_STAGE: 0.35,
 } as const;
