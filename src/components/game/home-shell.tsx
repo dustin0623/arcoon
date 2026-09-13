@@ -161,11 +161,14 @@ function MapCard({ map, progress }: { map: MapDef; progress: Progress }) {
                     navigate({ to: "/game", search: { map: map.id, stage } })
                   }
                   className={clsx(
-                    "flex h-9 flex-1 flex-col items-center justify-center rounded-sm border-2 text-[9px]",
-                    done && "border-neon/70 bg-brown-600 text-neon",
-                    !done && open && "cursor-pointer border-brown-100 bg-brown-400 text-white",
-                    !open && "border-brown-700 bg-brown-600/60 text-brown-100/50",
+                    "flex h-9 flex-1 flex-col items-center justify-center rounded-md text-[9px] ring-1 transition-all",
+                    done && "bg-ink-700 text-neon ring-neon/60",
+                    !done &&
+                      open &&
+                      "fantasy-btn cursor-pointer ring-fgold-glow/40 hover:-translate-y-0.5",
+                    !open && "bg-ink-800 text-brown-100/40 ring-ink-line",
                   )}
+
                 >
                   {done ? <Check className="h-3.5 w-3.5" /> : open ? stage : <Lock className="h-3 w-3" />}
                   <span className="text-[7px] opacity-80">{wavesForStage(stage)}w</span>
