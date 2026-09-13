@@ -25,7 +25,7 @@ export interface ArenaHudState {
  */
 export class ArenaScene extends Phaser.Scene {
   private player!: Player;
-  private input!: InputSystem;
+  private controls!: InputSystem;
   private projectiles!: ProjectileSystem;
   private enemies!: EnemySystem;
   private waves!: WaveSystem;
@@ -45,7 +45,7 @@ export class ArenaScene extends Phaser.Scene {
 
     if (tileset) {
       for (const layerData of map.layers) {
-        const layer = map.createLayer(layerData.name, tileset, 0, 0);
+        const layer = map.createLayer(layerData.name, tileset, 0, 0) as Phaser.Tilemaps.TilemapLayer | null;
         if (!layer) continue;
         if (layerData.name === "boundary") {
           layer.setCollisionByExclusion([-1, 0]);
@@ -69,8 +69,7 @@ export class ArenaScene extends Phaser.Scene {
     this.player = createPlayer(this, worldW / 2, worldH / 2);
     this.cameras.main.startFollow(this.player.sprite, true, 0.12, 0.12);
 
-    this.input$ = null;
-    this.input = new InputSystem(this);
+    this.controls = new InputSystem(this);
     this.projectiles = new ProjectileSystem(this);
     this.enemies = new EnemySystem(this);
     this.waves = new WaveSystem();
@@ -101,14 +100,11 @@ export class ArenaScene extends Phaser.Scene {
     this.emitHud();
   }
 
-  /** Placeholder assignment guard so TS does not flag the Phaser input shadow. */
-  private input$: unknown;
-
-  update(time: number) {
+  override update(time: number) {
     if (!this.player) return;
 
     if (!this.gameOver) {
-      this.input.updateMovement(this.player);
+      this.controls.updateMovement(this.player);
       this.handleShooting(time);
       this.runWaves(time);
 
@@ -133,11 +129,11 @@ export class ArenaScene extends Phaser.Scene {
   }
 
   private handleShooting(time: number) {
-    if (this.player.dead || !this.input.firing) return;
+    if (this.player.dead || !this.controls.firing) return;
     if (time - this.player.lastShotAt < PLAYER_CONFIG.FIRE_COOLDOWN_MS) return;
     this.player.lastShotAt = time;
 
-    const aim = this.input.getAim(this.player);
+    const aim = this.controls.getAim(this.player);
     playDirectional(this.player.sprite, "player_bow", this.player.facing, false);
     this.projectiles.fire(
       this.player.bodyX + aim.x * 8,
