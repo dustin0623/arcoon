@@ -125,7 +125,7 @@ export default function ArenaCanvas({
   }, [hud.level]);
 
   return (
-    <div data-game-route className="relative h-full w-full touch-none overflow-hidden bg-background font-pixel">
+    <div data-game-route className="relative h-full w-full touch-none overflow-hidden bg-background font-body">
       <div ref={hostRef} className="h-full w-full" />
 
       {!ready && <LoadingOverlay progress={progress} />}

@@ -74,8 +74,8 @@ function Slot({
 }) {
   return (
     <section className={className}>
-      <h2 className="mb-2 text-[10px] text-white/80">{title}</h2>
-      {note && <p className="mb-2 text-[8px] text-white/50">{note}</p>}
+      <h2 className="mb-2 text-[14px] text-white/80">{title}</h2>
+      {note && <p className="mb-2 text-[12px] text-white/50">{note}</p>}
       <div className="flex justify-center rounded-lg bg-[#1b1526] p-4">{children}</div>
     </section>
   );
@@ -98,10 +98,10 @@ function TestModalsPage() {
   };
 
   return (
-    <main data-game-route className="min-h-screen bg-[#120e1b] p-6 font-pixel text-white">
+    <main data-game-route className="min-h-screen bg-[#120e1b] p-6 font-body text-white">
       <header className="mb-6">
         <h1 className="text-sm">ARCOON UI gallery</h1>
-        <p className="mt-2 text-[9px] text-white/60">
+        <p className="mt-2 text-[13px] text-white/60">
           Every panel the game uses, rendered with sample data. Buttons are interactive.
         </p>
       </header>
@@ -131,7 +131,7 @@ function TestModalsPage() {
             <button
               type="button"
               onClick={() => setProgress((p) => (p >= 1 ? 0 : Math.min(1, p + 0.2)))}
-              className="absolute bottom-2 left-1/2 -translate-x-1/2 text-[8px] text-white/60 underline"
+              className="absolute bottom-2 left-1/2 -translate-x-1/2 text-[12px] text-white/60 underline"
             >
               advance
             </button>
@@ -176,7 +176,7 @@ function TestModalsPage() {
 
         <Slot title="Panel primitives" className="lg:col-span-2">
           <OuterPanel className="p-3">
-            <p className="text-[9px]">
+            <p className="text-[13px]">
               Outer panel with the dark pixel frame — the base of every modal.
             </p>
           </OuterPanel>

@@ -53,7 +53,7 @@ export function Stat({ icon, value }: { icon: React.ReactNode; value: string }) 
   return (
     <div className="flex items-center gap-1.5">
       {icon}
-      <span className="text-[10px] tabular-nums">{value}</span>
+      <span className="text-[14px] tabular-nums">{value}</span>
     </div>
   );
 }
@@ -131,11 +131,11 @@ export function TopBar({
 
         <div className="flex items-center gap-1.5 border-l border-brown-100/40 pl-3">
           <img src={ICONS.bow} alt="bow" className="h-4 w-4 object-contain" />
-          <span className="text-[9px]">{hud.bowTier}</span>
+          <span className="text-[13px]">{hud.bowTier}</span>
         </div>
 
         <div className="border-l border-brown-100/40 pl-3">
-          <p className="text-[9px] tabular-nums">Lv {progress.level}</p>
+          <p className="text-[13px] tabular-nums">Lv {progress.level}</p>
           <div className="mt-0.5 h-1.5 w-16 overflow-hidden rounded-full bg-black/50">
             <div className="h-full bg-neon" style={{ width: `${Math.round(progress.ratio * 100)}%` }} />
           </div>
@@ -143,7 +143,7 @@ export function TopBar({
 
         {onOpenSkills && (
           <PixelButton className="py-0.5" onClick={onOpenSkills}>
-            <span className="flex items-center gap-1 text-[8px]">
+            <span className="flex items-center gap-1 text-[12px]">
               <img src={ICONS.star} alt="" className="h-3 w-3" />
               Skills{hud.skillPoints > 0 ? ` (${hud.skillPoints})` : ""}
             </span>
@@ -155,7 +155,7 @@ export function TopBar({
       <OuterPanel className="w-56 shrink-0 px-2 py-1.5 text-center">
         <div className="flex items-center justify-center gap-2">
           <Swords className="h-3.5 w-3.5 text-brown-100" />
-          <span className="text-[10px]">
+          <span className="text-[14px]">
             Wave {hud.wave}/{hud.stageWaves ?? 10}
           </span>
           <Swords className="h-3.5 w-3.5 text-brown-100" />
@@ -166,7 +166,7 @@ export function TopBar({
             style={{ width: `${Math.round(waveRatio * 100)}%` }}
           />
         </div>
-        <p className="mt-1 text-[8px] opacity-80">
+        <p className="mt-1 text-[12px] opacity-80">
           {hud.boss && !hud.intermission
             ? `BOSS FIGHT — ${hud.enemiesLeft} left`
             : hud.intermission
@@ -182,7 +182,7 @@ export function TopBar({
             <Stat icon={SkullIcon} value={`${hud.enemiesLeft}`} />
             <Stat icon={KillsIcon} value={`${hud.kills}`} />
             <Stat icon={GoldIcon} value={`${hud.gold}`} />
-            <span className="text-[10px] tabular-nums opacity-80">{hud.score}</span>
+            <span className="text-[14px] tabular-nums opacity-80">{hud.score}</span>
           </div>
         </OuterPanel>
         {onOpenSettings && (
@@ -209,7 +209,7 @@ export function XpBar({
     <div className={clsx("pointer-events-auto absolute inset-x-0 bottom-0", className)}>
       {/* Small readout row sitting just above the bar */}
       <div className="flex items-end justify-center px-2 pb-1">
-        <span className="text-[9px] text-white text-outline tabular-nums">
+        <span className="text-[13px] text-white text-outline tabular-nums">
           {p.maxed ? "MAX LEVEL" : `${p.into} / ${p.needed} XP`}
         </span>
       </div>
@@ -228,8 +228,8 @@ export function XpBar({
 /** Loading screen shown while the arena assets stream in. */
 export function LoadingOverlay({ progress }: { progress: number }) {
   return (
-    <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 bg-[#1b1526] font-pixel">
-      <p className="text-[11px] tracking-widest text-white text-outline">LOADING ARCOON</p>
+    <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 bg-[#1b1526] font-body">
+      <p className="text-[15px] tracking-widest text-white text-outline">LOADING ARCOON</p>
       <OuterPanel className="w-56 px-2 py-1.5">
         <div className="h-3 overflow-hidden rounded-full bg-black/50">
           <div
@@ -258,7 +258,7 @@ export function ShopModal({
   return (
     <OuterPanel className="w-full max-w-sm">
       <div className="flex justify-center">
-        <Label className="-mt-4 mb-1 text-[10px]">Wave {hud.wave + 1} incoming</Label>
+        <Label className="-mt-4 mb-1 text-[11px]">Wave {hud.wave + 1} incoming</Label>
       </div>
 
       <InnerPanel className="p-2">
@@ -266,8 +266,8 @@ export function ShopModal({
           <div className="flex items-center gap-2">
             <img src={ICONS.bow} alt="bow" className="h-6 w-6 object-contain" />
             <div>
-              <p className="text-[10px]">{hud.bowTier} Bow</p>
-              <p className="text-[8px] opacity-80 tabular-nums">
+              <p className="text-[14px]">{hud.bowTier} Bow</p>
+              <p className="text-[12px] opacity-80 tabular-nums">
                 {cur.damage} dmg · {cur.rangeTiles} tiles · {(1000 / cur.fireRateMs).toFixed(1)}/s
               </p>
             </div>
@@ -279,31 +279,31 @@ export function ShopModal({
       {nextStats && next ? (
         <>
           <InnerPanel className="mt-1 p-2">
-            <p className="text-[10px]">{next} Bow</p>
-            <p className="text-[8px] opacity-80 tabular-nums">
+            <p className="text-[14px]">{next} Bow</p>
+            <p className="text-[12px] opacity-80 tabular-nums">
               +{nextStats.damage - cur.damage} dmg · +{nextStats.rangeTiles - cur.rangeTiles} tiles ·{" "}
               {(1000 / nextStats.fireRateMs).toFixed(1)}/s
             </p>
             {!affordable && (
-              <p className="mt-1 text-[8px] text-brown-100">Not enough gold — keep farming waves.</p>
+              <p className="mt-1 text-[12px] text-brown-100">Not enough gold — keep farming waves.</p>
             )}
           </InnerPanel>
 
           <div className="mt-1 flex gap-1">
             <PixelButton className="flex-1" disabled={!affordable} onClick={() => onAction("upgrade")}>
-              <span className="flex items-center gap-1 text-[9px]">
+              <span className="flex items-center gap-1 text-[13px]">
                 <Coins className="h-3.5 w-3.5 text-yellow-300" />
                 {nextStats.goldCost}
               </span>
             </PixelButton>
             <PixelButton className="flex-1" onClick={() => onAction("start")}>
-              <span className="text-[9px]">Fight</span>
+              <span className="text-[13px]">Fight</span>
             </PixelButton>
           </div>
         </>
       ) : (
         <PixelButton className="mt-1 w-full" onClick={() => onAction("start")}>
-          <span className="text-[9px]">Start next wave</span>
+          <span className="text-[13px]">Start next wave</span>
         </PixelButton>
       )}
     </OuterPanel>
@@ -323,25 +323,25 @@ export function GameOverModal({
   return (
     <OuterPanel className="w-full max-w-sm text-center">
       <div className="flex justify-center">
-        <Label className="-mt-4 mb-1 text-[10px]">Game Over</Label>
+        <Label className="-mt-4 mb-1 text-[11px]">Game Over</Label>
       </div>
       <InnerPanel className="space-y-1 p-3">
-        <p className="text-[10px] tabular-nums">
+        <p className="text-[14px] tabular-nums">
           Reached wave {hud.wave} · level {hud.level}
         </p>
         <div className="flex justify-center gap-3 pt-1">
           <Stat icon={KillsIcon} value={`${hud.kills}`} />
           <Stat icon={GoldIcon} value={`${hud.goldEarned}`} />
         </div>
-        <p className="pt-1 text-[10px] tabular-nums">{hud.score} points</p>
+        <p className="pt-1 text-[14px] tabular-nums">{hud.score} points</p>
       </InnerPanel>
       <div className="mt-1 flex gap-1">
         <PixelButton className="flex-1" onClick={onRestart}>
-          <span className="text-[9px]">Retry</span>
+          <span className="text-[13px]">Retry</span>
         </PixelButton>
         {onHome && (
           <PixelButton className="flex-1" onClick={onHome}>
-            <span className="text-[9px]">World map</span>
+            <span className="text-[13px]">World map</span>
           </PixelButton>
         )}
       </div>
@@ -362,26 +362,26 @@ export function VictoryModal({
   return (
     <OuterPanel className="w-full max-w-sm text-center">
       <div className="flex justify-center">
-        <Label className="-mt-4 mb-1 text-[10px]">Stage Clear</Label>
+        <Label className="-mt-4 mb-1 text-[11px]">Stage Clear</Label>
       </div>
       <InnerPanel className="space-y-1 p-3">
-        <p className="text-[10px] tabular-nums">
+        <p className="text-[14px] tabular-nums">
           Stage {hud.stage ?? 1} · {hud.stageWaves ?? hud.wave} waves survived
         </p>
         <div className="flex justify-center gap-3 pt-1">
           <Stat icon={KillsIcon} value={`${hud.kills}`} />
           <Stat icon={GoldIcon} value={`${hud.goldEarned}`} />
         </div>
-        <p className="pt-1 text-[10px] tabular-nums">{hud.score} points</p>
+        <p className="pt-1 text-[14px] tabular-nums">{hud.score} points</p>
       </InnerPanel>
       <div className="mt-1 flex gap-1">
         {onNextStage && (
           <PixelButton className="flex-1" onClick={onNextStage}>
-            <span className="text-[9px]">Next stage</span>
+            <span className="text-[13px]">Next stage</span>
           </PixelButton>
         )}
         <PixelButton className="flex-1" onClick={onHome}>
-          <span className="text-[9px]">World map</span>
+          <span className="text-[13px]">World map</span>
         </PixelButton>
       </div>
     </OuterPanel>
@@ -392,8 +392,8 @@ export function VictoryModal({
 export function LevelUpToast({ level }: { level: number }) {
   return (
     <OuterPanel className="px-3 py-2 text-center">
-      <p className="text-[10px] text-white">Level {level}!</p>
-      <p className="text-[8px] opacity-80">+1 skill point</p>
+      <p className="text-[14px] text-white">Level {level}!</p>
+      <p className="text-[12px] opacity-80">+1 skill point</p>
     </OuterPanel>
   );
 }
@@ -422,17 +422,17 @@ function SkillNode({
           className={clsx("h-5 w-5 shrink-0 object-contain", locked && "grayscale")}
         />
         <div className="min-w-0 flex-1">
-          <p className="truncate text-[9px]">{skill.name}</p>
-          <p className="truncate text-[8px] opacity-80">{skill.effect}</p>
+          <p className="truncate text-[13px]">{skill.name}</p>
+          <p className="truncate text-[12px] opacity-80">{skill.effect}</p>
         </div>
-        <span className="shrink-0 text-[8px] tabular-nums">
+        <span className="shrink-0 text-[12px] tabular-nums">
           {rank}/{skill.maxRank}
         </span>
         <button
           type="button"
           disabled={!learnable}
           onClick={() => onLearn(skill.id)}
-          className="shrink-0 rounded-full bg-brown-200 px-2 py-0.5 text-[9px] text-white text-shadow disabled:opacity-40"
+          className="shrink-0 rounded-full bg-brown-200 px-2 py-0.5 text-[13px] text-white text-shadow disabled:opacity-40"
         >
           +
         </button>
@@ -458,13 +458,13 @@ export function SkillTreeModal({
   return (
     <OuterPanel className="w-full max-w-md">
       <div className="flex justify-center">
-        <Label className="-mt-4 mb-1 text-[10px]">Skill tree · {points} points</Label>
+        <Label className="-mt-4 mb-1 text-[11px]">Skill tree · {points} points</Label>
       </div>
 
       <div className="max-h-[60vh] space-y-2 overflow-y-auto pr-0.5">
         {SKILL_BRANCHES.map((branch) => (
           <div key={branch}>
-            <p className="mb-1 text-[9px] opacity-80">{branch}</p>
+            <p className="mb-1 text-[13px] opacity-80">{branch}</p>
             <div className="space-y-1">
               {SKILL_TREE.filter((s) => s.branch === branch).map((skill) => (
                 <SkillNode
@@ -481,7 +481,7 @@ export function SkillTreeModal({
       </div>
 
       <InnerPanel className="mt-1 p-2">
-        <p className="text-[8px] tabular-nums">
+        <p className="text-[12px] tabular-nums">
           DMG x{mods.damageMult.toFixed(2)} · RATE x{mods.fireRateMult.toFixed(2)} · SPD x
           {mods.speedMult.toFixed(2)} · GOLD x{mods.goldMult.toFixed(2)} · XP x
           {mods.xpMult.toFixed(2)}
@@ -489,7 +489,7 @@ export function SkillTreeModal({
       </InnerPanel>
 
       <PixelButton className="mt-1 w-full" onClick={onClose}>
-        <span className="text-[9px]">Close</span>
+        <span className="text-[13px]">Close</span>
       </PixelButton>
     </OuterPanel>
   );
