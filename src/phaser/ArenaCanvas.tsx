@@ -152,13 +152,14 @@ export default function ArenaCanvas() {
             </div>
           )}
 
-          {touch && !hud.gameOver && !hud.intermission && !skillsOpen && (
+          {touch && !hud.gameOver && !hud.intermission && !skillsOpen && tab === "world" && (
             <Suspense fallback={null}>
               <TouchJoystick />
             </Suspense>
           )}
 
-          <XpBar xp={hud.xp} />
+          <XpBar xp={hud.xp} className="bottom-[54px]" />
+          <BottomNav active={tab} onChange={setTab} />
         </div>
       )}
     </div>
