@@ -2,7 +2,9 @@
 
 > Three complete content proposals for what ARCOON becomes: how the game works end-to-end, maps, stages, bow items, bow-star upgrades, character progression, and whether the **Packs** tab survives or is replaced by a **Book (Encyclopedia)**.
 >
-> Date: 2026-09-13 · Status: Draft — pick one proposal (or mix) before building.
+> Date: 2026-09-13 · Status: **Proposal 1 adopted and built.** Proposals 2 and 3 stay as future directions.
+>
+> Shipped from Proposal 1: four named maps with their own enemy families, bosses and difficulty scaling; five bow rarity sets with 1★–5★ upgrades bought with gold in the Armory; the Packs tab replaced by the Book (Bestiary / Armory index / Milestones); a defeat keeps half the gold earned that run.
 
 ---
 

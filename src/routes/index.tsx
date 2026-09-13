@@ -6,13 +6,13 @@ const HomeShell = lazy(() => import("@/components/game/home-shell"));
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "ARCOON — Raccoon Archer Stage Runner" },
+      { title: "ARCOON — Frog Archer Stage Runner" },
       {
         name: "description",
         content:
           "ARCOON is a pixel bow-combat game. Pick a map, clear every stage of escalating waves, and unlock the next hunting ground.",
       },
-      { property: "og:title", content: "ARCOON — Raccoon Archer Stage Runner" },
+      { property: "og:title", content: "ARCOON — Frog Archer Stage Runner" },
       {
         property: "og:description",
         content:
@@ -36,7 +36,7 @@ function Loading() {
 function Index() {
   return (
     <main data-game-route className="h-screen w-screen overflow-hidden bg-brown-500">
-      <h1 className="sr-only">ARCOON — raccoon archer stage runner</h1>
+      <h1 className="sr-only">ARCOON — frog archer stage runner</h1>
       <ClientOnly fallback={<Loading />}>
         <Suspense fallback={<Loading />}>
           <HomeShell />
