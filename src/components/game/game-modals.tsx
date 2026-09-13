@@ -81,7 +81,7 @@ export function VitalsPanel({
       </div>
       <OuterPanel className="px-2 py-1.5">
         <div className="flex items-center gap-3">
-          <Stat icon={ICONS.coin} alt="gold" value={`${hud.gold}`} />
+          <Stat icon={GoldIcon} value={`${hud.gold}`} />
           <div className="flex items-center gap-1.5">
             <img src={ICONS.bow} alt="bow" className="h-4 w-4 object-contain" />
             <span className="text-[10px]">{hud.bowTier}</span>
@@ -111,8 +111,8 @@ export function WavePanel({ hud }: { hud: HudModel }) {
         <Label className="-mt-3.5 text-[9px]">Wave {hud.wave}</Label>
       </div>
       <div className="mt-1 flex items-center gap-3">
-        <Stat icon={ICONS.skull} alt="enemies left" value={`${hud.enemiesLeft}`} />
-        <Stat icon={ICONS.sword} alt="kills" value={`${hud.kills}`} />
+        <Stat icon={SkullIcon} value={`${hud.enemiesLeft}`} />
+        <Stat icon={KillsIcon} value={`${hud.kills}`} />
         <span className="text-[11px] tabular-nums">{hud.score}</span>
       </div>
     </OuterPanel>
@@ -194,7 +194,7 @@ export function ShopModal({
               </p>
             </div>
           </div>
-          <Stat icon={ICONS.coin} alt="gold" value={`${hud.gold}`} />
+          <Stat icon={GoldIcon} value={`${hud.gold}`} />
         </div>
       </InnerPanel>
 
@@ -214,7 +214,7 @@ export function ShopModal({
           <div className="mt-1 flex gap-1">
             <PixelButton className="flex-1" disabled={!affordable} onClick={() => onAction("upgrade")}>
               <span className="flex items-center gap-1 text-[9px]">
-                <img src={ICONS.coin} alt="" className="h-3.5 w-3.5" />
+                <Coins className="h-3.5 w-3.5 text-yellow-300" />
                 {nextStats.goldCost}
               </span>
             </PixelButton>
@@ -244,8 +244,8 @@ export function GameOverModal({ hud, onRestart }: { hud: HudModel; onRestart: ()
           Reached wave {hud.wave} · level {hud.level}
         </p>
         <div className="flex justify-center gap-3 pt-1">
-          <Stat icon={ICONS.sword} alt="kills" value={`${hud.kills}`} />
-          <Stat icon={ICONS.coin} alt="gold earned" value={`${hud.goldEarned}`} />
+          <Stat icon={KillsIcon} value={`${hud.kills}`} />
+          <Stat icon={GoldIcon} value={`${hud.goldEarned}`} />
         </div>
         <p className="pt-1 text-[10px] tabular-nums">{hud.score} points</p>
       </InnerPanel>
