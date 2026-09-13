@@ -55,27 +55,56 @@ export function Stat({ icon, alt, value }: { icon: string; alt: string; value: s
 }
 
 /** Top-left panel: hearts, gold and the equipped bow. */
-export function VitalsPanel({ hud }: { hud: HudModel }) {
+export function VitalsPanel({
+  hud,
+  onOpenSkills,
+}: {
+  hud: HudModel;
+  onOpenSkills?: () => void;
+}) {
+  const progress = getLevelProgress(hud.xp);
+
   return (
-    <OuterPanel className="px-2 py-1.5">
-      <div className="flex gap-0.5">
-        {Array.from({ length: Math.max(0, hud.maxHp) }).map((_, i) => (
-          <img
-            key={i}
-            src={ICONS.heart}
-            alt=""
-            className={clsx("h-4 w-4 object-contain", i < hud.hp ? "" : "opacity-25 grayscale")}
-          />
-        ))}
+    <div className="pointer-events-auto flex items-start gap-1.5">
+      <div className="h-14 w-14 shrink-0 overflow-hidden rounded-full border-4 border-brown-100 bg-brown-300 shadow-lg">
+        <div
+          role="img"
+          aria-label="Raccoon avatar"
+          className="h-full w-full bg-[url('/assets/phaser/sprites/raccoon/idle_strip6.png')] bg-left bg-no-repeat pixelated"
+          style={{ backgroundSize: "600% 100%" }}
+        />
       </div>
-      <div className="mt-1.5 flex items-center gap-3">
-        <Stat icon={ICONS.coin} alt="gold" value={`${hud.gold}`} />
-        <div className="flex items-center gap-1.5">
-          <img src={ICONS.bow} alt="bow" className="h-4 w-4 object-contain" />
-          <span className="text-[10px]">{hud.bowTier}</span>
+      <OuterPanel className="px-2 py-1.5">
+        <div className="flex gap-0.5">
+          {Array.from({ length: Math.max(0, hud.maxHp) }).map((_, i) => (
+            <img
+              key={i}
+              src={ICONS.heart}
+              alt=""
+              className={clsx("h-4 w-4 object-contain", i < hud.hp ? "" : "opacity-25 grayscale")}
+            />
+          ))}
         </div>
-      </div>
-    </OuterPanel>
+        <div className="mt-1.5 flex items-center gap-3">
+          <Stat icon={ICONS.coin} alt="gold" value={`${hud.gold}`} />
+          <div className="flex items-center gap-1.5">
+            <img src={ICONS.bow} alt="bow" className="h-4 w-4 object-contain" />
+            <span className="text-[10px]">{hud.bowTier}</span>
+          </div>
+        </div>
+        <div className="mt-1.5 flex items-center justify-between gap-3 border-t border-brown-100/40 pt-1">
+          <span className="text-[9px] tabular-nums">Lv {progress.level}</span>
+          {onOpenSkills && (
+            <PixelButton className="min-w-20 py-0.5" onClick={onOpenSkills}>
+              <span className="flex items-center gap-1 text-[8px]">
+                <img src={ICONS.star} alt="" className="h-3 w-3" />
+                Skills{hud.skillPoints > 0 ? ` (${hud.skillPoints})` : ""}
+              </span>
+            </PixelButton>
+          )}
+        </div>
+      </OuterPanel>
+    </div>
   );
 }
 
@@ -98,35 +127,18 @@ export function WavePanel({ hud }: { hud: HudModel }) {
 /** Thin experience bar flush with the bottom edge, level info floating above it. */
 export function XpBar({
   xp,
-  skillPoints,
-  onOpenSkills,
 }: {
   xp: number;
-  skillPoints: number;
-  onOpenSkills?: () => void;
 }) {
   const p = getLevelProgress(xp);
 
   return (
     <div className="pointer-events-auto absolute inset-x-0 bottom-0">
       {/* Small readout row sitting just above the bar */}
-      <div className="flex items-end justify-between px-2 pb-1">
-        <span className="text-[9px] text-white text-outline tabular-nums">Lv {p.level}</span>
+      <div className="flex items-end justify-center px-2 pb-1">
         <span className="text-[9px] text-white text-outline tabular-nums">
           {p.maxed ? "MAX LEVEL" : `${p.into} / ${p.needed} XP`}
         </span>
-        {onOpenSkills ? (
-          <button
-            type="button"
-            onClick={onOpenSkills}
-            className="flex items-center gap-1 text-[9px] text-white text-outline"
-          >
-            <img src={ICONS.star} alt="" className="h-3.5 w-3.5" />
-            Skills{skillPoints > 0 ? ` (${skillPoints})` : ""}
-          </button>
-        ) : (
-          <span className="w-10" />
-        )}
       </div>
 
       {/* The bar itself, flush with the screen edge */}

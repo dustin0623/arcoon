@@ -95,7 +95,7 @@ export default function ArenaCanvas() {
       {ready && (
         <div className="pointer-events-none absolute inset-0 p-3 pb-9">
           <div className="flex items-start justify-between gap-3">
-            <VitalsPanel hud={hud} />
+            <VitalsPanel hud={hud} onOpenSkills={() => setSkillsOpen((v) => !v)} />
             <WavePanel hud={hud} />
           </div>
 
@@ -128,11 +128,7 @@ export default function ArenaCanvas() {
             </div>
           )}
 
-          <XpBar
-            xp={hud.xp}
-            skillPoints={hud.skillPoints}
-            onOpenSkills={() => setSkillsOpen((v) => !v)}
-          />
+          <XpBar xp={hud.xp} />
         </div>
       )}
     </div>
