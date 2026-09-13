@@ -7,12 +7,12 @@ import { EnemySystem } from "@/phaser/systems/EnemySystem";
 import { WaveSystem } from "@/phaser/systems/WaveSystem";
 import { createPlayer, type Player } from "@/phaser/entities/Player";
 import type { Enemy } from "@/phaser/entities/Enemy";
-import { playDirectional } from "@/phaser/systems/DirectionalAnimation";
-import { facingFromVector } from "@/phaser/systems/DirectionalAnimation";
-import { getBowStats, BOW_TIER, getNextBowTier, type BowTier } from "@/features/game/bow";
+import { facingFromVector, playDirectional } from "@/phaser/systems/DirectionalAnimation";
+import { bowStats, type BowRarity } from "@/features/game/bow";
 import { CoinSystem } from "@/phaser/systems/CoinSystem";
 import { getLevel, xpForKill } from "@/features/game/experience";
-import { wavesForStage } from "@/features/game/campaign";
+import { WAVES_PER_STAGE, bossKey, getMap, loadProgress, type MapDef } from "@/features/game/campaign";
+import type { HudState } from "@/features/game/hud";
 import {
   EMPTY_RANKS,
   SKILL_TREE,
@@ -22,35 +22,10 @@ import {
   type SkillRanks,
 } from "@/features/game/skill-tree";
 
-export interface ArenaHudState {
-  hp: number;
-  maxHp: number;
-  wave: number;
-  /** True while the current wave is the stage's boss wave. */
-  boss: boolean;
-  score: number;
-  kills: number;
-  enemiesLeft: number;
-  enemiesTotal: number;
-  intermission: boolean;
-  gameOver: boolean;
-  /** Campaign stage being run and how many waves clear it. */
-  stage: number;
-  stageWaves: number;
-  mapId: string;
-  victory: boolean;
-  gold: number;
-  goldEarned: number;
-  bowTier: BowTier;
-  xp: number;
-  level: number;
-  skillPoints: number;
-  ranks: SkillRanks;
-}
-
 /**
- * ArenaScene — single test map, wave-based survival.
- * Movement + bow-only combat; enemies swarm the player and waves escalate.
+ * ArenaScene — one campaign stage: ten waves, the last one a boss fight.
+ * Movement + bow-only auto-attack; the equipped bow comes from the saved
+ * profile, and the map defines the enemy family and its difficulty scaling.
  */
 export class ArenaScene extends Phaser.Scene {
   private player!: Player;
@@ -65,18 +40,19 @@ export class ArenaScene extends Phaser.Scene {
   private gameOver = false;
   private victory = false;
   private stage = 1;
-  private stageWaves = 3;
-  private mapId = "meadow";
-  private gold = 0;
+  private map!: MapDef;
   private goldEarned = 0;
-  private bowTier: BowTier = "Wood";
+  private bossesKilled = 0;
+  private seen = new Set<string>();
+  private bowRarity: BowRarity = "Common";
+  private bowStars = 1;
   private coins!: CoinSystem;
   private xp = 0;
   private level = 1;
   private skillPoints = 0;
   private ranks: SkillRanks = { ...EMPTY_RANKS };
   private hpBar!: Phaser.GameObjects.Graphics;
-  private onShopAction = (e: Event) => this.handleShopAction(e);
+  private onWaveStart = () => this.startNextWave();
   private onSkillAction = (e: Event) => this.handleSkillAction(e);
 
   constructor() {
@@ -84,11 +60,14 @@ export class ArenaScene extends Phaser.Scene {
   }
 
   create() {
-    this.mapId = (this.registry.get("mapId") as string) ?? "meadow";
+    this.map = getMap(this.registry.get("mapId") as string | undefined);
     this.stage = Number(this.registry.get("stage")) || 1;
-    this.stageWaves = wavesForStage(this.stage);
 
-    const map = this.make.tilemap({ key: "map1" });
+    const profile = loadProgress();
+    this.bowRarity = profile.equipped;
+    this.bowStars = profile.bows[profile.equipped] ?? 1;
+
+    const map = this.make.tilemap({ key: this.map.tilemap });
     const tileset = map.addTilesetImage("spr_tileset_sunnysideworld_16px", "tiles");
 
     if (tileset) {
@@ -127,13 +106,13 @@ export class ArenaScene extends Phaser.Scene {
     this.controls = new InputSystem(this);
     this.projectiles = new ProjectileSystem(this);
     this.enemies = new EnemySystem(this);
-    this.waves = new WaveSystem();
+    this.waves = new WaveSystem(this.map.family);
     this.waves.beginIntermission(this.time.now);
     this.coins = new CoinSystem(this);
-    window.addEventListener("arena-shop", this.onShopAction);
+    window.addEventListener("arena-wave-start", this.onWaveStart);
     window.addEventListener("arena-skill", this.onSkillAction);
     this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => {
-      window.removeEventListener("arena-shop", this.onShopAction);
+      window.removeEventListener("arena-wave-start", this.onWaveStart);
       window.removeEventListener("arena-skill", this.onSkillAction);
       this.coins?.destroy();
     });
@@ -161,7 +140,6 @@ export class ArenaScene extends Phaser.Scene {
     const zoom = Phaser.Math.Clamp(minEdge / 200, 1.8, GAME_CONFIG.ZOOM);
     cam.setZoom(Math.round(zoom * 4) / 4);
   }
-
 
   override update(time: number) {
     if (!this.player) return;
@@ -199,9 +177,8 @@ export class ArenaScene extends Phaser.Scene {
   private handleShooting(time: number) {
     if (this.player.dead) return;
     const mods = getSkillModifiers(this.ranks);
-    const base = getBowStats(this.bowTier);
+    const base = bowStats(this.bowRarity, this.bowStars);
     const stats = {
-      ...base,
       damage: Math.round(base.damage * mods.damageMult),
       fireRateMs: base.fireRateMs * mods.fireRateMult,
       rangeTiles: base.rangeTiles + mods.rangeBonusTiles,
@@ -255,6 +232,7 @@ export class ArenaScene extends Phaser.Scene {
           this.kills += 1;
           this.score += killed.config.points * this.waves.wave;
           this.waves.pending = Math.max(0, this.waves.pending - 1);
+          if (killed.config.type === "boss") this.bossesKilled += 1;
           this.gainGold(killed);
           this.dropXp(killed);
         }
@@ -280,7 +258,7 @@ export class ArenaScene extends Phaser.Scene {
     if (w.toSpawn === 0 && this.enemies.aliveCount === 0) {
       this.score += w.clearBonus();
       w.pending = 0;
-      if (w.wave >= this.stageWaves) {
+      if (w.wave >= WAVES_PER_STAGE) {
         this.victory = true;
         this.emitHud();
         return;
@@ -305,13 +283,12 @@ export class ArenaScene extends Phaser.Scene {
       this.physics.world.bounds.height - 32,
     );
     const type = this.waves.pickType();
-    const hp =
-      type === "boss"
-        ? Math.round(
-            ENEMY_CONFIG.boss.hp * (1 + (this.stage - 1) * WAVE_CONFIG.BOSS_HP_PER_STAGE),
-          )
-        : undefined;
-    this.enemies.spawn(type, x, y, hp);
+    const stageScale =
+      type === "boss" ? 1 + (this.stage - 1) * WAVE_CONFIG.BOSS_HP_PER_STAGE : 1 + (this.stage - 1) * 0.18;
+    const hp = Math.round(ENEMY_CONFIG[type].hp * this.map.hpMult * stageScale);
+    const damage = Math.round(ENEMY_CONFIG[type].damage * this.map.damageMult);
+    this.enemies.spawn(type, x, y, hp, damage);
+    this.seen.add(type === "boss" ? bossKey(this.map.id) : type);
   }
 
   /** Gold is credited instantly on kill (scaled by wave and the Fortune skill). */
@@ -325,7 +302,6 @@ export class ArenaScene extends Phaser.Scene {
     let total = base * this.waves.wave;
     if (enemy.config.type === "runner" && Math.random() < 0.08) total += 10;
     total = Math.round(total * getSkillModifiers(this.ranks).goldMult);
-    this.gold += total;
     this.goldEarned += total;
 
     const text = this.add
@@ -356,22 +332,11 @@ export class ArenaScene extends Phaser.Scene {
     this.coins.spawnBurst(enemy.bodyX, enemy.bodyY, total);
   }
 
-  /** Shop actions from the React HUD: upgrade the bow or start the next wave. */
-  private handleShopAction(e: Event) {
-    const action = (e as CustomEvent<{ action: "upgrade" | "start" }>).detail?.action;
-    if (this.gameOver || this.victory) return;
-
-    if (action === "upgrade" && this.waves.intermission) {
-      const next = getNextBowTier(this.bowTier);
-      if (next && this.gold >= BOW_TIER[next].goldCost) {
-        this.gold -= BOW_TIER[next].goldCost;
-        this.bowTier = next;
-        this.emitHud();
-      }
-    } else if (action === "start" && this.waves.intermission) {
-      this.waves.startNextWave(this.time.now);
-      this.emitHud();
-    }
+  /** Skips the between-wave break when the player hits "Fight". */
+  private startNextWave() {
+    if (this.gameOver || this.victory || !this.waves.intermission) return;
+    this.waves.startNextWave(this.time.now);
+    this.emitHud();
   }
 
   /** Grants collected experience (Scholar scaling applied at drop) and awards skill points on level-up. */
@@ -431,7 +396,7 @@ export class ArenaScene extends Phaser.Scene {
   }
 
   private emitHud() {
-    const detail: ArenaHudState = {
+    const detail: HudState = {
       hp: this.player.hp,
       maxHp: this.player.maxHp,
       wave: this.waves.wave,
@@ -443,16 +408,18 @@ export class ArenaScene extends Phaser.Scene {
       intermission: this.waves.intermission,
       gameOver: this.gameOver,
       stage: this.stage,
-      stageWaves: this.stageWaves,
-      mapId: this.mapId,
+      stageWaves: WAVES_PER_STAGE,
+      mapId: this.map.id,
       victory: this.victory,
-      gold: this.gold,
       goldEarned: this.goldEarned,
-      bowTier: this.bowTier,
+      bowRarity: this.bowRarity,
+      bowStars: this.bowStars,
       xp: this.xp,
       level: this.level,
       skillPoints: this.skillPoints,
       ranks: { ...this.ranks },
+      seen: [...this.seen],
+      bosses: this.bossesKilled,
     };
     window.dispatchEvent(new CustomEvent("arena-hud", { detail }));
   }

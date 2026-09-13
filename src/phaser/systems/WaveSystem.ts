@@ -1,17 +1,11 @@
 import { WAVE_CONFIG, type EnemyType } from "@/phaser/config/GameConfig";
 import { isBossWave } from "@/features/game/campaign";
 
-export interface WaveSnapshot {
-  wave: number;
-  remaining: number;
-  intermission: boolean;
-}
-
 /**
  * WaveSystem — pure wave bookkeeping.
- * Wave N spawns BASE_COUNT + (N-1) * COUNT_PER_WAVE enemies; tougher types
- * unlock as waves climb. Every 10th wave is a boss wave: one boss plus a
- * small escort instead of the usual swarm.
+ * Wave N spawns BASE_COUNT + (N-1) * COUNT_PER_WAVE enemies drawn from the
+ * map's enemy family; tougher members of the family unlock as waves climb.
+ * Wave 10 is the boss wave: one boss plus a small escort.
  */
 export class WaveSystem {
   wave = 0;
@@ -23,6 +17,9 @@ export class WaveSystem {
   nextEventAt = 0;
   /** True once the boss for this wave has been spawned. */
   bossSpawned = false;
+
+  /** Enemy types this map uses, easiest first. */
+  constructor(private family: EnemyType[]) {}
 
   startNextWave(now: number) {
     this.wave += 1;
@@ -45,21 +42,18 @@ export class WaveSystem {
     return isBossWave(this.wave);
   }
 
-  /** Weighted pick of the enemy type for the current wave. */
+  /**
+   * Picks the enemy type for the next spawn. Early waves stick to the first
+   * member of the family; later waves mix in the tougher ones.
+   */
   pickType(): EnemyType {
     if (this.isBoss && !this.bossSpawned) {
       this.bossSpawned = true;
       return "boss";
     }
-    const roll = Math.random();
-    if (this.wave >= 5 && roll < 0.2) return "brute";
-    if (this.wave >= 3 && roll < 0.45) return "runner";
-    if (this.wave >= 2 && roll < 0.3) return "runner";
-    return "grunt";
-  }
-
-  get cleared(): boolean {
-    return !this.intermission && this.toSpawn === 0 && this.pending === 0;
+    const unlocked = Math.min(this.family.length, 1 + Math.floor(this.wave / 3));
+    const index = Math.floor(Math.random() * unlocked);
+    return this.family[index] ?? "grunt";
   }
 
   clearBonus(): number {
