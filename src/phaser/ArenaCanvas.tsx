@@ -2,6 +2,13 @@ import { useEffect, useRef, useState } from "react";
 import type Phaser from "phaser";
 import type { ArenaHudState } from "@/phaser/scenes/ArenaScene";
 import { BOW_TIER, getNextBowTier } from "@/features/game/bow";
+import { OuterPanel, InnerPanel, Label, PixelButton } from "@/components/ui/pixel-panel";
+
+const HEART = "/assets/icons/heart.png";
+const COIN = "/assets/icons/token.png";
+const BOW = "/assets/icons/bow.png";
+const SKULL = "/assets/icons/goblin_head.png";
+const SWORD = "/assets/icons/sword.png";
 
 const EMPTY_HUD: ArenaHudState = {
   hp: 0,
@@ -21,6 +28,16 @@ function sendShopAction(action: "upgrade" | "start") {
   window.dispatchEvent(new CustomEvent("arena-shop", { detail: { action } }));
 }
 
+/** One icon + value row inside a HUD panel. */
+function Stat({ icon, alt, value }: { icon: string; alt: string; value: string }) {
+  return (
+    <div className="flex items-center gap-1.5">
+      <img src={icon} alt={alt} className="h-4 w-4 object-contain" />
+      <span className="text-[10px] tabular-nums">{value}</span>
+    </div>
+  );
+}
+
 /** Between-waves shop: upgrade the bow with gold or jump into the next wave. */
 function Shop({ hud }: { hud: ArenaHudState }) {
   const next = getNextBowTier(hud.bowTier);
@@ -29,62 +46,60 @@ function Shop({ hud }: { hud: ArenaHudState }) {
   const affordable = nextStats ? hud.gold >= nextStats.goldCost : false;
 
   return (
-    <div className="pointer-events-auto absolute inset-x-0 top-1/3 flex justify-center px-4">
-      <div className="w-full max-w-sm rounded-xl border border-border/60 bg-card/95 p-4 shadow-lg backdrop-blur">
-        <p className="text-center text-xs font-semibold tracking-widest text-muted-foreground uppercase">
-          Wave {hud.wave + 1} incoming
-        </p>
-
-        <div className="mt-3 flex items-end justify-between gap-2">
-          <div>
-            <p className="text-sm font-semibold text-foreground">{hud.bowTier} Bow</p>
-            <p className="text-[11px] text-muted-foreground tabular-nums">
-              {cur.damage} dmg · {cur.rangeTiles} tiles · {(1000 / cur.fireRateMs).toFixed(1)}/s
-            </p>
-          </div>
-          <p className="text-sm font-semibold text-foreground tabular-nums">{hud.gold}g</p>
+    <div className="pointer-events-auto absolute inset-0 flex items-center justify-center px-4">
+      <OuterPanel className="w-full max-w-sm">
+        <div className="relative flex justify-center">
+          <Label className="-mt-4 mb-1 text-[10px]">Wave {hud.wave + 1} incoming</Label>
         </div>
 
-        {nextStats && next ? (
-          <div className="mt-3 rounded-lg border border-border/40 bg-background/60 p-3">
-            <p className="text-xs font-medium text-foreground">
-              {next} Bow{" "}
-              <span className="text-muted-foreground tabular-nums">
-                +{nextStats.damage - cur.damage} dmg · +{nextStats.rangeTiles - cur.rangeTiles} tiles
-              </span>
-            </p>
-            <div className="mt-2 flex gap-2">
-              <button
-                type="button"
-                onClick={() => sendShopAction("upgrade")}
-                disabled={!affordable}
-                className="flex-1 rounded-md bg-primary px-3 py-2 text-xs font-semibold text-primary-foreground disabled:cursor-not-allowed disabled:opacity-40"
-              >
-                Upgrade · {nextStats.goldCost}g
-              </button>
-              <button
-                type="button"
-                onClick={() => sendShopAction("start")}
-                className="flex-1 rounded-md border border-border px-3 py-2 text-xs font-medium text-foreground"
-              >
-                Skip & fight
-              </button>
+        <InnerPanel className="p-2">
+          <div className="flex items-center justify-between gap-2">
+            <div className="flex items-center gap-2">
+              <img src={BOW} alt="bow" className="h-6 w-6 object-contain" />
+              <div>
+                <p className="text-[10px]">{hud.bowTier} Bow</p>
+                <p className="text-[8px] opacity-80 tabular-nums">
+                  {cur.damage} dmg · {cur.rangeTiles} tiles · {(1000 / cur.fireRateMs).toFixed(1)}/s
+                </p>
+              </div>
             </div>
-            <p className="mt-1 text-[10px] text-muted-foreground">
-              {affordable ? "" : "Not enough gold — save up from the next waves. "}
-              {next === "Ignisite" ? "Final tier." : ""}
-            </p>
+            <Stat icon={COIN} alt="gold" value={`${hud.gold}`} />
           </div>
+        </InnerPanel>
+
+        {nextStats && next ? (
+          <>
+            <InnerPanel className="mt-1 p-2">
+              <p className="text-[10px]">{next} Bow</p>
+              <p className="text-[8px] opacity-80 tabular-nums">
+                +{nextStats.damage - cur.damage} dmg · +{nextStats.rangeTiles - cur.rangeTiles}{" "}
+                tiles · {(1000 / nextStats.fireRateMs).toFixed(1)}/s
+              </p>
+              {!affordable && (
+                <p className="mt-1 text-[8px] text-brown-100">
+                  Not enough gold — keep farming waves.
+                </p>
+              )}
+            </InnerPanel>
+
+            <div className="mt-1 flex gap-1">
+              <PixelButton disabled={!affordable} onClick={() => sendShopAction("upgrade")}>
+                <span className="flex items-center gap-1 text-[9px]">
+                  <img src={COIN} alt="" className="h-3.5 w-3.5" />
+                  {nextStats.goldCost}
+                </span>
+              </PixelButton>
+              <PixelButton onClick={() => sendShopAction("start")}>
+                <span className="text-[9px]">Fight</span>
+              </PixelButton>
+            </div>
+          </>
         ) : (
-          <button
-            type="button"
-            onClick={() => sendShopAction("start")}
-            className="mt-3 w-full rounded-md bg-primary px-3 py-2 text-xs font-semibold text-primary-foreground"
-          >
-            Start next wave
-          </button>
+          <PixelButton className="mt-1" onClick={() => sendShopAction("start")}>
+            <span className="text-[9px]">Start next wave</span>
+          </PixelButton>
         )}
-      </div>
+      </OuterPanel>
     </div>
   );
 }
@@ -127,69 +142,88 @@ export default function ArenaCanvas() {
   const hearts = Math.max(0, hud.maxHp);
 
   return (
-    <div className="relative h-full w-full overflow-hidden bg-background">
+    <div
+      data-game-route
+      className="relative h-full w-full overflow-hidden bg-background font-pixel"
+    >
       <div ref={hostRef} className="h-full w-full" />
 
       {!ready && (
-        <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-background">
-          <p className="text-sm tracking-widest text-muted-foreground uppercase">Loading arena</p>
-          <div className="h-1.5 w-48 overflow-hidden rounded-full bg-muted">
-            <div
-              className="h-full bg-primary transition-all"
-              style={{ width: `${Math.round(progress * 100)}%` }}
-            />
-          </div>
+        <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 bg-background">
+          <p className="text-[11px] tracking-widest text-foreground">LOADING ARCOON</p>
+          <OuterPanel className="w-56">
+            <InnerPanel className="h-3 p-0">
+              <div
+                className="h-full bg-neon transition-all"
+                style={{ width: `${Math.round(progress * 100)}%` }}
+              />
+            </InnerPanel>
+          </OuterPanel>
         </div>
       )}
 
       {ready && (
-        <div className="pointer-events-none absolute inset-0 p-4">
-          <div className="flex items-start justify-between gap-4">
-            <div className="rounded-lg border border-border/60 bg-card/80 px-3 py-2 backdrop-blur">
-              <div className="flex gap-1">
+        <div className="pointer-events-none absolute inset-0 p-3">
+          <div className="flex items-start justify-between gap-3">
+            {/* Vitals */}
+            <OuterPanel className="px-2 py-1.5">
+              <div className="flex gap-0.5">
                 {Array.from({ length: hearts }).map((_, i) => (
-                  <span
+                  <img
                     key={i}
-                    className={`h-2.5 w-2.5 rounded-sm ${i < hud.hp ? "bg-destructive" : "bg-muted"}`}
+                    src={HEART}
+                    alt=""
+                    className={`h-4 w-4 object-contain ${i < hud.hp ? "" : "opacity-25 grayscale"}`}
                   />
                 ))}
               </div>
-              <p className="mt-1 text-[11px] text-muted-foreground">
-                HP {hud.hp}/{hud.maxHp} · <span className="font-semibold tabular-nums">{hud.gold}g</span>
-              </p>
-              <p className="text-[10px] text-muted-foreground">{hud.bowTier} bow</p>
-            </div>
+              <div className="mt-1.5 flex items-center gap-3">
+                <Stat icon={COIN} alt="gold" value={`${hud.gold}`} />
+                <div className="flex items-center gap-1.5">
+                  <img src={BOW} alt="bow" className="h-4 w-4 object-contain" />
+                  <span className="text-[10px]">{hud.bowTier}</span>
+                </div>
+              </div>
+            </OuterPanel>
 
-            <div className="rounded-lg border border-border/60 bg-card/80 px-3 py-2 text-right backdrop-blur">
-              <p className="text-lg leading-none font-semibold text-foreground tabular-nums">
-                {hud.score}
-              </p>
-              <p className="text-[11px] text-muted-foreground">
-                Wave {hud.wave} · {hud.kills} kills · {hud.enemiesLeft} left
-              </p>
-            </div>
+            {/* Wave + score */}
+            <OuterPanel className="px-2 py-1.5">
+              <div className="flex justify-end">
+                <Label className="-mt-3.5 text-[9px]">Wave {hud.wave}</Label>
+              </div>
+              <div className="mt-1 flex items-center gap-3">
+                <Stat icon={SKULL} alt="enemies left" value={`${hud.enemiesLeft}`} />
+                <Stat icon={SWORD} alt="kills" value={`${hud.kills}`} />
+                <span className="text-[11px] tabular-nums">{hud.score}</span>
+              </div>
+            </OuterPanel>
           </div>
 
           {hud.intermission && !hud.gameOver && <Shop hud={hud} />}
 
           {hud.gameOver && (
-            <div className="pointer-events-auto absolute inset-0 flex flex-col items-center justify-center gap-3 bg-background/80">
-              <p className="text-3xl font-bold text-foreground">Game Over</p>
-              <p className="text-sm text-muted-foreground">
-                Reached wave {hud.wave} · {hud.kills} kills · {hud.goldEarned} gold earned · {hud.score} points
-              </p>
-              <button
-                type="button"
-                onClick={() => window.location.reload()}
-                className="rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground"
-              >
-                Play again
-              </button>
+            <div className="pointer-events-auto absolute inset-0 flex items-center justify-center bg-black/70 px-4">
+              <OuterPanel className="w-full max-w-sm text-center">
+                <div className="flex justify-center">
+                  <Label className="-mt-4 mb-1 text-[10px]">Game Over</Label>
+                </div>
+                <InnerPanel className="space-y-1 p-3">
+                  <p className="text-[10px] tabular-nums">Reached wave {hud.wave}</p>
+                  <div className="flex justify-center gap-3 pt-1">
+                    <Stat icon={SWORD} alt="kills" value={`${hud.kills}`} />
+                    <Stat icon={COIN} alt="gold earned" value={`${hud.goldEarned}`} />
+                  </div>
+                  <p className="pt-1 text-[10px] tabular-nums">{hud.score} points</p>
+                </InnerPanel>
+                <PixelButton className="mt-1" onClick={() => window.location.reload()}>
+                  <span className="text-[9px]">Play again</span>
+                </PixelButton>
+              </OuterPanel>
             </div>
           )}
 
-          <p className="absolute inset-x-0 bottom-4 text-center text-[11px] text-muted-foreground">
-            WASD to move · your bow fires automatically · upgrade it in the shop between waves
+          <p className="absolute inset-x-0 bottom-3 text-center text-[8px] text-white text-outline">
+            WASD to move · bow fires automatically · upgrade between waves
           </p>
         </div>
       )}
