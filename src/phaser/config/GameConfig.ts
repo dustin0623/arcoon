@@ -27,7 +27,7 @@ export const PLAYER_CONFIG = {
   /** Tight hitbox centred on the feet. */
   BODY_SIZE: { width: 12, height: 12 },
   BODY_OFFSET: { x: 34, y: 44 },
-  MAX_HP: 12,
+  MAX_HP: 100,
   /** Invulnerability window after taking a hit, ms. */
   IFRAME_MS: 400,
 } as const;
@@ -51,7 +51,7 @@ export const ENEMY_CONFIG: Record<EnemyType, EnemyConfig> = {
     type: "grunt",
     hp: 6,
     speed: 52,
-    damage: 1,
+    damage: 10,
     attackCooldown: 900,
     attackRange: 16,
     tint: 0x9fd6ff,
@@ -61,7 +61,7 @@ export const ENEMY_CONFIG: Record<EnemyType, EnemyConfig> = {
     type: "runner",
     hp: 4,
     speed: 86,
-    damage: 1,
+    damage: 10,
     attackCooldown: 700,
     attackRange: 16,
     tint: 0xffd166,
@@ -71,7 +71,7 @@ export const ENEMY_CONFIG: Record<EnemyType, EnemyConfig> = {
     type: "brute",
     hp: 16,
     speed: 38,
-    damage: 2,
+    damage: 20,
     attackCooldown: 1200,
     attackRange: 20,
     tint: 0xff7b7b,
