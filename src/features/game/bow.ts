@@ -25,3 +25,17 @@ export const BOW_TIER: Record<BowTier, BowStats> = {
 export function getBowStats(tier: BowTier | undefined): BowStats {
   return BOW_TIER[tier ?? "Wood"] ?? BOW_TIER.Wood;
 }
+
+export const BOW_TIER_ORDER: BowTier[] = [
+  "Wood",
+  "Iron",
+  "Silver",
+  "Emerald",
+  "Diamond",
+  "Ignisite",
+];
+
+export function getNextBowTier(tier: BowTier | undefined): BowTier | null {
+  const idx = BOW_TIER_ORDER.indexOf(tier ?? "Wood");
+  return BOW_TIER_ORDER[idx + 1] ?? null;
+}

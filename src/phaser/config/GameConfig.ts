@@ -80,8 +80,8 @@ export const ENEMY_CONFIG: Record<EnemyType, EnemyConfig> = {
 };
 
 export const WAVE_CONFIG = {
-  /** Pause between waves, ms. */
-  BREAK_MS: 3000,
+  /** Pause between waves, ms. Shop is open during this window. */
+  BREAK_MS: 5000,
   /** Base enemy count for wave 1. */
   BASE_COUNT: 4,
   /** Extra enemies added per wave. */
