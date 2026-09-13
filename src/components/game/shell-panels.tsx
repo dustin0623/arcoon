@@ -12,7 +12,7 @@ import { InnerPanel, Label, OuterPanel, PixelButton } from "@/components/ui/pixe
 import { BOW_TIER, getNextBowTier } from "@/features/game/bow";
 import { getLevelProgress } from "@/features/game/experience";
 import { SKILL_TREE, getSkillModifiers } from "@/features/game/skill-tree";
-import { ICONS, Stat, type HudModel } from "@/components/game/game-modals";
+import { ICONS, RaccoonAvatar, Stat, type HudModel } from "@/components/game/game-modals";
 
 export type GameTab = "world" | "inventory" | "packs" | "character";
 
