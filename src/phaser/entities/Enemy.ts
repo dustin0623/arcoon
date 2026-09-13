@@ -18,15 +18,23 @@ export class Enemy {
   dying = false;
   facing: Facing = DEFAULT_FACING;
 
-  constructor(scene: Phaser.Scene, id: string, type: EnemyType, x: number, y: number) {
+  constructor(
+    scene: Phaser.Scene,
+    id: string,
+    type: EnemyType,
+    x: number,
+    y: number,
+    hpOverride?: number,
+  ) {
     this.id = id;
     this.type = type;
     this.config = ENEMY_CONFIG[type];
-    this.hp = this.config.hp;
-    this.maxHp = this.config.hp;
+    this.hp = hpOverride ?? this.config.hp;
+    this.maxHp = this.hp;
 
     this.sprite = scene.physics.add.sprite(x, y, "enemy_idle");
     this.sprite.setTint(this.config.tint);
+    if (this.config.scale) this.sprite.setScale(this.config.scale);
     this.sprite.setDepth(y);
 
     const body = this.sprite.body as Phaser.Physics.Arcade.Body | null;
@@ -40,7 +48,10 @@ export class Enemy {
     this.drawHpBar();
   }
 
+  /** Centre of the physics body — scale-aware, so bosses aim correctly. */
   get bodyX(): number {
+    const body = this.sprite.body as Phaser.Physics.Arcade.Body | null;
+    if (body) return body.center.x;
     return (
       this.sprite.x +
       PLAYER_CONFIG.BODY_OFFSET.x +
@@ -50,6 +61,8 @@ export class Enemy {
   }
 
   get bodyY(): number {
+    const body = this.sprite.body as Phaser.Physics.Arcade.Body | null;
+    if (body) return body.center.y;
     return (
       this.sprite.y +
       PLAYER_CONFIG.BODY_OFFSET.y +
@@ -68,10 +81,10 @@ export class Enemy {
   }
 
   drawHpBar() {
-    const w = 18;
-    const h = 3;
+    const w = this.config.barWidth ?? 18;
+    const h = this.config.type === "boss" ? 4 : 3;
     const x = this.bodyX - w / 2;
-    const y = this.bodyY - 20;
+    const y = this.bodyY - (this.config.type === "boss" ? 34 : 20);
     const pct = this.maxHp > 0 ? this.hp / this.maxHp : 0;
 
     this.hpBar.clear();

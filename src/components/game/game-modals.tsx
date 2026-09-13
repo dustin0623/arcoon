@@ -27,6 +27,8 @@ export interface HudModel {
   hp: number;
   maxHp: number;
   wave: number;
+  /** True while the current wave is the stage's boss wave. */
+  boss?: boolean;
   score: number;
   kills: number;
   enemiesLeft: number;
@@ -135,7 +137,9 @@ export function TopBar({
       <OuterPanel className="w-56 shrink-0 px-2 py-1.5 text-center">
         <div className="flex items-center justify-center gap-2">
           <Swords className="h-3.5 w-3.5 text-brown-100" />
-          <span className="text-[10px]">Wave {hud.wave}</span>
+          <span className="text-[10px]">
+            Wave {hud.wave}/{hud.stageWaves ?? 10}
+          </span>
           <Swords className="h-3.5 w-3.5 text-brown-100" />
         </div>
         <div className="mt-1 h-2.5 overflow-hidden rounded-full bg-black/50">
@@ -145,7 +149,11 @@ export function TopBar({
           />
         </div>
         <p className="mt-1 text-[8px] opacity-80">
-          {hud.intermission ? "Next wave in..." : `${hud.enemiesLeft} enemies left`}
+          {hud.boss && !hud.intermission
+            ? `BOSS FIGHT — ${hud.enemiesLeft} left`
+            : hud.intermission
+              ? "Next wave in..."
+              : `${hud.enemiesLeft} enemies left`}
         </p>
       </OuterPanel>
 
