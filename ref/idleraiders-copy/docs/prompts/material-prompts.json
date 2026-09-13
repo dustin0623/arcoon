@@ -1,0 +1,401 @@
+[
+  {
+    "id": "material_goblin_iron",
+    "name": "Goblin Iron",
+    "type": "core",
+    "zone": "d1",
+    "prompt": "stylized chibi fantasy material illustration, collectible card game crafting material, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible material Goblin Iron, crude iron smelted by goblin smiths, dark rough metal ingot with goblin markings, Goblin Cave dungeon material, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "material_crude_leather",
+    "name": "Crude Leather",
+    "type": "core",
+    "zone": "d1",
+    "prompt": "stylized chibi fantasy material illustration, collectible card game crafting material, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible material Crude Leather, rough hide stripped from goblin beasts, brown unprocessed leather with visible stitches, Goblin Cave dungeon material, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "material_silk_thread",
+    "name": "Silk Thread",
+    "type": "core",
+    "zone": "d2",
+    "prompt": "stylized chibi fantasy material illustration, collectible card game crafting material, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible material Silk Thread, fine thread harvested from spider webs, shimmering white silk strands with slight glow, Spider Den dungeon material, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "material_chitin_plate",
+    "name": "Chitin Plate",
+    "type": "core",
+    "zone": "d2",
+    "prompt": "stylized chibi fantasy material illustration, collectible card game crafting material, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible material Chitin Plate, hard shell fragment from giant spiders, dark purple-black segmented shell piece, Spider Den dungeon material, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "material_soul_ash",
+    "name": "Soul Ash",
+    "type": "core",
+    "zone": "d3",
+    "prompt": "stylized chibi fantasy material illustration, collectible card game crafting material, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible material Soul Ash, residue left by restless spirits, glowing gray-blue ash particles with spectral wisps, Graveyard of Souls dungeon material, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "material_grave_cloth",
+    "name": "Grave Cloth",
+    "type": "core",
+    "zone": "d3",
+    "prompt": "stylized chibi fantasy material illustration, collectible card game crafting material, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible material Grave Cloth, decayed fabric from ancient burial wraps, tattered gray cloth with ghostly aura, Graveyard of Souls dungeon material, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "material_necro_dust",
+    "name": "Necro Dust",
+    "type": "core",
+    "zone": "d4",
+    "prompt": "stylized chibi fantasy material illustration, collectible card game crafting material, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible material Necro Dust, powdered bone infused with death magic, dark purple powder with skull-shaped particles, Crypt of the Undying dungeon material, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "material_bone_rune",
+    "name": "Bone Rune",
+    "type": "core",
+    "zone": "d4",
+    "prompt": "stylized chibi fantasy material illustration, collectible card game crafting material, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible material Bone Rune, a carved bone etched with arcane symbols, white bone fragment with glowing purple runes, Crypt of the Undying dungeon material, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "material_frostwood",
+    "name": "Frostwood",
+    "type": "core",
+    "zone": "d5",
+    "prompt": "stylized chibi fantasy material illustration, collectible card game crafting material, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible material Frostwood, petrified wood preserved by ancient ice, pale blue crystallized wood with frost patterns, Ice Cavern dungeon material, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "material_glacial_shard",
+    "name": "Glacial Shard",
+    "type": "core",
+    "zone": "d5",
+    "prompt": "stylized chibi fantasy material illustration, collectible card game crafting material, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible material Glacial Shard, a fragment of magical ice that never melts, crystalline ice shard with inner blue glow, Ice Cavern dungeon material, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "material_elder_bark",
+    "name": "Elder Bark",
+    "type": "core",
+    "zone": "d6",
+    "prompt": "stylized chibi fantasy material illustration, collectible card game crafting material, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible material Elder Bark, bark from an ancient sentient tree, dark gnarled bark with glowing green veins, Dark Forest dungeon material, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "material_living_sap",
+    "name": "Living Sap",
+    "type": "core",
+    "zone": "d6",
+    "prompt": "stylized chibi fantasy material illustration, collectible card game crafting material, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible material Living Sap, sap imbued with life force from the dark forest, glowing amber liquid in glass vial with moving particles, Dark Forest dungeon material, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "material_cinder_stone",
+    "name": "Cinder Stone",
+    "type": "core",
+    "zone": "d7",
+    "prompt": "stylized chibi fantasy material illustration, collectible card game crafting material, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible material Cinder Stone, volcanic rock still warm to the touch, dark gray stone with orange ember cracks, Molten Quarry dungeon material, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "material_magma_core",
+    "name": "Magma Core",
+    "type": "core",
+    "zone": "d7",
+    "prompt": "stylized chibi fantasy material illustration, collectible card game crafting material, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible material Magma Core, a crystallized heart of molten rock, glowing orange-red crystal with lava swirls inside, Molten Quarry dungeon material, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "material_ash_crystal",
+    "name": "Ash Crystal",
+    "type": "core",
+    "zone": "d8",
+    "prompt": "stylized chibi fantasy material illustration, collectible card game crafting material, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible material Ash Crystal, a rare crystal formed in volcanic ash fields, dark gray crystal with orange fire inclusions, Ashen Fortress dungeon material, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "material_charred_bone",
+    "name": "Charred Bone",
+    "type": "core",
+    "zone": "d8",
+    "prompt": "stylized chibi fantasy material illustration, collectible card game crafting material, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible material Charred Bone, bone hardened and blackened by intense heat, black bone fragment with glowing ember cracks, Ashen Fortress dungeon material, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "material_demon_ichor",
+    "name": "Demon Ichor",
+    "type": "core",
+    "zone": "d9",
+    "prompt": "stylized chibi fantasy material illustration, collectible card game crafting material, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible material Demon Ichor, foul fluid that flows through demonic veins, dark purple-red liquid in vial with evil glow, Demon's Gate dungeon material, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "material_cursed_steel",
+    "name": "Cursed Steel",
+    "type": "core",
+    "zone": "d9",
+    "prompt": "stylized chibi fantasy material illustration, collectible card game crafting material, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible material Cursed Steel, metal imbued with demonic corruption, black steel ingot with pulsing red corruption veins, Demon's Gate dungeon material, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "material_dragon_bone",
+    "name": "Dragon Bone",
+    "type": "core",
+    "zone": "d10",
+    "prompt": "stylized chibi fantasy material illustration, collectible card game crafting material, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible material Dragon Bone, a dense bone fragment from a dragon skeleton, ivory white bone with golden dragon scale pattern, Dragon's Lair dungeon material, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "material_void_scale",
+    "name": "Void Scale",
+    "type": "core",
+    "zone": "d10",
+    "prompt": "stylized chibi fantasy material illustration, collectible card game crafting material, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible material Void Scale, a scale from the Ancient Dragon crackling with void energy, iridescent black scale with purple void lightning, Dragon's Lair dungeon material, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "component_melee_blade_core",
+    "name": "Blade Core",
+    "type": "component",
+    "class": "melee",
+    "prompt": "stylized chibi fantasy material illustration, collectible card game crafting component, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible component Blade Core, core forging piece for melee weapons, glowing metal core with blade shape, boss raid drop, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "component_melee_weapon_hilt",
+    "name": "Weapon Hilt",
+    "type": "component",
+    "class": "melee",
+    "prompt": "stylized chibi fantasy material illustration, collectible card game crafting component, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible component Weapon Hilt, grip component for melee weapons, ornate sword handle with leather wrapping, boss raid drop, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "component_melee_edge_reinforcement",
+    "name": "Edge Reinforcement",
+    "type": "component",
+    "class": "melee",
+    "prompt": "stylized chibi fantasy material illustration, collectible card game crafting component, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible component Edge Reinforcement, sharpened reinforcement for weapon edges, gleaming metal edge guard with magical glow, boss raid drop, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "component_melee_blood_channel",
+    "name": "Blood Channel",
+    "type": "component",
+    "class": "melee",
+    "prompt": "stylized chibi fantasy material illustration, collectible card game crafting component, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible component Blood Channel, groove structure to enhance melee lethality, curved metal channel with red magical inscriptions, boss raid drop, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "component_range_bow_frame",
+    "name": "Bow Frame",
+    "type": "component",
+    "class": "range",
+    "prompt": "stylized chibi fantasy material illustration, collectible card game crafting component, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible component Bow Frame, structural frame for ranged weapons, curved wooden frame with metal fittings, boss raid drop, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "component_range_tension_string",
+    "name": "Tension String",
+    "type": "component",
+    "class": "range",
+    "prompt": "stylized chibi fantasy material illustration, collectible card game crafting component, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible component Tension String, high tension string for projectile weapons, coiled magical string with energy glow, boss raid drop, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "component_range_arrow_mechanism",
+    "name": "Arrow Mechanism",
+    "type": "component",
+    "class": "range",
+    "prompt": "stylized chibi fantasy material illustration, collectible card game crafting component, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible component Arrow Mechanism, launch mechanism for ranged attacks, intricate metal mechanism with gears and springs, boss raid drop, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "component_range_precision_sight",
+    "name": "Precision Sight",
+    "type": "component",
+    "class": "range",
+    "prompt": "stylized chibi fantasy material illustration, collectible card game crafting component, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible component Precision Sight, enhances accuracy of ranged weapons, magical lens with targeting reticle glow, boss raid drop, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "component_magic_arcane_focus",
+    "name": "Arcane Focus",
+    "type": "component",
+    "class": "magic",
+    "prompt": "stylized chibi fantasy material illustration, collectible card game crafting component, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible component Arcane Focus, core amplifier for magical energy, glowing crystal orb with swirling arcane energy, boss raid drop, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "component_magic_mana_conduit",
+    "name": "Mana Conduit",
+    "type": "component",
+    "class": "magic",
+    "prompt": "stylized chibi fantasy material illustration, collectible card game crafting component, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible component Mana Conduit, channels mana flow through magical items, crystalline tube with flowing blue mana, boss raid drop, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "component_magic_rune_core",
+    "name": "Rune Core",
+    "type": "component",
+    "class": "magic",
+    "prompt": "stylized chibi fantasy material illustration, collectible card game crafting component, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible component Rune Core, inscribed rune core for spellcasting, stone sphere with glowing magical runes, boss raid drop, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "component_magic_spell_channeler",
+    "name": "Spell Channeler",
+    "type": "component",
+    "class": "magic",
+    "prompt": "stylized chibi fantasy material illustration, collectible card game crafting component, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible component Spell Channeler, focuses and directs magical spells, wand-like device with arcane crystal tip, boss raid drop, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "component_defense_armor_plating",
+    "name": "Armor Plating",
+    "type": "component",
+    "class": "defense",
+    "prompt": "stylized chibi fantasy material illustration, collectible card game crafting component, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible component Armor Plating, heavy plating for defensive gear, thick metal plate with protective enchantments, boss raid drop, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "component_defense_reinforced_core",
+    "name": "Reinforced Core",
+    "type": "component",
+    "class": "defense",
+    "prompt": "stylized chibi fantasy material illustration, collectible card game crafting component, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible component Reinforced Core, strengthened internal core for armor, dense metal sphere with layered construction, boss raid drop, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "component_defense_shield_frame",
+    "name": "Shield Frame",
+    "type": "component",
+    "class": "defense",
+    "prompt": "stylized chibi fantasy material illustration, collectible card game crafting component, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible component Shield Frame, structural base for shields, metal frame with mounting points and reinforcement, boss raid drop, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "component_defense_impact_dampener",
+    "name": "Impact Dampener",
+    "type": "component",
+    "class": "defense",
+    "prompt": "stylized chibi fantasy material illustration, collectible card game crafting component, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible component Impact Dampener, reduces incoming damage impact, cushioned mechanism with shock-absorbing magic, boss raid drop, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "component_merchant_wagon_frame",
+    "name": "Wagon Frame",
+    "type": "component",
+    "class": "merchant",
+    "prompt": "stylized chibi fantasy material illustration, collectible card game crafting component, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible component Wagon Frame, base structure for merchant transport, wooden frame with metal reinforcements, boss raid drop, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "component_merchant_cargo_hold",
+    "name": "Cargo Hold",
+    "type": "component",
+    "class": "merchant",
+    "prompt": "stylized chibi fantasy material illustration, collectible card game crafting component, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible component Cargo Hold, storage system for trade goods, wooden crate system with secure latches, boss raid drop, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "component_merchant_trade_compartment",
+    "name": "Trade Compartment",
+    "type": "component",
+    "class": "merchant",
+    "prompt": "stylized chibi fantasy material illustration, collectible card game crafting component, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible component Trade Compartment, organized compartments for trading, sectioned storage box with labeled slots, boss raid drop, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "component_merchant_load_stabilizer",
+    "name": "Load Stabilizer",
+    "type": "component",
+    "class": "merchant",
+    "prompt": "stylized chibi fantasy material illustration, collectible card game crafting component, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible component Load Stabilizer, maintains balance of cargo during travel, mechanical balancing device with counterweights, boss raid drop, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "component_military_reinforced_axle",
+    "name": "Reinforced Axle",
+    "type": "component",
+    "class": "military",
+    "prompt": "stylized chibi fantasy material illustration, collectible card game crafting component, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible component Reinforced Axle, heavy-duty axle for military transport, thick iron axle with war emblems, boss raid drop, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "component_military_siege_mount",
+    "name": "Siege Mount",
+    "type": "component",
+    "class": "military",
+    "prompt": "stylized chibi fantasy material illustration, collectible card game crafting component, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible component Siege Mount, mounting system for siege weapons, heavy metal platform with weapon brackets, boss raid drop, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "component_military_weapon_rack",
+    "name": "Weapon Rack",
+    "type": "component",
+    "class": "military",
+    "prompt": "stylized chibi fantasy material illustration, collectible card game crafting component, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible component Weapon Rack, storage for weapons in transport units, iron rack with weapon slots and straps, boss raid drop, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "component_military_armor_plating",
+    "name": "Military Armor Plating",
+    "type": "component",
+    "class": "military",
+    "prompt": "stylized chibi fantasy material illustration, collectible card game crafting component, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible component Military Armor Plating, protective plating for war vehicles, thick armored plate with battle scars, boss raid drop, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "component_luxury_silk_interior",
+    "name": "Silk Interior",
+    "type": "component",
+    "class": "luxury",
+    "prompt": "stylized chibi fantasy material illustration, collectible card game crafting component, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible component Silk Interior, luxury interior finishing for comfort, rolled silk fabric with golden embroidery, boss raid drop, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "component_luxury_ornament_frame",
+    "name": "Ornament Frame",
+    "type": "component",
+    "class": "luxury",
+    "prompt": "stylized chibi fantasy material illustration, collectible card game crafting component, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible component Ornament Frame, decorative structural frame, gilded frame with intricate carvings, boss raid drop, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "component_luxury_comfort_suspension",
+    "name": "Comfort Suspension",
+    "type": "component",
+    "class": "luxury",
+    "prompt": "stylized chibi fantasy material illustration, collectible card game crafting component, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible component Comfort Suspension, smooth ride suspension system, elegant spring mechanism with velvet padding, boss raid drop, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "component_luxury_gold_trim",
+    "name": "Gold Trim Assembly",
+    "type": "component",
+    "class": "luxury",
+    "prompt": "stylized chibi fantasy material illustration, collectible card game crafting component, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible component Gold Trim Assembly, luxury finishing trim made of gold, ornate golden trim pieces with gem inlays, boss raid drop, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "component_prestige_arcane_engine",
+    "name": "Arcane Engine",
+    "type": "component",
+    "class": "prestige",
+    "prompt": "stylized chibi fantasy material illustration, collectible card game crafting component, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible component Arcane Engine, magical engine powering advanced transport, glowing crystal engine with arcane gears, boss raid drop, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "component_prestige_phantom_core",
+    "name": "Phantom Core",
+    "type": "component",
+    "class": "prestige",
+    "prompt": "stylized chibi fantasy material illustration, collectible card game crafting component, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible component Phantom Core, core infused with spectral energy, ethereal orb with ghostly wisps, boss raid drop, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "component_prestige_speed_matrix",
+    "name": "Speed Matrix",
+    "type": "component",
+    "class": "prestige",
+    "prompt": "stylized chibi fantasy material illustration, collectible card game crafting component, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible component Speed Matrix, enhances movement speed of transport, crystalline matrix with velocity runes, boss raid drop, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "component_prestige_void_stabilizer",
+    "name": "Void Stabilizer",
+    "type": "component",
+    "class": "prestige",
+    "prompt": "stylized chibi fantasy material illustration, collectible card game crafting component, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible component Void Stabilizer, stabilizes transport across void energies, dark crystal device with purple void lightning, boss raid drop, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "catalyst_common",
+    "name": "Common Catalyst",
+    "type": "catalyst",
+    "rarity": "common",
+    "prompt": "stylized chibi fantasy material illustration, collectible card game crafting catalyst, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible catalyst Common Catalyst, basic catalyst for common rarity crafting, simple glowing stone with faint magical aura, gray color with white glow, boss B1 guaranteed drop, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "catalyst_uncommon",
+    "name": "Uncommon Catalyst",
+    "type": "catalyst",
+    "rarity": "uncommon",
+    "prompt": "stylized chibi fantasy material illustration, collectible card game crafting catalyst, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible catalyst Uncommon Catalyst, catalyst for uncommon rarity crafting, green crystal with swirling magical energy, boss B2 guaranteed drop, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "catalyst_rare",
+    "name": "Rare Catalyst",
+    "type": "catalyst",
+    "rarity": "rare",
+    "prompt": "stylized chibi fantasy material illustration, collectible card game crafting catalyst, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible catalyst Rare Catalyst, catalyst for rare rarity crafting, blue crystal with intense magical glow, boss B3 guaranteed drop, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "catalyst_epic",
+    "name": "Epic Catalyst",
+    "type": "catalyst",
+    "rarity": "epic",
+    "prompt": "stylized chibi fantasy material illustration, collectible card game crafting catalyst, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible catalyst Epic Catalyst, catalyst for epic rarity crafting, purple crystal with powerful magical aura and lightning, boss B9 guaranteed drop, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  },
+  {
+    "id": "catalyst_legendary",
+    "name": "Legendary Catalyst",
+    "type": "catalyst",
+    "rarity": "legendary",
+    "prompt": "stylized chibi fantasy material illustration, collectible card game crafting catalyst, cute exaggerated proportions, vibrant colors, simplified shapes with detailed textures, playful fantasy style, clean outlines, soft shading, AAA mobile game card art quality, chibi styled collectible catalyst Legendary Catalyst, catalyst for legendary rarity crafting, golden-orange crystal with blazing magical fire and divine glow, boss B10 guaranteed drop, vertical composition, portrait orientation for trading card frame, single subject centered taking most of the frame, background environment secondary, designed for fantasy trading card frame"
+  }
+]
