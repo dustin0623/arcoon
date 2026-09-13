@@ -412,7 +412,3 @@ export function SkillTreeModal({
   );
 }
 
-/** Rarity name used by the armory list on the home shell. */
-export function rarityLabel(rarity: BowRarity): string {
-  return `${rarity} · ${BOWS[rarity].name}`;
-}
