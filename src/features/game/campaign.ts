@@ -93,7 +93,7 @@ export function loadProgress(): Progress {
       gold: parsed.gold ?? 0,
       kills: parsed.kills ?? 0,
       bestScore: parsed.bestScore ?? 0,
-      xp: parsed.xp ?? 0,
+      xp: Number.isFinite(parsed.xp) ? Number(parsed.xp) : 0,
     };
   } catch {
     return { ...EMPTY_PROGRESS };
@@ -139,7 +139,7 @@ export function recordStageClear(
     gold: progress.gold + run.gold,
     kills: progress.kills + run.kills,
     bestScore: Math.max(progress.bestScore, run.score),
-    xp: progress.xp + (run.xp ?? 0),
+    xp: progress.xp + (Number.isFinite(run.xp) ? Number(run.xp) : 0),
   };
   saveProgress(next);
   return next;

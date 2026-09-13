@@ -57,9 +57,10 @@ export function getLevelProgress(totalXp: number): LevelProgress {
 
 /** Base XP an enemy is worth, before the wave multiplier. */
 export const ENEMY_XP: Record<string, number> = {
-  grunter: 10,
+  grunt: 10,
   runner: 14,
   brute: 30,
+  boss: 250,
 };
 
 export function xpForKill(type: string, wave: number): number {

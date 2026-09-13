@@ -26,6 +26,8 @@ export interface ArenaHudState {
   hp: number;
   maxHp: number;
   wave: number;
+  /** True while the current wave is the stage's boss wave. */
+  boss: boolean;
   score: number;
   kills: number;
   enemiesLeft: number;
