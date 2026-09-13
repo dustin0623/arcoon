@@ -58,6 +58,7 @@ export default function ArenaCanvas() {
   const [skillsOpen, setSkillsOpen] = useState(false);
   const [levelUp, setLevelUp] = useState<number | null>(null);
   const [touch, setTouch] = useState(false);
+  const [tab, setTab] = useState<GameTab>("world");
   const lastLevel = useRef(1);
 
   useEffect(() => {
