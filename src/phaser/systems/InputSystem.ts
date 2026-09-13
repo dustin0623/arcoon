@@ -107,6 +107,7 @@ export class InputSystem {
   }
 
   destroy() {
+    window.removeEventListener("arena-move", this.onTouchMove);
     this.scene.input.keyboard?.off("keydown-SPACE", this.onAttackKey);
     this.scene.input.off("pointermove", this.onPointerMove);
     this.scene.input.off("pointerdown", this.onPointerDown);
