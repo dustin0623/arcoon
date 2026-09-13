@@ -109,8 +109,12 @@ export class ArenaScene extends Phaser.Scene {
     const worldH = map.heightInPixels || GAME_CONFIG.HEIGHT;
     this.physics.world.setBounds(0, 0, worldW, worldH);
     this.cameras.main.setBounds(0, 0, worldW, worldH);
-    this.cameras.main.setZoom(GAME_CONFIG.ZOOM);
+    this.applyResponsiveZoom();
     this.cameras.main.roundPixels = true;
+    this.scale.on(Phaser.Scale.Events.RESIZE, this.applyResponsiveZoom, this);
+    this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => {
+      this.scale.off(Phaser.Scale.Events.RESIZE, this.applyResponsiveZoom, this);
+    });
 
     new AnimationSystem(this).createAll();
 
@@ -145,6 +149,19 @@ export class ArenaScene extends Phaser.Scene {
 
     this.emitHud();
   }
+
+  /**
+   * Keeps roughly the same amount of world visible on phones, tablets and
+   * desktops: zoom scales with the smaller screen edge, clamped to sane values.
+   */
+  private applyResponsiveZoom() {
+    const cam = this.cameras?.main;
+    if (!cam) return;
+    const minEdge = Math.min(this.scale.width, this.scale.height) || 720;
+    const zoom = Phaser.Math.Clamp(minEdge / 200, 1.8, GAME_CONFIG.ZOOM);
+    cam.setZoom(Math.round(zoom * 4) / 4);
+  }
+
 
   override update(time: number) {
     if (!this.player) return;

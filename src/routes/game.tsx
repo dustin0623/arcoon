@@ -44,7 +44,7 @@ function Fallback() {
 function GamePage() {
   const { map, stage } = Route.useSearch();
   return (
-    <main className="h-screen w-screen overflow-hidden bg-background">
+    <main className="h-[100dvh] w-screen overflow-hidden overscroll-none bg-background">
       <h1 className="sr-only">ARCOON stage run</h1>
       <ClientOnly fallback={<Fallback />}>
         <Suspense fallback={<Fallback />}>

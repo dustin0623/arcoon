@@ -69,7 +69,11 @@ export default function ArenaCanvas({
   const lastLevel = useRef(1);
 
   useEffect(() => {
-    setTouch(window.matchMedia("(pointer: coarse)").matches || "ontouchstart" in window);
+    setTouch(
+      window.matchMedia("(pointer: coarse)").matches ||
+        "ontouchstart" in window ||
+        navigator.maxTouchPoints > 0,
+    );
   }, []);
 
   useEffect(() => {
@@ -131,7 +135,14 @@ export default function ArenaCanvas({
       {!ready && <LoadingOverlay progress={progress} />}
 
       {ready && (
-        <div className="pointer-events-none absolute inset-0 p-3 pb-9">
+        <div
+          className="pointer-events-none absolute inset-0 p-3 pb-9"
+          style={{
+            paddingTop: "max(0.75rem, env(safe-area-inset-top))",
+            paddingLeft: "max(0.75rem, env(safe-area-inset-left))",
+            paddingRight: "max(0.75rem, env(safe-area-inset-right))",
+          }}
+        >
           <TopBar hud={hud} onOpenSkills={() => setSkillsOpen((v) => !v)} />
 
           {levelUp !== null && (
