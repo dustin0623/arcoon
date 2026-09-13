@@ -53,6 +53,30 @@ export const Panel: React.FC<PanelProps> = ({ children, className, style, onClic
   </OuterPanel>
 );
 
+interface BarPanelProps extends PanelProps {
+  /** Content rendered inside a nested light panel centered within the bar. */
+  center?: React.ReactNode;
+}
+
+/**
+ * One long dark-bordered bar with a dark-brown fill and a second panel nested
+ * in its center — the combined HUD strip used at the top of the game screen.
+ */
+export const BarPanel: React.FC<BarPanelProps> = ({ children, center, className, style, onClick }) => (
+  <OuterPanel
+    className={clsx("flex items-stretch justify-between gap-2 px-2 py-1.5", className)}
+    style={style}
+    onClick={onClick}
+  >
+    <div className="flex min-w-0 flex-1 items-center gap-2">{children}</div>
+    {center && (
+      <InnerPanel className="flex w-44 shrink-0 flex-col justify-center px-2 py-1 sm:w-56">
+        {center}
+      </InnerPanel>
+    )}
+  </OuterPanel>
+);
+
 /** Small rounded chip used for counts and headings. */
 export const Label: React.FC<{ className?: string; children?: React.ReactNode }> = ({
   children,
