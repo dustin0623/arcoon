@@ -28,7 +28,7 @@ export const Route = createFileRoute("/game")({
 function Fallback() {
   return (
     <div className="flex h-screen w-screen items-center justify-center bg-background">
-      <p className="text-sm tracking-widest text-muted-foreground uppercase">Loading arena</p>
+      <p className="text-sm tracking-widest text-muted-foreground uppercase">Loading ARCOON</p>
     </div>
   );
 }
@@ -36,7 +36,7 @@ function Fallback() {
 function GamePage() {
   return (
     <main className="h-screen w-screen overflow-hidden bg-background">
-      <h1 className="sr-only">Arena wave survival</h1>
+      <h1 className="sr-only">ARCOON wave survival</h1>
       <ClientOnly fallback={<Fallback />}>
         <Suspense fallback={<Fallback />}>
           <ArenaCanvas />

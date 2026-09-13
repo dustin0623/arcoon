@@ -34,7 +34,7 @@ function Index() {
         to="/game"
         className="mt-8 rounded-md bg-primary px-6 py-3 text-sm font-medium text-primary-foreground"
       >
-        Start playing
+        Play ARCOON
       </Link>
     </main>
   );
