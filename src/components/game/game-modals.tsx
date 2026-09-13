@@ -33,6 +33,10 @@ export interface HudModel {
   enemiesTotal?: number;
   intermission: boolean;
   gameOver: boolean;
+  stage?: number;
+  stageWaves?: number;
+  mapId?: string;
+  victory?: boolean;
   gold: number;
   goldEarned: number;
   bowTier: BowTier;

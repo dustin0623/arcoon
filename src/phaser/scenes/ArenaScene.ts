@@ -12,6 +12,7 @@ import { facingFromVector } from "@/phaser/systems/DirectionalAnimation";
 import { getBowStats, BOW_TIER, getNextBowTier, type BowTier } from "@/features/game/bow";
 import { CoinSystem } from "@/phaser/systems/CoinSystem";
 import { getLevel, xpForKill } from "@/features/game/experience";
+import { wavesForStage } from "@/features/game/campaign";
 import {
   EMPTY_RANKS,
   SKILL_TREE,
@@ -31,6 +32,11 @@ export interface ArenaHudState {
   enemiesTotal: number;
   intermission: boolean;
   gameOver: boolean;
+  /** Campaign stage being run and how many waves clear it. */
+  stage: number;
+  stageWaves: number;
+  mapId: string;
+  victory: boolean;
   gold: number;
   goldEarned: number;
   bowTier: BowTier;
@@ -55,6 +61,10 @@ export class ArenaScene extends Phaser.Scene {
   private score = 0;
   private kills = 0;
   private gameOver = false;
+  private victory = false;
+  private stage = 1;
+  private stageWaves = 3;
+  private mapId = "meadow";
   private gold = 0;
   private goldEarned = 0;
   private bowTier: BowTier = "Wood";
@@ -72,6 +82,10 @@ export class ArenaScene extends Phaser.Scene {
   }
 
   create() {
+    this.mapId = (this.registry.get("mapId") as string) ?? "meadow";
+    this.stage = Number(this.registry.get("stage")) || 1;
+    this.stageWaves = wavesForStage(this.stage);
+
     const map = this.make.tilemap({ key: "map1" });
     const tileset = map.addTilesetImage("spr_tileset_sunnysideworld_16px", "tiles");
 
@@ -133,7 +147,7 @@ export class ArenaScene extends Phaser.Scene {
   override update(time: number) {
     if (!this.player) return;
 
-    if (!this.gameOver) {
+    if (!this.gameOver && !this.victory) {
       this.controls.updateMovement(this.player);
       this.handleShooting(time);
       this.resolveArrowHits();
@@ -247,6 +261,11 @@ export class ArenaScene extends Phaser.Scene {
     if (w.toSpawn === 0 && this.enemies.aliveCount === 0) {
       this.score += w.clearBonus();
       w.pending = 0;
+      if (w.wave >= this.stageWaves) {
+        this.victory = true;
+        this.emitHud();
+        return;
+      }
       w.beginIntermission(time);
     }
   }
@@ -312,7 +331,7 @@ export class ArenaScene extends Phaser.Scene {
   /** Shop actions from the React HUD: upgrade the bow or start the next wave. */
   private handleShopAction(e: Event) {
     const action = (e as CustomEvent<{ action: "upgrade" | "start" }>).detail?.action;
-    if (this.gameOver) return;
+    if (this.gameOver || this.victory) return;
 
     if (action === "upgrade" && this.waves.intermission) {
       const next = getNextBowTier(this.bowTier);
@@ -394,6 +413,10 @@ export class ArenaScene extends Phaser.Scene {
       enemiesTotal: Math.max(this.waves.pending, 1),
       intermission: this.waves.intermission,
       gameOver: this.gameOver,
+      stage: this.stage,
+      stageWaves: this.stageWaves,
+      mapId: this.mapId,
+      victory: this.victory,
       gold: this.gold,
       goldEarned: this.goldEarned,
       bowTier: this.bowTier,
