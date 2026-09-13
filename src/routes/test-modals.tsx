@@ -4,20 +4,15 @@ import {
   GameOverModal,
   LevelUpToast,
   LoadingOverlay,
-  ShopModal,
   SkillTreeModal,
   TopBar,
+  VictoryModal,
+  WaveBreakModal,
   XpBar,
-  type HudModel,
 } from "@/components/game/game-modals";
-import {
-  BottomNav,
-  CharacterPanel,
-  InventoryPanel,
-  PacksPanel,
-  type GameTab,
-} from "@/components/game/shell-panels";
 import { OuterPanel } from "@/components/ui/pixel-panel";
+import type { HudState } from "@/features/game/hud";
+import { WAVES_PER_STAGE } from "@/features/game/campaign";
 import { EMPTY_RANKS, canLearn, getSkill, type SkillId } from "@/features/game/skill-tree";
 
 export const Route = createFileRoute("/test-modals")({
@@ -27,13 +22,13 @@ export const Route = createFileRoute("/test-modals")({
       {
         name: "description",
         content:
-          "Preview every ARCOON in-game panel in one place: HUD readouts, the wave shop, skill tree, experience bar, level-up banner and game over screen.",
+          "Preview every ARCOON in-game panel in one place: HUD readouts, the wave break, skill tree, experience bar, level-up banner, stage clear and defeat screens.",
       },
       { property: "og:title", content: "ARCOON UI Gallery — Every Game Panel" },
       {
         property: "og:description",
         content:
-          "Preview every ARCOON in-game panel in one place: HUD readouts, the wave shop, skill tree, experience bar, level-up banner and game over screen.",
+          "Preview every ARCOON in-game panel in one place: HUD readouts, the wave break, skill tree, experience bar, level-up banner, stage clear and defeat screens.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -42,40 +37,45 @@ export const Route = createFileRoute("/test-modals")({
   component: TestModalsPage,
 });
 
-const SAMPLE: HudModel = {
-  hp: 7,
-  maxHp: 10,
+const SAMPLE: HudState = {
+  hp: 70,
+  maxHp: 100,
   wave: 6,
+  boss: false,
   score: 4820,
   kills: 73,
   enemiesLeft: 9,
+  enemiesTotal: 16,
   intermission: true,
   gameOver: false,
-  gold: 1340,
+  stage: 3,
+  stageWaves: WAVES_PER_STAGE,
+  mapId: "whisperwood",
+  victory: false,
   goldEarned: 2610,
-  bowTier: "Silver",
+  bowRarity: "Rare",
+  bowStars: 3,
   xp: 640,
   level: 5,
   skillPoints: 3,
   ranks: { ...EMPTY_RANKS, sharpshooter: 2, vitality: 1, greed: 1 },
+  seen: ["grunt", "runner"],
+  bosses: 1,
 };
 
 /** One labelled slot in the gallery. */
 function Slot({
   title,
-  note,
   children,
   className,
 }: {
   title: string;
-  note?: string;
   children: React.ReactNode;
   className?: string;
 }) {
   return (
     <section className={className}>
       <h2 className="mb-2 text-[14px] text-white/80">{title}</h2>
-      {note && <p className="mb-2 text-[12px] text-white/50">{note}</p>}
       <div className="flex justify-center rounded-lg bg-[#1b1526] p-4">{children}</div>
     </section>
   );
@@ -86,9 +86,6 @@ function TestModalsPage() {
   const [ranks, setRanks] = useState(SAMPLE.ranks);
   const [points, setPoints] = useState(SAMPLE.skillPoints);
   const [progress, setProgress] = useState(0.62);
-  const [xp, setXp] = useState(SAMPLE.xp);
-
-  const [tab, setTab] = useState<GameTab>("world");
 
   const learn = (id: SkillId) => {
     const skill = getSkill(id);
@@ -108,16 +105,12 @@ function TestModalsPage() {
 
       <div className="grid gap-6 lg:grid-cols-2">
         <Slot title="HUD — top bar" className="lg:col-span-2">
-          <TopBar
-            hud={{ ...SAMPLE, ranks }}
-            onOpenSkills={() => setPoints(points + 1)}
-            onOpenSettings={() => undefined}
-          />
+          <TopBar hud={{ ...SAMPLE, ranks }} onOpenSkills={() => setPoints(points + 1)} />
         </Slot>
 
         <Slot title="Experience bar (bottom, full width)" className="lg:col-span-2">
           <div className="relative h-20 w-full overflow-hidden">
-            <XpBar xp={xp} />
+            <XpBar xp={SAMPLE.xp} />
           </div>
         </Slot>
 
@@ -138,40 +131,24 @@ function TestModalsPage() {
           </div>
         </Slot>
 
-        <Slot title="Between-waves shop">
-          <ShopModal hud={{ ...SAMPLE, ranks }} onAction={() => {}} />
+        <Slot title="Between-waves break">
+          <WaveBreakModal hud={{ ...SAMPLE, ranks }} onFight={() => {}} />
         </Slot>
 
-        <Slot title="Game over">
-          <GameOverModal hud={{ ...SAMPLE, ranks }} onRestart={() => {}} />
+        <Slot title="Defeat">
+          <GameOverModal hud={{ ...SAMPLE, ranks }} onRestart={() => {}} onHome={() => {}} />
+        </Slot>
+
+        <Slot title="Stage clear">
+          <VictoryModal
+            hud={{ ...SAMPLE, ranks, victory: true }}
+            onNextStage={() => {}}
+            onHome={() => {}}
+          />
         </Slot>
 
         <Slot title="Skill tree" className="lg:col-span-2">
           <SkillTreeModal ranks={ranks} points={points} onLearn={learn} onClose={() => {}} />
-        </Slot>
-
-        <Slot title="Shell — bottom tab bar" className="lg:col-span-2">
-          <div className="relative h-16 w-full overflow-hidden rounded">
-            <BottomNav active={tab} onChange={setTab} />
-          </div>
-        </Slot>
-
-        <Slot title="Inventory tab overlay">
-          <div className="relative h-72 w-full overflow-hidden rounded">
-            <InventoryPanel hud={{ ...SAMPLE, ranks }} onClose={() => {}} />
-          </div>
-        </Slot>
-
-        <Slot title="Packs tab overlay">
-          <div className="relative h-72 w-full overflow-hidden rounded">
-            <PacksPanel onClose={() => {}} />
-          </div>
-        </Slot>
-
-        <Slot title="Character tab overlay" className="lg:col-span-2">
-          <div className="relative h-80 w-full overflow-hidden rounded">
-            <CharacterPanel hud={{ ...SAMPLE, ranks }} onOpenSkills={() => {}} onClose={() => {}} />
-          </div>
         </Slot>
 
         <Slot title="Panel primitives" className="lg:col-span-2">

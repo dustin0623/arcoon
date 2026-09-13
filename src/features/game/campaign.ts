@@ -1,9 +1,11 @@
 /**
- * Campaign data + saved progress.
- * ARCOON follows an Archero-style structure: each map holds a chain of stages,
- * and every stage must be cleared before the next one (or the next map) opens.
- * Only map1 has real tilemap content while the game is in test phase.
+ * Campaign data + saved profile ("The Forest Saga").
+ * Four maps, five stages each, ten waves per stage with a boss on wave 10.
+ * Everything the player keeps between runs — gold, bows, stars, cleared
+ * stages, encyclopedia discoveries — lives in one localStorage record.
  */
+import { BOW_RARITIES, type BowRarity } from "@/features/game/bow";
+import type { EnemyType } from "@/phaser/config/GameConfig";
 
 export interface MapDef {
   id: string;
@@ -12,60 +14,77 @@ export interface MapDef {
   /** Tilemap cache key loaded by LoaderScene. */
   tilemap: string;
   stages: number;
-  /** False while the map has no tilemap content yet. */
-  playable: boolean;
+  /** Enemy types that make up this map's waves. */
+  family: EnemyType[];
+  /** Boss that closes every stage of the map. */
+  boss: string;
+  /** Enemy health and damage scaling for this map. */
+  hpMult: number;
+  damageMult: number;
 }
 
-export const MAPS = [
+export const MAPS: MapDef[] = [
   {
-    id: "meadow",
-    name: "Sunny Meadow",
+    id: "whisperwood",
+    name: "Whisperwood",
     blurb: "Open grassland. Slow grunts, plenty of room to kite.",
     tilemap: "map1",
     stages: 5,
-    playable: true,
+    family: ["grunt", "runner"],
+    boss: "Bog Troll",
+    hpMult: 1,
+    damageMult: 1,
   },
   {
-    id: "forest",
-    name: "Deep Forest",
-    blurb: "Tight tree lines and fast runners.",
+    id: "dunes",
+    name: "Sunken Dunes",
+    blurb: "Faster spawns and swarms that never stop coming.",
     tilemap: "map1",
     stages: 5,
-    playable: false,
+    family: ["runner", "grunt", "brute"],
+    boss: "Sand Wurm",
+    hpMult: 1.45,
+    damageMult: 1.2,
   },
   {
-    id: "sewer",
-    name: "Sunken Sewer",
-    blurb: "Narrow corridors, brutes in the dark.",
+    id: "sewers",
+    name: "Murkwater Sewers",
+    blurb: "Tight corridors packed with brutes in the dark.",
     tilemap: "map1",
     stages: 5,
-    playable: false,
+    family: ["brute", "grunt", "runner"],
+    boss: "Rat King",
+    hpMult: 2.1,
+    damageMult: 1.45,
   },
   {
-    id: "desert",
-    name: "Scorched Desert",
-    blurb: "Nowhere to hide from the swarm.",
+    id: "city",
+    name: "Neon City",
+    blurb: "Dense waves and an elite mix of everything you have faced.",
     tilemap: "map1",
     stages: 5,
-    playable: false,
+    family: ["runner", "brute", "grunt"],
+    boss: "Shadow Knight",
+    hpMult: 3,
+    damageMult: 1.75,
   },
-] as const satisfies readonly MapDef[];
+];
 
 export function getMap(id: string | undefined): MapDef {
-  return MAPS.find((m) => m.id === id) ?? MAPS[0];
+  return MAPS.find((m) => m.id === id) ?? MAPS[0]!;
 }
 
 /** Every stage runs the same length: 10 waves, the last one a boss fight. */
 export const WAVES_PER_STAGE = 10;
 
-/** Waves needed to clear a stage. */
-export function wavesForStage(_stage: number): number {
-  return WAVES_PER_STAGE;
-}
-
 /** The final wave of every stage is a boss wave. */
 export function isBossWave(wave: number): boolean {
   return wave > 0 && wave % WAVES_PER_STAGE === 0;
+}
+
+/** Bestiary key for a map's boss, so each boss is its own encyclopedia entry. */
+export function bossKey(mapId: string): string {
+  return `boss:${mapId}`;
 }
 
 export interface Progress {
@@ -76,25 +95,57 @@ export interface Progress {
   bestScore: number;
   /** Cumulative account XP earned across runs. */
   xp: number;
+  /** Bosses defeated across all runs. */
+  bosses: number;
+  /** Owned bows mapped to their star level (1–5). */
+  bows: Partial<Record<BowRarity, number>>;
+  equipped: BowRarity;
+  /** Bestiary keys the player has encountered. */
+  seen: string[];
 }
 
-const KEY = "arcoon:progress:v1";
+const KEY = "arcoon:progress:v2";
 
-export const EMPTY_PROGRESS: Progress = { cleared: {}, gold: 0, kills: 0, bestScore: 0, xp: 0 };
+export const EMPTY_PROGRESS: Progress = {
+  cleared: {},
+  gold: 0,
+  kills: 0,
+  bestScore: 0,
+  xp: 0,
+  bosses: 0,
+  bows: { Common: 1 },
+  equipped: "Common",
+  seen: [],
+};
+
+function sanitize(raw: Partial<Progress>): Progress {
+  const bows: Partial<Record<BowRarity, number>> = {};
+  for (const rarity of BOW_RARITIES) {
+    const stars = Number(raw.bows?.[rarity]);
+    if (Number.isFinite(stars) && stars > 0) bows[rarity] = Math.min(5, Math.round(stars));
+  }
+  if (!bows.Common) bows.Common = 1;
+  const equipped = raw.equipped && bows[raw.equipped] ? raw.equipped : "Common";
+  const num = (v: unknown) => (Number.isFinite(Number(v)) ? Number(v) : 0);
+  return {
+    cleared: raw.cleared ?? {},
+    gold: num(raw.gold),
+    kills: num(raw.kills),
+    bestScore: num(raw.bestScore),
+    xp: num(raw.xp),
+    bosses: num(raw.bosses),
+    bows,
+    equipped,
+    seen: Array.isArray(raw.seen) ? raw.seen.filter((s) => typeof s === "string") : [],
+  };
+}
 
 export function loadProgress(): Progress {
   if (typeof window === "undefined") return { ...EMPTY_PROGRESS };
   try {
     const raw = window.localStorage.getItem(KEY);
     if (!raw) return { ...EMPTY_PROGRESS };
-    const parsed = JSON.parse(raw) as Partial<Progress>;
-    return {
-      cleared: parsed.cleared ?? {},
-      gold: parsed.gold ?? 0,
-      kills: parsed.kills ?? 0,
-      bestScore: parsed.bestScore ?? 0,
-      xp: Number.isFinite(parsed.xp) ? Number(parsed.xp) : 0,
-    };
+    return sanitize(JSON.parse(raw) as Partial<Progress>);
   } catch {
     return { ...EMPTY_PROGRESS };
   }
@@ -113,8 +164,7 @@ export function saveProgress(progress: Progress): void {
 export function isMapUnlocked(progress: Progress, mapId: string): boolean {
   const index = MAPS.findIndex((m) => m.id === mapId);
   if (index <= 0) return index === 0;
-  const prev = MAPS[index - 1];
-  if (!prev) return false;
+  const prev = MAPS[index - 1]!;
   return (progress.cleared[prev.id] ?? 0) >= prev.stages;
 }
 
@@ -127,19 +177,37 @@ export function isStageCleared(progress: Progress, mapId: string, stage: number)
   return stage <= (progress.cleared[mapId] ?? 0);
 }
 
-/** Records a stage win and folds the run's rewards into the saved profile. */
-export function recordStageClear(
-  mapId: string,
-  stage: number,
-  run: { gold: number; kills: number; score: number; xp?: number },
-): Progress {
+export interface RunResult {
+  mapId: string;
+  stage: number;
+  victory: boolean;
+  gold: number;
+  kills: number;
+  score: number;
+  xp: number;
+  bosses: number;
+  /** Bestiary keys encountered during the run. */
+  seen: string[];
+}
+
+/**
+ * Folds a finished run into the saved profile. A win banks the full haul and
+ * unlocks the next stage; a defeat keeps half the gold earned that run.
+ */
+export function recordRun(run: RunResult): Progress {
   const progress = loadProgress();
+  const gold = run.victory ? run.gold : Math.floor(run.gold / 2);
   const next: Progress = {
-    cleared: { ...progress.cleared, [mapId]: Math.max(progress.cleared[mapId] ?? 0, stage) },
-    gold: progress.gold + run.gold,
+    ...progress,
+    cleared: run.victory
+      ? { ...progress.cleared, [run.mapId]: Math.max(progress.cleared[run.mapId] ?? 0, run.stage) }
+      : progress.cleared,
+    gold: progress.gold + gold,
     kills: progress.kills + run.kills,
     bestScore: Math.max(progress.bestScore, run.score),
-    xp: progress.xp + (Number.isFinite(run.xp) ? Number(run.xp) : 0),
+    xp: progress.xp + run.xp,
+    bosses: progress.bosses + run.bosses,
+    seen: [...new Set([...progress.seen, ...run.seen])],
   };
   saveProgress(next);
   return next;

@@ -33,7 +33,7 @@ export default function startArenaGame(
     scene: [],
     callbacks: {
       postBoot(game: Phaser.Game) {
-        game.registry.set("mapId", options.mapId ?? "meadow");
+        game.registry.set("mapId", options.mapId ?? "whisperwood");
         game.registry.set("stage", options.stage ?? 1);
         game.scene.add("LoaderScene", LoaderScene, true);
         game.scene.add("ArenaScene", ArenaScene, false);
