@@ -49,7 +49,7 @@ export default function HomeShell() {
   }, []);
 
   return (
-    <div className="fantasy-shell relative flex h-full w-full flex-col overflow-hidden bg-ink-900 font-body text-brown-100">
+    <div className="fantasy-shell relative flex h-full w-full flex-col overflow-hidden bg-ink-900 font-body text-shell-text">
       <div className="forest-bg pointer-events-none absolute inset-0" aria-hidden />
       <div className="ember-glow pointer-events-none absolute inset-0" aria-hidden />
       <HomeHeader progress={progress} />
@@ -81,19 +81,19 @@ function HomeHeader({ progress }: { progress: Progress }) {
       <div className="mx-auto flex w-full max-w-lg items-center justify-between gap-2 px-3 py-2">
         {/* Left: identity */}
         <div className="flex min-w-0 items-center gap-2">
-          <FrogAvatar className="h-9 w-9 shrink-0 rounded-full ring-1 ring-leaf/60 glow-gold" />
+          <FrogAvatar className="h-9 w-9 shrink-0 rounded-full ring-1 ring-shell-accent/70" />
           <div className="min-w-0">
-            <p className="truncate font-pixel text-[12px] leading-tight text-gradient-gold">
-              ARCOON <span className="font-pixel text-[9px] text-brown-100/70">Lv.{level.level}</span>
+            <p className="truncate font-pixel text-[12px] leading-tight text-shell-accent">
+              ARCOON <span className="font-pixel text-[9px] text-shell-muted">Lv.{level.level}</span>
             </p>
             <div className="mt-1 flex items-center gap-1">
               <div className="h-1.5 w-20 overflow-hidden rounded-full bg-ink-900 ring-1 ring-ink-line sm:w-28">
                 <div
-                  className="h-full rounded-full bg-gradient-gold"
+                  className="h-full rounded-full bg-shell-accent-strong"
                   style={{ width: `${Math.round(level.ratio * 100)}%` }}
                 />
               </div>
-              <span className="text-[11px] whitespace-nowrap tabular-nums text-brown-100/60">
+              <span className="text-[11px] whitespace-nowrap tabular-nums text-shell-muted">
                 {level.maxed ? "MAX" : `${level.into}/${level.needed}`}
               </span>
             </div>
@@ -102,8 +102,8 @@ function HomeHeader({ progress }: { progress: Progress }) {
 
         {/* Right: energy-style stats + wallet, as in the reference header */}
         <div className="flex shrink-0 items-center gap-1">
-          <Chip icon={<Skull className="h-3.5 w-3.5 text-brown-100" />} value={progress.kills} />
-          <Chip icon={<Star className="h-3.5 w-3.5 text-fgold" />} value={progress.bestScore} />
+          <Chip icon={<Skull className="h-3.5 w-3.5 text-shell-muted" />} value={progress.kills} />
+          <Chip icon={<Star className="h-3.5 w-3.5 text-shell-accent" />} value={progress.bestScore} />
           <WalletPopover progress={progress} />
         </div>
       </div>
@@ -118,7 +118,7 @@ function Chip({ icon, value }: { icon: React.ReactNode; value: number }) {
   return (
     <span className="flex items-center gap-1 rounded-md bg-ink-700 px-1.5 py-1 ring-1 ring-ink-line">
       {icon}
-      <span className="text-[13px] tabular-nums text-brown-100 text-shadow">{value}</span>
+      <span className="text-[13px] tabular-nums text-shell-text text-shadow">{value}</span>
     </span>
   );
 }
@@ -133,8 +133,8 @@ function WalletPopover({ progress }: { progress: Progress }) {
     {
       label: "Gold",
       value: progress.gold,
-      icon: <Coins className="h-4 w-4 text-fgold" />,
-      tone: "text-fgold",
+      icon: <Coins className="h-4 w-4 text-currency" />,
+      tone: "text-currency",
     },
     {
       label: "Soul Shards",
@@ -156,21 +156,21 @@ function WalletPopover({ progress }: { progress: Progress }) {
         <button
           type="button"
           aria-label="Wallet"
-          className="flex cursor-pointer items-center gap-1 rounded-md bg-ink-700 px-1.5 py-1 ring-1 ring-fgold/40 transition-colors hover:bg-ink-600"
+          className="flex cursor-pointer items-center gap-1 rounded-md bg-ink-700 px-1.5 py-1 ring-1 ring-currency/35 transition-colors hover:bg-ink-600"
         >
-          <WalletIcon className="h-3.5 w-3.5 text-fgold" />
-          <span className="text-[13px] tabular-nums text-fgold text-shadow">{progress.gold}</span>
+          <WalletIcon className="h-3.5 w-3.5 text-currency" />
+          <span className="text-[13px] tabular-nums text-currency text-shadow">{progress.gold}</span>
         </button>
       </PopoverTrigger>
       <PopoverContent
         align="end"
-        className="fantasy-card w-56 border-0 p-0 font-body text-brown-100"
+        className="fantasy-card w-56 border-0 p-0 font-body text-shell-text"
       >
         <div className="flex items-center gap-2 px-3 py-2">
-          <WalletIcon className="h-4 w-4 text-fgold" />
+          <WalletIcon className="h-4 w-4 text-currency" />
           <div>
-            <p className="text-[13px] text-gradient-gold">Wallet</p>
-            <p className="text-[11px] text-brown-100/60">Your balances</p>
+            <p className="text-[13px] text-shell-accent">Wallet</p>
+            <p className="text-[11px] text-shell-muted">Your balances</p>
           </div>
         </div>
         <div className="fantasy-rule w-full" aria-hidden />
@@ -179,7 +179,7 @@ function WalletPopover({ progress }: { progress: Progress }) {
             <div key={b.label} className="flex items-center justify-between gap-2">
               <div className="flex items-center gap-2">
                 {b.icon}
-                <span className="text-[12px] text-brown-100/70">{b.label}</span>
+                <span className="text-[12px] text-shell-muted">{b.label}</span>
               </div>
               <span className={clsx("text-[13px] tabular-nums", b.tone)}>
                 {b.value.toLocaleString()}
@@ -192,7 +192,7 @@ function WalletPopover({ progress }: { progress: Progress }) {
           <button
             type="button"
             disabled
-            className="w-full rounded-md bg-ink-700 py-1.5 text-[12px] text-brown-100/50 ring-1 ring-ink-line"
+            className="w-full rounded-md bg-ink-700 py-1.5 text-[12px] text-shell-muted/60 ring-1 ring-ink-line"
           >
             <ArrowLeftRight className="mr-1 inline h-3 w-3" />
             Deposit / Withdraw soon
@@ -209,7 +209,7 @@ function WalletPopover({ progress }: { progress: Progress }) {
 function WorldTab({ progress }: { progress: Progress }) {
   return (
     <div className="space-y-3">
-      <h2 className="text-center font-pixel text-[12px] text-gradient-gold">Choose your hunt</h2>
+      <h2 className="text-center font-pixel text-[12px] text-shell-accent">Choose your hunt</h2>
       {MAPS.map((map) => (
         <MapCard key={map.id} map={map} progress={progress} />
       ))}
@@ -226,7 +226,7 @@ function MapCard({ map, progress }: { map: MapDef; progress: Progress }) {
     <OuterPanel className="px-2 py-2">
       <div className="flex items-start justify-between gap-2">
         <div className="min-w-0">
-          <p className="font-pixel text-[12px] text-white text-shadow">{map.name}</p>
+             <p className="font-pixel text-[12px] text-shell-text text-shadow">{map.name}</p>
           <p className="text-[12px] opacity-80">{map.blurb}</p>
         </div>
         <Label className="shrink-0 text-[12px]">
@@ -237,7 +237,7 @@ function MapCard({ map, progress }: { map: MapDef; progress: Progress }) {
       <InnerPanel className="mt-1.5 p-2">
         {!unlocked ? (
           <div className="flex items-center gap-2 py-1">
-            <Lock className="h-4 w-4 text-brown-100/80" />
+             <Lock className="h-4 w-4 text-shell-muted" />
             <p className="text-[12px] opacity-80">
               {map.playable ? "Clear the previous map to unlock." : "Coming soon — test phase."}
             </p>
@@ -261,8 +261,8 @@ function MapCard({ map, progress }: { map: MapDef; progress: Progress }) {
                     done && "bg-ink-700 text-neon ring-neon/60",
                     !done &&
                       open &&
-                      "fantasy-btn cursor-pointer ring-fgold-glow/40 hover:-translate-y-0.5",
-                    !open && "bg-ink-800 text-brown-100/40 ring-ink-line",
+                       "fantasy-btn cursor-pointer ring-shell-accent/40 hover:-translate-y-0.5",
+                     !open && "bg-ink-800 text-shell-muted/45 ring-ink-line",
                   )}
 
                 >
@@ -294,7 +294,7 @@ function HomeInventoryTab({ progress }: { progress: Progress }) {
               </p>
             </div>
           </div>
-          <Stat icon={<Coins className="h-4 w-4 text-yellow-300" />} value={`${progress.gold}`} />
+          <Stat icon={<Coins className="h-4 w-4 text-currency" />} value={`${progress.gold}`} />
         </InnerPanel>
         <InnerPanel className="mt-1 p-2">
           <p className="text-[12px] opacity-80">
@@ -320,7 +320,7 @@ function HomePacksTab() {
         <OuterPanel key={pack.name} className="p-2">
           <div className="flex items-center justify-between gap-2">
             <div className="flex items-center gap-2">
-              <Package className="h-5 w-5 shrink-0 text-brown-100" />
+              <Package className="h-5 w-5 shrink-0 text-shell-muted" />
               <div>
                 <p className="text-[14px]">{pack.name}</p>
                 <p className="text-[12px] opacity-80">{pack.desc}</p>
@@ -353,9 +353,9 @@ function HomeCharacterTab({ progress }: { progress: Progress }) {
           </div>
         </InnerPanel>
         <InnerPanel className="mt-1 flex items-center justify-between p-2">
-          <Stat icon={<Swords className="h-4 w-4 text-brown-100" />} value={`${totalCleared} stages`} />
-          <Stat icon={<Skull className="h-4 w-4 text-brown-100" />} value={`${progress.kills}`} />
-          <Stat icon={<Star className="h-4 w-4 text-yellow-300" />} value={`${progress.bestScore}`} />
+          <Stat icon={<Swords className="h-4 w-4 text-shell-muted" />} value={`${totalCleared} stages`} />
+          <Stat icon={<Skull className="h-4 w-4 text-shell-muted" />} value={`${progress.kills}`} />
+          <Stat icon={<Star className="h-4 w-4 text-shell-accent" />} value={`${progress.bestScore}`} />
         </InnerPanel>
         <InnerPanel className="mt-1 p-2">
           <p className="text-[13px] opacity-80">Skills</p>

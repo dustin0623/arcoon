@@ -36,7 +36,7 @@ export function BottomNav({
       aria-label="Game tabs"
       className="pointer-events-auto absolute inset-x-0 bottom-0 z-10 bg-ink-800/95 shadow-card backdrop-blur"
     >
-      {/* Gold hairline along the top edge, as in the reference shell. */}
+      {/* Forest accent hairline along the top edge. */}
       <div className="fantasy-rule w-full" aria-hidden />
       <div className="mx-auto flex max-w-lg items-stretch justify-around px-2">
         {TABS.map((tab) => {
@@ -52,20 +52,20 @@ export function BottomNav({
             >
               {isActive && (
                 <span
-                  className="bg-gradient-gold absolute top-0 h-1 w-8 rounded-full"
+                  className="absolute top-0 h-1 w-8 rounded-full bg-shell-accent-strong"
                   aria-hidden
                 />
               )}
               <Icon
                 className={clsx(
                   "h-5 w-5 transition-colors",
-                  isActive ? "text-fgold" : "text-brown-100/50",
+                  isActive ? "text-shell-accent" : "text-shell-muted/55",
                 )}
               />
               <span
                 className={clsx(
                   "text-[12px]",
-                  isActive ? "text-fgold text-glow-gold" : "text-brown-100/50",
+                  isActive ? "text-shell-accent" : "text-shell-muted/55",
                 )}
               >
                 {tab.label}
