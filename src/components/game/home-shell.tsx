@@ -23,7 +23,7 @@ import {
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { InnerPanel, Label, OuterPanel, PixelButton } from "@/components/ui/pixel-panel";
 
-import { ICONS, RaccoonAvatar, Stat } from "@/components/game/game-modals";
+import { FrogAvatar, ICONS, Stat } from "@/components/game/game-modals";
 import { BottomNav, type GameTab } from "@/components/game/shell-panels";
 import { BOW_TIER } from "@/features/game/bow";
 import { getLevelProgress } from "@/features/game/experience";
@@ -50,6 +50,7 @@ export default function HomeShell() {
 
   return (
     <div className="fantasy-shell relative flex h-full w-full flex-col overflow-hidden bg-ink-900 font-pixel text-brown-100">
+      <div className="forest-bg pointer-events-none absolute inset-0" aria-hidden />
       <div className="ember-glow pointer-events-none absolute inset-0" aria-hidden />
       <HomeHeader progress={progress} />
 
@@ -80,7 +81,7 @@ function HomeHeader({ progress }: { progress: Progress }) {
       <div className="mx-auto flex w-full max-w-lg items-center justify-between gap-2 px-3 py-2">
         {/* Left: identity */}
         <div className="flex min-w-0 items-center gap-2">
-          <RaccoonAvatar className="h-9 w-9 shrink-0 rounded-full ring-1 ring-fgold/50 glow-gold" />
+          <FrogAvatar className="h-9 w-9 shrink-0 rounded-full ring-1 ring-leaf/60 glow-gold" />
           <div className="min-w-0">
             <p className="truncate text-[10px] leading-tight text-gradient-gold">
               ARCOON <span className="text-[8px] text-brown-100/70">Lv.{level.level}</span>
@@ -345,9 +346,9 @@ function HomeCharacterTab({ progress }: { progress: Progress }) {
       <h2 className="text-center text-[10px] text-white text-shadow">Character</h2>
       <OuterPanel className="p-2">
         <InnerPanel className="flex items-center gap-2 p-2">
-          <RaccoonAvatar className="h-12 w-12" />
+          <FrogAvatar className="h-12 w-12" />
           <div>
-            <p className="text-[10px]">Raccoon</p>
+            <p className="text-[10px]">Frog</p>
             <p className="text-[8px] opacity-80">Bow specialist</p>
           </div>
         </InnerPanel>

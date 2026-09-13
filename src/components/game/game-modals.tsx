@@ -86,6 +86,24 @@ export function RaccoonAvatar({ className }: { className?: string }) {
   );
 }
 
+/** Circular frog portrait — the hero of ARCOON — used on the home shell. */
+export function FrogAvatar({ className }: { className?: string }) {
+  return (
+    <div
+      className={clsx(
+        "shrink-0 overflow-hidden rounded-full bg-leaf-dim ring-2 ring-leaf/70",
+        className,
+      )}
+    >
+      <img
+        src="/assets/brand/frog.png"
+        alt="Frog avatar"
+        className="h-full w-full object-cover"
+      />
+    </div>
+  );
+}
+
 
 /**
  * Single top bar spanning the screen: resources + level + skills on the left,
