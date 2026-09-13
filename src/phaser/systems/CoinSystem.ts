@@ -17,6 +17,8 @@ interface Coin {
  */
 export class CoinSystem {
   coins: Coin[] = [];
+  /** Multiplier on the pickup radius, raised by the Magnetism skill. */
+  magnetMult = 1;
   private scene: Phaser.Scene;
 
   constructor(scene: Phaser.Scene) {
@@ -77,8 +79,9 @@ export class CoinSystem {
         const dx = px - s.x;
         const dy = py - s.y;
         const dist = Math.hypot(dx, dy) || 1;
-        if (dist < MAGNET_RADIUS) {
-          const pull = Phaser.Math.Linear(360, 120, Math.min(1, dist / MAGNET_RADIUS));
+        const magnet = MAGNET_RADIUS * this.magnetMult;
+        if (dist < magnet) {
+          const pull = Phaser.Math.Linear(360, 120, Math.min(1, dist / magnet));
           coin.vx += (dx / dist) * pull * 0.35;
           coin.vy += (dy / dist) * pull * 0.35;
         }

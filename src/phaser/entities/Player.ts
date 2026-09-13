@@ -17,6 +17,8 @@ export class Player {
   hp: number = PLAYER_CONFIG.MAX_HP;
   maxHp: number = PLAYER_CONFIG.MAX_HP;
   invulnUntil = 0;
+  /** Invulnerability window after a hit; extended by the Second Wind skill. */
+  iframeMs: number = PLAYER_CONFIG.IFRAME_MS;
   lastShotAt = 0;
   dead = false;
 
@@ -47,7 +49,7 @@ export class Player {
   takeDamage(amount: number, now: number): boolean {
     if (this.dead || now < this.invulnUntil) return false;
     this.hp = Math.max(0, this.hp - amount);
-    this.invulnUntil = now + PLAYER_CONFIG.IFRAME_MS;
+    this.invulnUntil = now + this.iframeMs;
     if (this.hp <= 0) {
       this.dead = true;
       playDirectional(this.sprite, "player_death", this.facing, false);
