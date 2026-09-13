@@ -64,7 +64,7 @@ export function BottomNav({
               />
               <span
                 className={clsx(
-                  "text-[8px]",
+                  "text-[12px]",
                   isActive ? "text-fgold text-glow-gold" : "text-brown-100/50",
                 )}
               >
@@ -93,11 +93,11 @@ function TabOverlay({
     <div className="pointer-events-auto absolute inset-0 flex items-center justify-center bg-black/60 px-4 pb-20">
       <OuterPanel className="w-full max-w-md">
         <div className="flex justify-center">
-          <Label className="-mt-4 mb-1 text-[10px]">{title}</Label>
+          <Label className="-mt-4 mb-1 text-[11px]">{title}</Label>
         </div>
         <div className="max-h-[55vh] space-y-1 overflow-y-auto pr-0.5">{children}</div>
         <PixelButton className="mt-1 w-full" onClick={onClose}>
-          <span className="text-[9px]">Close</span>
+          <span className="text-[13px]">Close</span>
         </PixelButton>
       </OuterPanel>
     </div>
@@ -117,8 +117,8 @@ export function InventoryPanel({ hud, onClose }: { hud: HudModel; onClose: () =>
           <div className="flex items-center gap-2">
             <img src={ICONS.bow} alt="bow" className="h-6 w-6 object-contain" />
             <div>
-              <p className="text-[10px]">{hud.bowTier} Bow</p>
-              <p className="text-[8px] tabular-nums opacity-80">
+              <p className="text-[14px]">{hud.bowTier} Bow</p>
+              <p className="text-[12px] tabular-nums opacity-80">
                 {cur.damage} dmg · {cur.rangeTiles} tiles · {(1000 / cur.fireRateMs).toFixed(1)}/s
               </p>
             </div>
@@ -129,9 +129,9 @@ export function InventoryPanel({ hud, onClose }: { hud: HudModel; onClose: () =>
 
       {next && nextStats && (
         <InnerPanel className="p-2">
-          <p className="text-[9px] opacity-80">Next upgrade</p>
-          <p className="text-[10px]">{next} Bow</p>
-          <p className="text-[8px] tabular-nums opacity-80">
+          <p className="text-[13px] opacity-80">Next upgrade</p>
+          <p className="text-[14px]">{next} Bow</p>
+          <p className="text-[12px] tabular-nums opacity-80">
             {nextStats.damage} dmg · {nextStats.rangeTiles} tiles ·{" "}
             {(1000 / nextStats.fireRateMs).toFixed(1)}/s · {nextStats.goldCost}g
           </p>
@@ -139,7 +139,7 @@ export function InventoryPanel({ hud, onClose }: { hud: HudModel; onClose: () =>
       )}
 
       <InnerPanel className="p-2">
-        <p className="text-[8px] opacity-80">
+        <p className="text-[12px] opacity-80">
           More gear slots arrive with the pack system — bows are just the start.
         </p>
       </InnerPanel>
@@ -163,12 +163,12 @@ export function PacksPanel({ onClose }: { onClose: () => void }) {
             <div className="flex items-center gap-2">
               <Package className="h-5 w-5 shrink-0 text-brown-100" />
               <div>
-                <p className="text-[10px]">{pack.name}</p>
-                <p className="text-[8px] opacity-80">{pack.desc}</p>
+                <p className="text-[14px]">{pack.name}</p>
+                <p className="text-[12px] opacity-80">{pack.desc}</p>
               </div>
             </div>
             <PixelButton disabled>
-              <span className="text-[8px]">Soon</span>
+              <span className="text-[12px]">Soon</span>
             </PixelButton>
           </div>
         </InnerPanel>
@@ -197,7 +197,7 @@ export function CharacterPanel({
         <div className="flex items-center gap-2">
           <RaccoonAvatar className="h-10 w-10" />
           <div className="min-w-0 flex-1">
-            <p className="text-[10px]">Raccoon · Lv {progress.level}</p>
+            <p className="text-[14px]">Raccoon · Lv {progress.level}</p>
             <div className="mt-0.5 h-1.5 w-full overflow-hidden rounded-full bg-black/50">
               <div
                 className="h-full bg-neon"
@@ -213,34 +213,34 @@ export function CharacterPanel({
           <Stat icon={<Swords className="h-4 w-4 text-brown-100" />} value={`Wave ${hud.wave}`} />
           <Stat icon={<Skull className="h-4 w-4 text-brown-100" />} value={`${hud.kills}`} />
           <Stat icon={<Coins className="h-4 w-4 text-yellow-300" />} value={`${hud.goldEarned}`} />
-          <span className="text-[10px] tabular-nums opacity-80">{hud.score} pts</span>
+          <span className="text-[14px] tabular-nums opacity-80">{hud.score} pts</span>
         </div>
       </InnerPanel>
 
       <InnerPanel className="p-2">
-        <p className="text-[9px] opacity-80">Skills</p>
+        <p className="text-[13px] opacity-80">Skills</p>
         {learned.length === 0 ? (
-          <p className="mt-1 text-[8px] opacity-60">No skills learned yet — level up to earn points.</p>
+          <p className="mt-1 text-[12px] opacity-60">No skills learned yet — level up to earn points.</p>
         ) : (
           <div className="mt-1 space-y-1">
             {learned.map((s) => (
               <div key={s.id} className="flex items-center gap-2">
                 <img src={s.icon} alt="" className="h-4 w-4 object-contain" />
-                <span className="flex-1 truncate text-[9px]">{s.name}</span>
-                <span className="text-[8px] tabular-nums">
+                <span className="flex-1 truncate text-[13px]">{s.name}</span>
+                <span className="text-[12px] tabular-nums">
                   {hud.ranks[s.id]}/{s.maxRank}
                 </span>
               </div>
             ))}
           </div>
         )}
-        <p className="mt-1 text-[8px] tabular-nums opacity-80">
+        <p className="mt-1 text-[12px] tabular-nums opacity-80">
           DMG x{mods.damageMult.toFixed(2)} · RATE x{mods.fireRateMult.toFixed(2)} · SPD x
           {mods.speedMult.toFixed(2)} · GOLD x{mods.goldMult.toFixed(2)} · XP x
           {mods.xpMult.toFixed(2)}
         </p>
         <PixelButton className="mt-1 w-full" onClick={onOpenSkills}>
-          <span className="text-[9px]">
+          <span className="text-[13px]">
             Open skill tree{hud.skillPoints > 0 ? ` (${hud.skillPoints})` : ""}
           </span>
         </PixelButton>
