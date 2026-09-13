@@ -218,6 +218,12 @@
   --color-leaf: hsl(120 55% 50%);
   --color-leaf-bright: hsl(110 75% 60%);
   --color-leaf-dim: hsl(130 40% 32%);
+  --color-shell-accent: oklch(0.82 0.12 142);
+  --color-shell-accent-strong: oklch(0.7 0.15 142);
+  --color-shell-text: oklch(0.95 0.025 105);
+  --color-shell-muted: oklch(0.77 0.045 135);
+  --color-shell-divider: oklch(0.58 0.08 145);
+  --color-currency: oklch(0.8 0.14 78);
   --color-ember: hsl(15 85% 58%);
   --color-frost: hsl(200 70% 60%);
 }
@@ -290,16 +296,16 @@
 
 @utility fantasy-rule {
   height: 1px;
-  background: linear-gradient(90deg, transparent, hsl(43 85% 59% / 0.45), transparent);
+  background: linear-gradient(90deg, transparent, oklch(0.7 0.15 142 / 0.55), transparent);
 }
 
 @utility fantasy-btn {
   border-radius: 0.5rem;
-  background: linear-gradient(135deg, hsl(43 85% 55%), hsl(43 85% 45%));
-  color: hsl(230 15% 8%);
+  background: linear-gradient(135deg, oklch(0.76 0.14 142), oklch(0.64 0.13 146));
+  color: oklch(0.2 0.04 145);
   box-shadow:
-    0 4px 12px hsl(43 85% 59% / 0.3),
-    inset 0 1px 0 hsl(43 95% 70% / 0.3);
+    0 4px 12px oklch(0.5 0.1 145 / 0.28),
+    inset 0 1px 0 oklch(0.9 0.09 140 / 0.35);
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
   transition: all 200ms ease;
 }
@@ -318,7 +324,7 @@
   animation: glow-pulse 2s ease-in-out infinite;
 }
 
-/* Moss-green scrollbars with a gold edge, matching the hybrid shell. */
+/* Moss-green scrollbars matching the forest shell. */
 .fantasy-shell * {
   scrollbar-width: thin;
   scrollbar-color: hsl(130 40% 30%) hsl(150 20% 8%);
