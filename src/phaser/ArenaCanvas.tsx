@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import type Phaser from "phaser";
 import type { ArenaHudState } from "@/phaser/scenes/ArenaScene";
 import { EMPTY_RANKS, type SkillId } from "@/features/game/skill-tree";
@@ -12,6 +12,8 @@ import {
   WavePanel,
   XpBar,
 } from "@/components/game/game-modals";
+
+const TouchJoystick = lazy(() => import("@/components/game/touch-joystick"));
 
 const EMPTY_HUD: ArenaHudState = {
   hp: 0,
@@ -48,7 +50,12 @@ export default function ArenaCanvas() {
   const [ready, setReady] = useState(false);
   const [skillsOpen, setSkillsOpen] = useState(false);
   const [levelUp, setLevelUp] = useState<number | null>(null);
+  const [touch, setTouch] = useState(false);
   const lastLevel = useRef(1);
+
+  useEffect(() => {
+    setTouch(window.matchMedia("(pointer: coarse)").matches || "ontouchstart" in window);
+  }, []);
 
   useEffect(() => {
     let disposed = false;
@@ -87,7 +94,7 @@ export default function ArenaCanvas() {
   }, [hud.level]);
 
   return (
-    <div data-game-route className="relative h-full w-full overflow-hidden bg-background font-pixel">
+    <div data-game-route className="relative h-full w-full touch-none overflow-hidden bg-background font-pixel">
       <div ref={hostRef} className="h-full w-full" />
 
       {!ready && <LoadingOverlay progress={progress} />}
@@ -126,6 +133,12 @@ export default function ArenaCanvas() {
             <div className="pointer-events-auto absolute inset-0 flex items-center justify-center bg-black/70 px-4">
               <GameOverModal hud={hud} onRestart={() => window.location.reload()} />
             </div>
+          )}
+
+          {touch && !hud.gameOver && !hud.intermission && !skillsOpen && (
+            <Suspense fallback={null}>
+              <TouchJoystick />
+            </Suspense>
           )}
 
           <XpBar xp={hud.xp} />
