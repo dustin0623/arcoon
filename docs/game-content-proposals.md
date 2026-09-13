@@ -1,6 +1,6 @@
 # ARCOON — Full Game Content Proposals
 
-> Three complete content proposals for what ARCOON becomes: how the game works end-to-end, maps, stages, bow items, upgrades, character progression, and whether the **Packs** tab survives or is replaced by a **Book (Encyclopedia)**.
+> Three complete content proposals for what ARCOON becomes: how the game works end-to-end, maps, stages, bow items, bow-star upgrades, character progression, and whether the **Packs** tab survives or is replaced by a **Book (Encyclopedia)**.
 >
 > Date: 2026-09-13 · Status: Draft — pick one proposal (or mix) before building.
 
@@ -19,7 +19,7 @@
 
 ## Proposal 1 — "The Forest Saga" (Content-Complete Campaign)
 
-**One-line pitch:** Finish the game as a tight, fully-themed single-player campaign: 4 maps, 20 stages, 20 bow tiers, per-map enemy families and bosses, and replace Packs with a Book encyclopedia.
+**One-line pitch:** Finish the game as a tight, fully-themed single-player campaign: 4 maps, 20 stages, 5 bow rarity sets with star upgrades, per-map enemy families and bosses, and replace Packs with a Book encyclopedia.
 
 ### How the game works
 
@@ -42,9 +42,10 @@ Each map has **5 stages × 10 waves**. Difficulty scales via enemy HP/damage mul
 
 ### Items — bows only
 
-- **20 bow tiers** across 5 rarities (Common → Uncommon → Rare → Epic → Legendary), 4 tiers each, themed per map (e.g. Whisperwood bows are living-wood; Neon City bows are chrome/energy).
-- Bow stats: damage, range, fire rate, plus one **trait** per rarity tier (pierce, spread, burn, slow, gold-find).
-- Bows are **bought with gold** in a permanent Blacksmith (homepage Inventory tab), not just the between-wave shop. Between-wave shop sells temporary boosts only.
+- **5 bow sets**, one per rarity: **Common → Uncommon → Rare → Epic → Legendary**. Each set is themed per map (e.g. Whisperwood Common is living-wood; Neon City Legendary is chrome/energy).
+- Every bow can be upgraded with **Stars** (1★ → 5★). Each star raises base damage, range, and fire rate by a fixed percent. Max-star bows from earlier rarities can rival low-star bows from the next rarity.
+- Bow stats: damage, range, fire rate, plus one **trait** unlocked at 3★ and strengthened at 5★ (pierce, spread, burn, slow, gold-find).
+- Bows are **bought with gold** in a permanent Blacksmith (homepage Inventory tab), not just the between-wave shop. Between-wave shop sells temporary boosts only; stars are upgraded outside the run.
 
 ### Character upgrades
 
@@ -55,8 +56,8 @@ Each map has **5 stages × 10 waves**. Difficulty scales via enemy HP/damage mul
 
 Remove Packs. Replace with **Book (Encyclopedia)** tab with three sections:
 - **Bestiary** — every enemy/boss with sprite, stats, lore line, kill count. Silhouette until first encounter.
-- **Armory** — all 20 bows with stats and how to unlock; owned ones highlighted.
-- **Milestones** — achievements (first boss kill, 1,000 kills, full map clear) with small gold rewards.
+- **Armory** — all 5 bow sets with star-upgrade paths, stats, and how to unlock; owned ones highlighted and current star level shown.
+- **Milestones** — achievements (first boss kill, 1,000 kills, full map clear, first 5★ bow) with small gold rewards.
 
 **Why:** a single-player test-phase game has no economy that justifies packs/gacha; a Book rewards exploration, costs nothing to balance, and gives the 4th tab a real purpose.
 
@@ -83,9 +84,9 @@ Same 4 maps × 5 stages × 10 waves, but each map adds a **map modifier** (fores
 
 ### Items — bows only
 
-- Bows are **permanent unlocks** (gold), define your base stats entering a run.
-- Relics are **run-scoped** — this is the upgrade variety.
-- Bow count can stay at the existing 6 tiers, expanded to 10 later.
+- **5 bow sets** (Common → Uncommon → Rare → Epic → Legendary) are **permanent unlocks** bought with gold. They define your base stats entering a run.
+- **Stars** upgrade a bow permanently outside the run, raising damage / range / fire rate and unlocking traits at 3★ / 5★.
+- **Relics** are **run-scoped** — this is the main wave-to-wave variety.
 
 ### Character upgrades
 
@@ -118,7 +119,8 @@ Keep the Packs tab but make it a **Relic Pack shop**: spend gold/tokens to unloc
 
 ### Items — bows only
 
-- Proposal 1's 20 bows, plus **cosmetic bow skins** (trail colors, arrow effects) — no stat power, pure style.
+- **5 bow sets** (Common → Uncommon → Rare → Epic → Legendary) with star upgrades, same as Proposal 1.
+- **Cosmetic bow skins** (trail colors, arrow effects) — no stat power, pure style, bought with Soul Shards.
 
 ### Character upgrades
 
@@ -152,5 +154,6 @@ Keep the Packs tab but make it a **Relic Pack shop**: spend gold/tokens to unloc
 
 - [ ] Which proposal (1 / 2 / 3 or hybrid)?
 - [ ] Packs: remove (Book) or repurpose (fixed-content)?
-- [ ] Bow count: keep 6 tiers or expand toward 20 with traits?
+- [ ] Bow rarity sets: keep the current 6 material tiers or move to 5 rarity sets (Common / Uncommon / Rare / Epic / Legendary) with star upgrades?
+- [ ] Star upgrade curve: flat percentage per star, or diminishing returns after 3★?
 - [ ] Backend: stay on `localStorage` for now or enable cloud accounts?
