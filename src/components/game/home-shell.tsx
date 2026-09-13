@@ -7,8 +7,22 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "@tanstack/react-router";
 import clsx from "clsx";
-import { Check, Coins, Lock, Package, Skull, Star, Swords } from "lucide-react";
+import {
+  ArrowLeftRight,
+  Check,
+  Coins,
+  Gem,
+  Lock,
+  Package,
+  Skull,
+  Sparkles,
+  Star,
+  Swords,
+  Wallet as WalletIcon,
+} from "lucide-react";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { InnerPanel, Label, OuterPanel, PixelButton } from "@/components/ui/pixel-panel";
+
 import { ICONS, RaccoonAvatar, Stat } from "@/components/game/game-modals";
 import { BottomNav, type GameTab } from "@/components/game/shell-panels";
 import { BOW_TIER } from "@/features/game/bow";
