@@ -66,11 +66,13 @@ export interface Progress {
   gold: number;
   kills: number;
   bestScore: number;
+  /** Cumulative account XP earned across runs. */
+  xp: number;
 }
 
 const KEY = "arcoon:progress:v1";
 
-export const EMPTY_PROGRESS: Progress = { cleared: {}, gold: 0, kills: 0, bestScore: 0 };
+export const EMPTY_PROGRESS: Progress = { cleared: {}, gold: 0, kills: 0, bestScore: 0, xp: 0 };
 
 export function loadProgress(): Progress {
   if (typeof window === "undefined") return { ...EMPTY_PROGRESS };
@@ -83,6 +85,7 @@ export function loadProgress(): Progress {
       gold: parsed.gold ?? 0,
       kills: parsed.kills ?? 0,
       bestScore: parsed.bestScore ?? 0,
+      xp: parsed.xp ?? 0,
     };
   } catch {
     return { ...EMPTY_PROGRESS };
@@ -120,7 +123,7 @@ export function isStageCleared(progress: Progress, mapId: string, stage: number)
 export function recordStageClear(
   mapId: string,
   stage: number,
-  run: { gold: number; kills: number; score: number },
+  run: { gold: number; kills: number; score: number; xp?: number },
 ): Progress {
   const progress = loadProgress();
   const next: Progress = {
@@ -128,6 +131,7 @@ export function recordStageClear(
     gold: progress.gold + run.gold,
     kills: progress.kills + run.kills,
     bestScore: Math.max(progress.bestScore, run.score),
+    xp: progress.xp + (run.xp ?? 0),
   };
   saveProgress(next);
   return next;
