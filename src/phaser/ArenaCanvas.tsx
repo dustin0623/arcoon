@@ -11,6 +11,13 @@ import {
   TopBar,
   XpBar,
 } from "@/components/game/game-modals";
+import {
+  BottomNav,
+  CharacterPanel,
+  InventoryPanel,
+  PacksPanel,
+  type GameTab,
+} from "@/components/game/shell-panels";
 
 const TouchJoystick = lazy(() => import("@/components/game/touch-joystick"));
 
