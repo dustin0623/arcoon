@@ -30,6 +30,7 @@ export interface HudModel {
   score: number;
   kills: number;
   enemiesLeft: number;
+  enemiesTotal?: number;
   intermission: boolean;
   gameOver: boolean;
   gold: number;
@@ -55,63 +56,94 @@ const GoldIcon = <Coins className="h-4 w-4 text-yellow-300" aria-label="gold" />
 const SkullIcon = <Skull className="h-4 w-4 text-brown-100" aria-label="enemies left" />;
 const KillsIcon = <Swords className="h-4 w-4 text-brown-100" aria-label="kills" />;
 
-/** Top-left panel: avatar, gold, the equipped bow, level and skills. HP floats above the player in-game. */
-export function VitalsPanel({
+/**
+ * Single top bar spanning the screen: resources + level + skills on the left,
+ * wave status in the middle, run stats and settings on the right.
+ */
+export function TopBar({
   hud,
   onOpenSkills,
+  onOpenSettings,
 }: {
   hud: HudModel;
   onOpenSkills?: () => void;
+  onOpenSettings?: () => void;
 }) {
   const progress = getLevelProgress(hud.xp);
+  const total = Math.max(hud.enemiesTotal ?? hud.enemiesLeft, hud.enemiesLeft, 1);
+  const cleared = Math.max(0, total - hud.enemiesLeft);
+  const waveRatio = hud.intermission ? 1 : cleared / total;
 
   return (
-    <div className="pointer-events-auto flex items-start gap-1.5">
-      <div className="h-14 w-14 shrink-0 overflow-hidden rounded-full border-4 border-brown-100 bg-brown-300 shadow-lg">
-        <div
-          role="img"
-          aria-label="Raccoon avatar"
-          className="h-full w-full bg-[url('/assets/phaser/sprites/raccoon/idle_strip6.png')] bg-left bg-no-repeat pixelated"
-          style={{ backgroundSize: "600% 100%" }}
-        />
-      </div>
-      <OuterPanel className="px-2 py-1.5">
-        <div className="flex items-center gap-3">
-          <Stat icon={GoldIcon} value={`${hud.gold}`} />
-          <div className="flex items-center gap-1.5">
-            <img src={ICONS.bow} alt="bow" className="h-4 w-4 object-contain" />
-            <span className="text-[10px]">{hud.bowTier}</span>
+    <div className="pointer-events-auto flex items-start justify-between gap-2">
+      {/* Left: avatar, bow, level, skills */}
+      <OuterPanel className="flex items-center gap-3 px-2 py-1.5">
+        <div className="h-9 w-9 shrink-0 overflow-hidden rounded-full border-2 border-brown-100 bg-brown-300">
+          <div
+            role="img"
+            aria-label="Raccoon avatar"
+            className="h-full w-full bg-[url('/assets/phaser/sprites/raccoon/idle_strip6.png')] bg-left bg-no-repeat pixelated"
+            style={{ backgroundSize: "600% 100%" }}
+          />
+        </div>
+
+        <div className="flex items-center gap-1.5 border-l border-brown-100/40 pl-3">
+          <img src={ICONS.bow} alt="bow" className="h-4 w-4 object-contain" />
+          <span className="text-[9px]">{hud.bowTier}</span>
+        </div>
+
+        <div className="border-l border-brown-100/40 pl-3">
+          <p className="text-[9px] tabular-nums">Lv {progress.level}</p>
+          <div className="mt-0.5 h-1.5 w-16 overflow-hidden rounded-full bg-black/50">
+            <div className="h-full bg-neon" style={{ width: `${Math.round(progress.ratio * 100)}%` }} />
           </div>
         </div>
-        <div className="mt-1.5 flex items-center justify-between gap-3 border-t border-brown-100/40 pt-1">
-          <span className="text-[9px] tabular-nums">Lv {progress.level}</span>
-          {onOpenSkills && (
-            <PixelButton className="min-w-20 py-0.5" onClick={onOpenSkills}>
-              <span className="flex items-center gap-1 text-[8px]">
-                <img src={ICONS.star} alt="" className="h-3 w-3" />
-                Skills{hud.skillPoints > 0 ? ` (${hud.skillPoints})` : ""}
-              </span>
-            </PixelButton>
-          )}
-        </div>
-      </OuterPanel>
-    </div>
-  );
-}
 
-/** Top-right panel: wave number, enemies left, kills and score. */
-export function WavePanel({ hud }: { hud: HudModel }) {
-  return (
-    <OuterPanel className="px-2 py-1.5">
-      <div className="flex justify-end">
-        <Label className="-mt-3.5 text-[9px]">Wave {hud.wave}</Label>
+        {onOpenSkills && (
+          <PixelButton className="py-0.5" onClick={onOpenSkills}>
+            <span className="flex items-center gap-1 text-[8px]">
+              <img src={ICONS.star} alt="" className="h-3 w-3" />
+              Skills{hud.skillPoints > 0 ? ` (${hud.skillPoints})` : ""}
+            </span>
+          </PixelButton>
+        )}
+      </OuterPanel>
+
+      {/* Center: wave status */}
+      <OuterPanel className="w-56 shrink-0 px-2 py-1.5 text-center">
+        <div className="flex items-center justify-center gap-2">
+          <Swords className="h-3.5 w-3.5 text-brown-100" />
+          <span className="text-[10px]">Wave {hud.wave}</span>
+          <Swords className="h-3.5 w-3.5 text-brown-100" />
+        </div>
+        <div className="mt-1 h-2.5 overflow-hidden rounded-full bg-black/50">
+          <div
+            className="h-full rounded-full bg-[#e03131] transition-[width] duration-300"
+            style={{ width: `${Math.round(waveRatio * 100)}%` }}
+          />
+        </div>
+        <p className="mt-1 text-[8px] opacity-80">
+          {hud.intermission ? "Next wave in..." : `${hud.enemiesLeft} enemies left`}
+        </p>
+      </OuterPanel>
+
+      {/* Right: run stats + settings */}
+      <div className="flex items-start gap-1.5">
+        <OuterPanel className="px-2 py-1.5">
+          <div className="flex items-center gap-3">
+            <Stat icon={SkullIcon} value={`${hud.enemiesLeft}`} />
+            <Stat icon={KillsIcon} value={`${hud.kills}`} />
+            <Stat icon={GoldIcon} value={`${hud.gold}`} />
+            <span className="text-[10px] tabular-nums opacity-80">{hud.score}</span>
+          </div>
+        </OuterPanel>
+        {onOpenSettings && (
+          <PixelButton className="h-[38px] w-10" onClick={onOpenSettings}>
+            <Settings className="h-4 w-4" />
+          </PixelButton>
+        )}
       </div>
-      <div className="mt-1 flex items-center gap-3">
-        <Stat icon={SkullIcon} value={`${hud.enemiesLeft}`} />
-        <Stat icon={KillsIcon} value={`${hud.kills}`} />
-        <span className="text-[11px] tabular-nums">{hud.score}</span>
-      </div>
-    </OuterPanel>
+    </div>
   );
 }
 
