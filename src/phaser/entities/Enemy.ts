@@ -13,6 +13,8 @@ export class Enemy {
   hp: number;
   maxHp: number;
   lastAttackAt = 0;
+  /** Kept for parity with the reference combat model. */
+  provokedUntil = 0;
   dying = false;
   facing: Facing = DEFAULT_FACING;
 

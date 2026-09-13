@@ -29,12 +29,7 @@ export const PLAYER_CONFIG = {
   BODY_OFFSET: { x: 34, y: 44 },
   MAX_HP: 12,
   /** Invulnerability window after taking a hit, ms. */
-  IFRAME_MS: 700,
-  /** Time between arrows, ms. */
-  FIRE_COOLDOWN_MS: 320,
-  ARROW_DAMAGE: 3,
-  ARROW_SPEED: 420,
-  ARROW_RANGE: 260,
+  IFRAME_MS: 400,
 } as const;
 
 export type EnemyType = "grunt" | "brute" | "runner";

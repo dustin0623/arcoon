@@ -11,13 +11,14 @@ export interface AimState {
 
 /**
  * InputSystem — Soul Knight style controls.
- * WASD / arrows move, the mouse aims, and holding the left button fires.
- * Touch: a virtual joystick drives movement and firing is automatic.
+ * WASD / arrows move, the mouse aims, and click / Space requests one attack.
  */
 export class InputSystem {
   private scene: Phaser.Scene;
   private keys: Record<string, Phaser.Input.Keyboard.Key> = {};
-  private pointerDown = false;
+  attackRequested = false;
+  /** World-space point the mouse is aiming at, updated on move/click. */
+  aim: { x: number; y: number } | null = null;
   /** Set from the React joystick overlay. */
   touchVector = { x: 0, y: 0 };
   touchFiring = false;
@@ -31,9 +32,9 @@ export class InputSystem {
         Phaser.Input.Keyboard.Key
       >;
     }
-    scene.input.on("pointerdown", () => (this.pointerDown = true));
-    scene.input.on("pointerup", () => (this.pointerDown = false));
-    scene.input.on("gameout", () => (this.pointerDown = false));
+    scene.input.keyboard?.on("keydown-SPACE", this.onAttackKey);
+    scene.input.on("pointermove", this.onPointerMove);
+    scene.input.on("pointerdown", this.onPointerDown);
   }
 
   private down(...names: string[]): boolean {
@@ -64,8 +65,9 @@ export class InputSystem {
       body.setVelocity(0, 0);
     }
 
-    const aim = this.getAim(player);
-    player.facing = facingFromVector(aim.x, aim.y);
+    if (this.aim) {
+      player.facing = facingFromVector(this.aim.x - player.sprite.x, this.aim.y - player.sprite.y);
+    }
 
     const current = player.sprite.anims.currentAnim?.key ?? "";
     const busy = player.sprite.anims.isPlaying && /player_(bow|damage|death)/.test(current);
@@ -74,29 +76,30 @@ export class InputSystem {
     }
   }
 
-  /** Aim direction: mouse position on desktop, movement vector on touch. */
-  getAim(player: Player): AimState {
-    const pointer = this.scene.input.activePointer;
-    if (pointer && (this.pointerDown || pointer.movementX !== 0 || !this.touchFiring)) {
-      const world = pointer.positionToCamera(this.scene.cameras.main) as Phaser.Math.Vector2;
-      const dx = world.x - player.bodyX;
-      const dy = world.y - player.bodyY;
-      const len = Math.hypot(dx, dy) || 1;
-      return { x: dx / len, y: dy / len, firing: this.pointerDown || this.touchFiring };
-    }
-    const len = Math.hypot(this.touchVector.x, this.touchVector.y) || 1;
-    return {
-      x: this.touchVector.x / len,
-      y: this.touchVector.y / len,
-      firing: this.touchFiring,
-    };
-  }
+  private onAttackKey = () => {
+    this.attackRequested = true;
+  };
 
-  get firing(): boolean {
-    return this.pointerDown || this.touchFiring || this.down("SPACE");
+  private onPointerMove = (pointer: Phaser.Input.Pointer) => {
+    this.aim = { x: pointer.worldX, y: pointer.worldY };
+  };
+
+  private onPointerDown = (pointer: Phaser.Input.Pointer) => {
+    if (!pointer.leftButtonDown()) return;
+    this.aim = { x: pointer.worldX, y: pointer.worldY };
+    this.attackRequested = true;
+  };
+
+  consumeAttack(): boolean {
+    if (!this.attackRequested && !this.touchFiring) return false;
+    this.attackRequested = false;
+    this.touchFiring = false;
+    return true;
   }
 
   destroy() {
-    this.scene.input.removeAllListeners();
+    this.scene.input.keyboard?.off("keydown-SPACE", this.onAttackKey);
+    this.scene.input.off("pointermove", this.onPointerMove);
+    this.scene.input.off("pointerdown", this.onPointerDown);
   }
 }

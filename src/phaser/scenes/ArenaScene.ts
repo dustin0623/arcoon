@@ -7,6 +7,8 @@ import { EnemySystem } from "@/phaser/systems/EnemySystem";
 import { WaveSystem } from "@/phaser/systems/WaveSystem";
 import { createPlayer, type Player } from "@/phaser/entities/Player";
 import { playDirectional } from "@/phaser/systems/DirectionalAnimation";
+import { facingFromVector } from "@/phaser/systems/DirectionalAnimation";
+import { getBowStats } from "@/features/game/bow";
 
 export interface ArenaHudState {
   hp: number;
@@ -84,19 +86,6 @@ export class ArenaScene extends Phaser.Scene {
       });
     }
 
-    this.physics.add.overlap(this.projectiles.group, this.enemies.group, (arrowObj, enemyObj) => {
-      const arrow = this.projectiles.findBySprite(arrowObj);
-      const enemy = this.enemies.findBySprite(enemyObj);
-      if (!arrow || !enemy || enemy.dying) return;
-      this.projectiles.kill(arrow);
-      const killed = this.enemies.damage(enemy, arrow.damage);
-      if (killed) {
-        this.kills += 1;
-        this.score += killed.config.points * this.waves.wave;
-        this.waves.pending = Math.max(0, this.waves.pending - 1);
-      }
-    });
-
     this.emitHud();
   }
 
@@ -106,6 +95,7 @@ export class ArenaScene extends Phaser.Scene {
     if (!this.gameOver) {
       this.controls.updateMovement(this.player);
       this.handleShooting(time);
+      this.resolveArrowHits();
       this.runWaves(time);
 
       const damage = this.enemies.update(this.player, time);
@@ -129,18 +119,64 @@ export class ArenaScene extends Phaser.Scene {
   }
 
   private handleShooting(time: number) {
-    if (this.player.dead || !this.controls.firing) return;
-    if (time - this.player.lastShotAt < PLAYER_CONFIG.FIRE_COOLDOWN_MS) return;
+    if (this.player.dead || !this.controls.consumeAttack()) return;
+    const stats = getBowStats("Wood");
+    if (time - this.player.lastShotAt < stats.fireRateMs) return;
     this.player.lastShotAt = time;
 
-    const aim = this.controls.getAim(this.player);
-    playDirectional(this.player.sprite, "player_bow", this.player.facing, false);
+    let facing = this.player.facing;
+    const bx = this.player.sprite.x;
+    const by = this.player.sprite.y;
+    const aim = this.controls.aim;
+    const angle = aim ? Phaser.Math.Angle.Between(bx, by, aim.x, aim.y) : undefined;
+    if (aim) {
+      facing = facingFromVector(aim.x - bx, aim.y - by);
+      this.player.facing = facing;
+    }
+    const dir = angle === undefined
+      ? {
+          up: { x: 0, y: -1 },
+          down: { x: 0, y: 1 },
+          left: { x: -1, y: 0 },
+          right: { x: 1, y: 0 },
+        }[facing]
+      : { x: Math.cos(angle), y: Math.sin(angle) };
+
     this.projectiles.fire(
-      this.player.bodyX + aim.x * 8,
-      this.player.bodyY + aim.y * 8 - 6,
-      aim.x,
-      aim.y,
+      bx + dir.x * 10,
+      by + dir.y * 10,
+      facing,
+      stats,
+      angle,
     );
+    playDirectional(this.player.sprite, "player_bow", facing, false);
+  }
+
+  private resolveArrowHits() {
+    const hitRadius = 18;
+    for (const arrow of [...this.projectiles.arrows]) {
+      if (!arrow.sprite.active) continue;
+      for (const enemy of this.enemies.enemies) {
+        if (enemy.dying || enemy.isDead()) continue;
+        const distance = Phaser.Math.Distance.Between(
+          arrow.sprite.x,
+          arrow.sprite.y,
+          enemy.bodyX,
+          enemy.bodyY,
+        );
+        if (distance > hitRadius) continue;
+
+        enemy.provokedUntil = Date.now() + 8000;
+        this.projectiles.kill(arrow);
+        const killed = this.enemies.damage(enemy, arrow.damage);
+        if (killed) {
+          this.kills += 1;
+          this.score += killed.config.points * this.waves.wave;
+          this.waves.pending = Math.max(0, this.waves.pending - 1);
+        }
+        break;
+      }
+    }
   }
 
   private runWaves(time: number) {
