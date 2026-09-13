@@ -113,7 +113,7 @@ function Chip({ icon, value }: { icon: React.ReactNode; value: number }) {
 function WorldTab({ progress }: { progress: Progress }) {
   return (
     <div className="space-y-3">
-      <h2 className="text-center text-[10px] text-white text-shadow">Choose your hunt</h2>
+      <h2 className="text-center text-[10px] text-gradient-gold">Choose your hunt</h2>
       {MAPS.map((map) => (
         <MapCard key={map.id} map={map} progress={progress} />
       ))}
